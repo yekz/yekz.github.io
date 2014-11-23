@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="叶科忠的博客，翻山越岭程序猿 | 英明神武叶科忠 ☑C++ ☑PHP ☑Linux ☑MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YesBlog">
+<meta property="og:url" content="http://www.yekezhong.com/page/6/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="叶科忠的博客，翻山越岭程序猿 | 英明神武叶科忠 ☑C++ ☑PHP ☑Linux ☑MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YesBlog">
+<meta name="twitter:description" content="叶科忠的博客，翻山越岭程序猿 | 英明神武叶科忠 ☑C++ ☑PHP ☑Linux ☑MySQL">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<style type="text/css">
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
+}
+</style>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YesBlog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Learn &amp; Create &amp; Think &amp; Enjoy</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/guestbook">Guestbook</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/yekz">Github</a>
+        
+          <a class="main-nav-link" href="/tags/自问自答/">自问自答</a>
+        
+          <a class="main-nav-link" href="/tags/自言自语/">自言自语</a>
+        
+          <a class="main-nav-link" href="/tags/自作自受/">自做自受</a>
+        
+          <a class="main-nav-link" href="/tags/自娱自乐/">自娱自乐</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.yekezhong.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-844" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/844/" class="article-date">
+  <time datetime="2013-01-15T01:31:53.000Z" itemprop="datePublished">1月 15 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/844/">《Effective C++》读书笔记 (系列)</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="844" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >去年读完 《C++ Primer》 一书，本以为对 C++ 基础部分已经窥探得差不多， 哪知 2011 年 9 月 C++ 标准委员会已经发布了 C++0x ，这样推算起来，我还是晚了一步。犹记得在谭浩强的书上，经常能看到关于  C++98 的注脚，谓为标准，结果 C++ 早已经经历了
+
+
+
+Year
+C++ Standard
+Informal name
+
+1998
+ISO/IEC 14882:1998[18]
+C++98
+
+2003
+ISO/IEC 14882:2003[19]
+C++03
+
+2007
+ISO/IEC TR 19768:2007[20]
+C++TR1
+
+2011
+ISO/IEC 14882:2011[21]
+C++11几轮迭代更新（若想打开上面的链接，需先研究 goagent+Chrome/Firefox翻墙教程），如此看来，吾等算是远远落后于时代了。
+唯有快马加鞭，奋起直追。
+且慢！学习 C++Ox 新特性固然重要，但是读完 《C++ Primer》 是否真具备了登高望远的资格？根据这些日子所见所识来看，未必。
+于是，当前第一要务应当是更深入的学习 C++，知己知彼，方能百战不殆。
+这是前话。
+假前购入相关书籍数本，算是正式开始踏上继《C++ Primer》这本挺厚的垫脚石之后再一次往上攀爬。
+第一本启封的，就是眼下这本 Effective C++: 55 Specific Ways to Improve Your Programs and Designs (3rd Edition)。
+
+一狠心买了英文版，好在读起还算顺利，鉴于此书字字珠玑，句句金玉，江湖上评价极高，为了加深记忆和日后复习方便，遂开始在阅读每个条款后记录下要点，顺便练练英语了。
+读书笔记整理如下：
+
+Part 4: Designs and Declarations
+Item 20: Prefer pass-by-reference-to-const to pass-by-value.Item 21: Don’t try to return a reference when you must return an object.Item 22: Declare data members private.Item 23: Prefer non-member non-friend functions to member functions.Item 24: Declare non-member function when type conversions should apply to all parameters.Item 25: Consider support for a non-throwing swap. 
+
+Part 8: Customizing new and delete
+Item 49: Understand the behavior of the new-handler.</p>
+<p class="article-more-link">
+	<a href="/844/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-732" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/732/" class="article-date">
+  <time datetime="2013-01-12T17:37:39.000Z" itemprop="datePublished">1月 13 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Society/">Society</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/732/">回《告天下书》 —— 先生卖我几两人道天道？</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="732" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >前几日和一哥们讨论中国人怎样才能活得更好，争议挺大，哥们儿嫌弃评论回复庙太小，又专门撰文告天下，来而不往非礼也，俺不甘寂寞，也写了几段，不足之处，还望看客指出，一同研究。毕竟，这是一个与每个人都切肤相关的话题。
+
+《告天下书》
+荒诞党史中的权利斗争，也是一种良性竞争。通过权利斗争，淘汰掉无能之辈，胜者，虽不是善良的，却是最适合掌权的。高位，有能者居之。纵观古今，凡手握大权或成就霸业者无不是心狠手辣之辈。非计策，无以决嫌定疑；非谲奇，无以破奸息寇；非阴谋，无以成功。
+观之于言行，便之尔等无谋；无谋则无以论道。昔日，韩信身负不世之才，亦不曾立于刘邦之上；那纸上谈兵的赵括，纵然手握雄兵，不过怡笑万年。尔等借之于网络，高论其道，不行其事，独善其身。岂不可笑？休要对那万里河山指手画脚；不谋万世者不足以谋一时。谋者，明盛衰之源，通成败之端，审治乱之机，知去就之节；秦皇‘焚书坑儒’，负尽天下，遂，天下人起而伐之；共产党，九合诸侯，一匡天下，稳定中华几十载；今虽失德，但，未负天下，何故讨之？
+物换星移，时代更替；亦非天定，实乃人为，谋者为之。 谋者，不在深宫；不在高院；在那人海。逆时代而谋者奸；顺时代而谋者贤；成则君侯，败则草寇。不别奸贤，只论成败。此乃人道。
+若心中无佛，拜尽诸佛，亦无以修身；身不负道，学贯中西，亦无以事国；此乃天道。
+不戡天道，不破人道，巧言诡道，则妖孽也。不足以为谋。
+稚嫩90后的各位：好自为之！俺前面说过的几句话，所谓翻墙看书了解当今社会深沉内幕和原因，无非就想告诉你一个道理，讨论现实问题，还是要拿当今社会的现象和事件说话。你从头到尾说过的每一句话，可有与1921党成立年以后的中国沾边？从古到今的大道理都让你说尽了，就是不关心关心天朝群众正在经受的水深火热。纸上谈兵、巧言诡道的是你还是俺？
+
+也许你三国打的挺好，三国战乱，诸侯相争的热血情节异常浓厚，认为法制之外的权力斗争的胜者才是最适合掌权的，但俺要告诉你的的是，这套玩意儿在当今世界真不灵了，人类文明主流早已进入民主、法制的社会，现今地球上还在大搞独裁的也就中国北韩伊朗几个国家了。权利是选票给的，尽管咱们国家宪法也明确规定没有精神病的成年人有选举权，但俺还真的不知道选票长啥样，作为精神病的一员，俺觉得党违法扣押俺的选票，俺就得积极讨要了，你呢？
+不信？俺写这几段话的的时候，日本前首相菅直人正孤身一人在街头拉票呢。
+至于荒诞党史中的权利斗争是一种良性斗争的看法，特别是对于党内这几十年的斗争，恕我实在不能苟同。一方面，我觉得你这不知道荒诞党史究竟怎么个荒诞就开始脚不沾地地夸夸其谈，实在是比荒诞党史更加荒诞，这人你都没见过，就夸他长得帅，这不扯淡吗。不过另一方面，我也能理解你，作为一个在新闻联播这些“党国真理部”领导下的媒体熏陶生活了二十几年的人，党国封禁史实和粉饰史实的本事和程度，大概是你无法想像的，我所说的“荒诞党史”，光是看看新闻联播，逛逛真理部严密控制的政治军事论坛媒体，你还真没办法接触到，这也是我之前回复你第一句就先提到翻墙的原因。
+既然你不肯脚踏实地地把问题具体到党国的具体事件和具体人物上，这事我就帮你做了。你所说的“最适合掌权”“手握大权或成就霸业者”，放到党国近百年中，最典型的无非就是老毛子。你的这段话，放在自二几年到新中国成立那段历史上，我还勉强能接受，因为尽管老毛子在此期间为上位耍的阴谋阳谋，历历数来，虽说都不太光彩，但至少没祸患天下。在此之后几十年，尽管党国严密封锁事件程度、后果和真相，但是因为事情闹得太大了，所以大家还是都有最表面的耳闻。但哪怕是最表面的耳闻，俺也无法理解你怎能作出“秦皇‘焚书坑儒’，负尽天下，遂，天下人起而伐之；共产党，九合诸侯，一匡天下，稳定中华几十载；今虽失德，但，未负天下，何故讨之？”这样的对比和结论。
+焚书坑儒，所体现的是在政治上代表“进步”的人对代表“反动”的人的打击。这样的事，古今中外，干的最多最起劲的，非老毛子莫属了。俺一再强调，讨论问题要拿出实实在在的东西，既然你不仅拿不出，还专挑了双方黄昏和黎明来做对比，要都这么干，世界可就乱套了，不妨把对比双方互换一下：“党国‘焚书坑儒’，负尽天下，遂，天下人起而伐之；秦始皇，六合诸侯，一匡天下，稳定中原近千载；今虽失德，但，未负天下，何故讨之？”，可有一句不实？不知道我要是做出这样泼皮耍赖的不平等对比，你会怎么想？真以为天下都在你一个人的满腔人道天道里，你说未负就未负，你想告天下就告天下，俺等屁民就言不得摸不得碰不得？接下来俺会分析，你这一套，和瘟革那一套，简直如出一辙，现世红慰兵？
+既然俺说到了党国‘焚书坑儒’，当然就不能和你一样，巧言诡辩就撒手不管，咱们不妨做做简单的对比。秦共坑了460方士，焚去诸子百家典籍，不过，现今看来，我中华5000年仍是百家争鸣，看你文中满口仁义道</p>
+<p class="article-more-link">
+	<a href="/732/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-704" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/704/" class="article-date">
+  <time datetime="2012-12-29T17:09:20.000Z" itemprop="datePublished">12月 30 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/C-C/">C/C++</a>►<a class="article-category-link" href="/categories/Coding/C-C/Qt/">Qt</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/704/">Qt5：自定义窗口部件 | How to Create Qt Plugins in Qt5</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="704" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >成功在VS2012上配置Qt5后，小叶开始了一段新的征程。
+犹记前几日看Introducing Qt 5.0这篇文章时，俺对Compatibility一项的理解是Qt5几乎完全向下兼容Qt4.x：
+
+Qt Creator, being the biggest application we develop inside the Qt Project, is a prime example that shows this. A couple of weeks ago, we released Qt Creator 2.6 for use with Qt 4.8. The Qt 5 packages ship with Qt Creator 2.6.1 (which apart from bug fixes contains the same code base), but compiled against Qt 5.
+
+但是俺新的征程踏出的第一步，就掉坑里了，这次学习的玩意儿是自定义窗口部件，也就是类似于MFC里面直接拖来用的控件。而且这个坑稍微大了些，值得记下来，方便后来者绕过。以IconEditor为例，在Qt4.x里，标准的写法差不多是这样：
+IconEditorPlugin.h
+12345678910111213141516171819202122232425262728#ifndef ICONEDITORPLUGIN_H#define ICONEDITORPLUGIN_H#include &lt;QObject&gt;#include &lt;QtDesigner/QDesignerCustomWidgetInterface&gt;#include &lt;QtPlugin&gt;#define IconEditorPlugin_iid  "org.myPlugins.IconEditorPluginFactoryInterface"class IconEditorPlugin : public QObject, public QDesignerCustomWidgetInterface{trueQ_OBJECTtrueQ_INTERFACES(QDesignerCustomWidgetInterface)public:trueIconEditorPlugin(QObject *parent = 0);trueQString name() const;trueQString includeFile() const;trueQString group() const;trueQIcon icon() const;trueQString toolTip() const;trueQString whatsThis() const;truebool isContainer() const;trueQWidget *createWidget(QWidget *parent);};#endif // ICONEDITORPLUGIN_H
+
+最后，别忘了在源文件末尾加上
+12// 第一个参数为插件的名字,第二个是插件类的名字(而不是自定义控件的类名)  Q_EXPORT_PLUGIN2(iconeditorplugin, IconEditorPlugin)
+
+详情参考：QtDesigner自定义窗口部件有两种方法：改进法(promotion)和插件法(plugin)和Qt自定义控件(插件)并添加到QtDesigher到了Qt5，Q_EXPORT_PLUGIN2宏将会得到一个ASSERT_FAILD：
+
+19 IntelliSense: static assertion failed with “Old plugin system used” d:\Projects\QT\learn\learn\iconeditorplugin\IconEditorPlugin.h 28 1 learn (Visual Studio 2010)
+
+打开宏定义：
+123456#define Q_EXPORT_PLUGIN(PLUGIN) \    Q_EXPORT_PLUGIN2(PLUGIN, PLUGIN)#define Q_EXPORT_PLUGIN2(PLUGIN, PLUGINCLASS)      \    Q_STATIC_ASSERT_X(false, &quot;Old plugin system used&quot;)#define Q_EXPORT_STATIC_PLUGIN2(PLUGIN, PLUGINCLASS) \    Q_STATIC_ASSERT_X(false, &quot;Old plugin system use</p>
+<p class="article-more-link">
+	<a href="/704/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-698" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/698/" class="article-date">
+  <time datetime="2012-12-25T03:42:24.000Z" itemprop="datePublished">12月 25 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/C-C/">C/C++</a>►<a class="article-category-link" href="/categories/Coding/C-C/Qt/">Qt</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/698/">QT5及qt-vs-addin-1.2.0之VS2012配置小结</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="698" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >可喜可贺，Digia在末日第二天发布了QT5，同时面世的还有qt-vs-addin-1.2.0，让我们看看有哪些新玩意儿：
+
+
+Project creation wizards updated to follow Qt 5 module structure
+Project settings form updated to follow Qt 5 module structure
+Help documents updated to Qt 5.0
+Support for Visual Studio 2012, 2010 and 2008
+Parameter passing to lupdate fixed (QTVSADDINBUG-131)没错，1.2.0终于支持VS2012了！
+
+
+下载安装一路顺利，意料之中情理之外，问题接踵而至，按先后顺序罗列如下，希望对遇到相同问题的程序猿有所帮助。
+当新建一个QT5  Application，并按下F5后，第一颗地雷引爆了：
+
+Error 1 error LNK2038: mismatch detected for ‘_MSC_VER’: value ‘1600’ doesn’t match value ‘1700’ in cell.obj D:\Projects\QT\qt5\qt5\qtmaind.lib(qtmain_win.obj) qt5错误原因很明显，坑爹的QT发布的包是for VS2010的，纵然qt-vs-addin支持了VS2012，也不能直接编译。好在类似的问题早在两三个月前给老师做的一个MFC上就遇见过，在装有VS2010 的情况下，打开项目属性，将Platform Toolset从V110修改为V100，使用VS2010的平台工具集来编译【必须安装VS2010】，问题即可解决。如图。
+
+
+测试程序终于编译通过，但是更蛋痛的问题接踵而至，困扰了俺整整一天，其间修复重装了VS2010和VS2012，任然没能解决。
+修改为V100后，初始生成的程序能编译通过，但是俺震精地发现不能往项目里添加文件了，alert如下：
+
+The item type ‘None’ is not supported by this project item provider. Parameter name: itemType再次打开项目属性，居然只剩下可怜两项，没办法再设置回V110了！
+
+哎尼玛，这不科学！
+其中各种google资料就不说了，反正是没同样命运的二货遇上相同问题。
+纠结了一天之后，终于在某个惊天动地的时刻，俺灵感顿现，想到俺的VS2010是中文的，而VS2012是英文的，会不是是这个原因导致VS2012上不能正常使用VS2010 的平台工具集呢，，马上测试，居然还真是这样，坑爹啊!
+立马把VS2012改回中文，看起来终于正常了。
+结果把前几天用QT4写到一半的一个程序搬过来，一编译，一大堆错误，各种GUI库里的widget类没定义，可是我明明有写#include &lt;QtGui&gt;
+打开QtGui文件一看，果然，以往包含在里面的
+
+class QCheckBox;
+class QLabel;
+class QLineEdit;
+class QPushButton;等等玩意儿全不见了，Google一下:One of the major internal infrastructural changes in Qt 5 compared to Qt 4 is the splitting of widgets from the QtGui module into a new QtWidgets module.原来，QT5把这些类全部从QtGui搬到了QtWidgets。
+
+悉数修改，终于编译通过，QT5及qt-vs-addin-1.2.0之VS2012配置算是圆满收工，剩下的就是在VS2012上享受QT5了。</p>
+<p class="article-more-link">
+	<a href="/698/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-692" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/692/" class="article-date">
+  <time datetime="2012-11-30T03:50:29.000Z" itemprop="datePublished">11月 30 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Web/">Web</a>►<a class="article-category-link" href="/categories/Coding/Web/Site/">Site</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/692/">理工好网站 | 网页设计大赛投票展示平台</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="692" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >关于本作品
+
+“理工好网站 | 网页设计大赛投票展示平台”由大学生网络技术协会参赛团队“番茄炒蛋”独家冠名制作。
+番茄炒蛋团队由叶科忠（软件113），胥昭，蒋佩忱三位成员组成。
+本网站为四川理工学院2012“动感地带杯”网页设计大赛1号参赛作品，同时作为本次网页设计大赛投票展示平台使用。
+感谢大家支持本作品：)
+
+投票规则：
+
+
+投票前需先注册。
+每个帐号每日有一定可投票数，使用后第二天票数会自动刷新。
+
+
+防刷机制：
+
+所有参赛作品应自觉遵守公平竞赛原则，正常投票，维护比赛秩序。
+一旦发现非正常刷票、不文明留言、恶意攻击网站等行为，管理员有权对作品、用户进行封禁处理，后果自负。
+大学生网络技术对以上操作保留解释权。</p>
+<p class="article-more-link">
+	<a href="/692/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-678" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/678/" class="article-date">
+  <time datetime="2012-11-09T09:54:02.000Z" itemprop="datePublished">11月 9 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/678/">不在路上</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="678" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >上路就有灰尘，办公室似乎没有。
+清晨赶着上课的人流庞大，虽然我不在他们路上，还是不动声色穿行其中，走快点，总有超越着整个世界的错觉，走慢了，整个世界都在滞后。十字路口的天边有座山，山上有座塔，塔里没有小和尚，每早赶去办公室，习惯望一眼，借它的清晰模糊程度来奠定一天的情绪基调，昨天灰蒙蒙，今天灰蒙蒙，明天似乎也晴朗不了。好像非要有座塔做指引，才能辨识出城市里灰尘漫天飞扬。一点不比路上少。堵住眼睛，堵住耳朵，堵住毛孔，只剩心在云上游荡。
+我其实是受不了太复杂的东西的，音乐乐器越少越好，摇滚最是受不了，不能刺耳，不能沉闷。生活不能忙太多事，也不能闲着，闲着就是闲着，不无聊，只是无力。一方面我不停地绕来绕去想要理清大多数理不清的东西，挺遗憾的是这方面我的水平其实和猫狗玩线团在一个水准上，于是在此之外我必须要能找到一件如啃玉米棒一样逻辑有序目地明确的事来做。
+挺幸运的是，我挺幸运。
+八月底，湖畔树下相坐，然后带上三星堆豆腐，背上包骑着车迎着朝阳就出发了，一路景致真是让人失望，走出赵镇淮口段后几乎就再没值得驻足看上两眼的物体了，一路上我也不太清楚是我煞了风景还是我被风景煞了一遭，更多时候是期望着能赶快骑到前面的城市，城市里有溜肥肠，城市里有勇闯天涯，城市里还有老乡。毕竟也才一两百公里的路程，说是老乡或许觉得尘土气息还不足，但是真那么遇上了，还是要感叹就脚气真是大了去了，一双脚骑天下，真是运气。另一方面，能出发，再远，底气都足够挥霍了。
+九月，大部分该指向教室的路都被我转向了办公室，静心学习MFC，月底一位老师前来寻找VC++程序员做一个实验性质的项目，基于GPRS和其危险气体浓度传感器的监测系统的上位机，办公室里只有我正在玩且在玩这东西，便顺手接下这项目，此时书才看至一半，听他提后半本书中的一些技术要点，也只好满口应承没问题。这该是我第一个真正的程序或说是项目。
+国庆节，一如去年留校，大概包括我在内的所有人也都在心里默认这丫的性格留校才正常。回家多好，吃爸妈做的饭菜，做安稳梦，和同学游小城，谈理想。但理想终究不是拿来谈的，尽管对于我来说多谈谈其实更好。于是好在两个国庆节也确实有事可忙，和大四做下位机的师兄合作，紧绷着神经废寝忘食奋战数日编写项目，解决遇到的技术瓶颈和程序问题。收获蛮多，失去多少，我也不知道。
+十月，程序交给老师。协会拿到网页设计大赛的技术主办权，而这之前我已经有了做一个选美投票网站的雏形，于是选择做这次比赛的展示投票网站，大一国庆时从基础的HTML,CSS,PHP在门槛上摔了无数跤入了门，不能老在门槛上蹦达，再加上给老师的程序也是基于MFC框架开发，掌握一个PHP框架来开发这次的网站就顺理成章了。一人兼三人功，美工程序猿一体，十月结束，基于THINKPHP框架的网站也算完工了。
+后来的一个傍晚，正在陈炎的生日上喝着酒，我的第一个程序终于迎来了最后交接发酬劳的电话，匆匆赶回办公室提上电脑赶到老师办公室，喝了酒，该记住的都忘了，翻来覆去就是找不着打包好的程序在哪里，好在在其它地方零散拼凑总算完整的演示了软件。第二天，看见程序就安安静静地躺在桌面上。
+再后来的一个傍晚，我的第一个程序终于迎来了程序猿生涯第一次改需求的电话，几番头大顺利搞定。
+十一月已过三分之一，准备买些书开始进阶，未在路在何方仍不知道，反正我也从来没在路上。走的人多了，就成了路，所以我走的，应该不算是路。
+其实骑车比走路简单多了，拉手比握车把难多了。骑着车就像喝了酒，下坡轻飘飘上坡昏沉沉，有风没风我就是风，速度快了自己都赶不上自己，速度慢了就丢了方向，丢了方向，咱就慢慢走，街灯照着咱。
+我们去喝酒吧，不行，不准你喝。</p>
+<p class="article-more-link">
+	<a href="/678/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-655" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/655/" class="article-date">
+  <time datetime="2012-09-07T02:58:14.000Z" itemprop="datePublished">9月 7 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Web/">Web</a>►<a class="article-category-link" href="/categories/Coding/Web/Site/">Site</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/655/">百度应用引擎（BAE）配置总结：实现的班级短信通知平台</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="655" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >昨天找@杨涛二货要了个BAE的邀请码，利用BAE的短信服务搭建了一个短信通知平台，台面上的东西就是软件三班短信通知系统，当然自个还得有任意号码的接口，嘿嘿。传送门：http://www.ruanjian3.tk或http://kezhong.duapp.com/
+
+
+简单说一下配置方法：
+首先当然得下载SDK：点击前往下载
+数据库创建后用accessKey和secretKey填入下列代码相应位置即可 （*部分）连接上数据库。
+12345678910111213141516171819202122232425&lt;?phptrue$accessKey  = &#039;*******************************&#039;;true$secretKey   = &#039;*******************************&#039;;true$host           = &#039;bcms.api.duapp.com&#039;;true$bcms         = new Bcms ( $accessKey, $secretKey, $host ) ;true$queueName = &quot;******************************&quot;;true/*从平台获取查询要连接的数据库名称*/true$dbname = &#039;***********************&#039;;true/*从环境变量里取出数据库连接需要的参数*/true$host = getenv(&#039;HTTP_BAE_ENV_ADDR_SQL_IP&#039;);true$port = getenv(&#039;HTTP_BAE_ENV_ADDR_SQL_PORT&#039;);true$user = getenv(&#039;HTTP_BAE_ENV_AK&#039;);true$pwd = getenv(&#039;HTTP_BAE_ENV_SK&#039;);true/*接着调用mysql_connect()连接服务器*/true$link = @mysql_connect(&quot;{$host}:{$port}&quot;,$user,$pwd,true);trueif(!$link) {    	die(&quot;Connect Server Failed&quot;);true}true/*连接成功后立即调用mysql_select_db()选中需要连接的数据库*/trueif(!mysql_select_db($dbname,$link)) {    	die(&quot;Select Database Failed: &quot; . mysql_error($link));true}
+
+然后调用发送短信的API
+1$bcms-&gt;sms ( $queueName, $message, $sendTo[$i] ) ;
+
+第三个参数是个数组元素，原因在于BAE的短信服务单次请求有数量限制，似乎是要小于10，于是要想实现群发，就必须进行分块处理。
+首先要想传递checkbox的数据，就必须将checkbox的name加上[]
+1&lt;input type=&quot;checkbox&quot; name=&quot;sendTo[]&quot; value=&quot;1822****985&quot; /&gt;
+
+$_POST就能接收到一个手机号码的数组，然后调用array_chunk() 函数对数组再分组，我分为了5个一组
+1234if (isset($_POST[&#039;sendTo&#039;]))   $sendTo = $_POST[&#039;sendTo&#039;];// 再分组$sendToArray = array_chunk($sendTo, 5);
+
+最后用一个for循环遍历生成的2维数组发送短信。
+123for ($i = 0; $i &lt; count($sendToArray); $i++) {    $bcms-&gt;sms ( $queueName, $message, $sendToArray[$i] ) ;}
+
+[caption id=”” align=”alignnone” width=”480”] BAE发送的短信[/caption]</p>
+<p class="article-more-link">
+	<a href="/655/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-647" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/647/" class="article-date">
+  <time datetime="2012-09-01T06:34:24.000Z" itemprop="datePublished">9月 1 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Tools/">Tools</a>►<a class="article-category-link" href="/categories/Share/Tools/Chrome/">Chrome</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/647/">屏蔽网页广告 谷歌Chrome浏览器神级插件推荐：AdBlock</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="647" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >老婆不在家玩的游戏，还能调整胸部大小，点进去结果就是一弱智仙侠网页游戏，坑爹啊！窗格广告，悬浮广告，弹窗广告，一个网页一半页面都是广告，群魔乱舞，妖孽横行。没辙了?今天就给大家推荐一款谷歌Chrome浏览器的插件：AdBlock，这名字直接翻译过来就是广告拦截，斩妖除魔，效果可谓化腐朽为神奇。
+插件安装地址：https://chrome.google.com/webstore/detail/gighmmpiobklfepjocnamgkkbiglidom?hl=zh-CN
+关于谷歌Chrome浏览器插件的相关介绍和安装方法，请先看：谷歌Chrome浏览器自用插件推荐。
+说明：由于弹新窗口广告的特殊性，阻挡效果不是很理想，这也是唯一不能阻挡的广告类型。
+先来一个效果测试：用游民星空网站做测试（游戏网站，广告格外多）。
+开启AdBlock前：
+
+如图，点击AdBlock的图标，弹出菜单可以选择是否在某个页面或网站使用AdBlock，点击开启，效果如下图：
+
+
+除了彻底消灭广告牛皮癣之外，AdBlock还是非常灵活的用来阻挡网页上你不喜欢的东西。
+拿QQ空间为例，左右边栏有一些很恶心的模块，用AdBlock就可以一劳永逸的干掉它们。
+点击AdBlock的图标，选择阻挡此页面上的广告
+
+把鼠标移动到想要屏蔽掉的内容上，移动鼠标，直到蓝色透明框选中想要去掉的全部内容
+
+点击一下鼠标左键，再点击看来不错即可完成，如果选取的内容少了，可以拖动滑动控制器直到满意
+
+使用前：
+
+使用后：我只保留了动态和访客两个东西，清爽方便。
+
+另外还可以直接在想要屏蔽的地方单击鼠标右键弹出菜单，可以快捷屏蔽，操作方法基本同上，就不再赘述。</p>
+<p class="article-more-link">
+	<a href="/647/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-631" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/631/" class="article-date">
+  <time datetime="2012-08-10T09:44:03.000Z" itemprop="datePublished">8月 10 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/C-C/">C/C++</a>►<a class="article-category-link" href="/categories/Coding/C-C/MFC/">MFC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/631/">《Windows程序设计》1至3章，代码注释汇总</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="631" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123#include &lt;Windows.h&gt;LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM);// win32中hPrevInstance总是NULLint WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow){truestatic TCHAR szAppName[] = TEXT("HelloWin");trueHWND hwnd;        // 视窗代号trueMSG msg;          // 讯息结构truetruetruetrue/*truetruetruetruetruetypedef struct tagMSG {truetruetruetruetruetrueHWND hwnd;truetruetruetruetruetrueUINT message;truetruetruetruetruetrueWPARAM wParam;    // 一个32位元的讯息参数truetruetruetruetruetrueLPARAM lParam;    // 一个32位元的讯息参数truetruetruetruetruetrueDWORD time;       // 讯息放入讯息伫列的时间truetruetruetruetruetruePOINT pt;         // 讯息放入讯息伫列时的滑鼠坐标truetruetruetruetrue} MSG, *PMSG;truetruetruetruetruetypedef struct tagPOINT {truetruetruetruetruetrueLONG x;truetruetruetruetruetrueLONG y;truetruetruetruetrue} POINT, *PPOINT;truetruetruetrue*/trueWNDCLASS wndclass; // 视窗类别结构truetruetruetrue/*truetruetruetruetrue// Unicode版本truetruetruetruetruetypedef struct tagWNDCLASSW {truetruetruetruetruetrueUINT style;truetruetruetruetruetrueWNDPROC lpfnWndProc;truetruetruetruetruetrueint cbClsExtra;truetruetruetruetruetrueint cbWndExtra;truetruetruetruetruetrueHINSTANCE hInstance;truetruetruetruetruetrueHICON hIcon;truetruetruetruetruetrueHCURSOR hCursor;truetruetruetruetruetrueHBRUSH hbrBackground;truetruetruetruetruetrueLPCWSTR lpszMenuName;truetruetruetruetruetrueLPCWSTR lpszClassName;truetruetruetruetrue} WNDCLASSW, *PWNDCLASSW, NEAR *NPWNDCLASSW, FAR *LPWNDCLASSW;truetruetruetrue*/truewndclass.style               = CS_HREDRAW | CS_VREDRAW;true// 处理依据这个视窗类别建立的所有视窗的全部信息（提供的是指向函数的指针）truewndclass.lpfnWndProc     = WndProc; // lpfn:指向函数的长指针truewndclass.cbClsExtra      = 0; // 预留的位元数组truewndclass.cbWndExtra      = </p>
+<p class="article-more-link">
+	<a href="/631/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+    <article id="post-622" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/622/" class="article-date">
+  <time datetime="2012-08-02T07:48:31.000Z" itemprop="datePublished">8月 2 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/">Algorithm</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/622/">《算法导论》广度优先搜索，深度优先搜索之强联通分支</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="622" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >问题越来越复杂，《算法导论》一书给出的伪代码越来越坑爹，计算强联通分支几句英语就给俺打发了。
+
+于是邻接表的转置和强联通分支的输出都成了待自行解决的问题，期间因为一些逻辑错误导致一直出不了正确结构，翻看了将用作大二教材的《数据结构（c语言版）》一书，话说俺一直觉得上面给出的代码排版和粗体的标识各种难看，而其对该算法实现的底层也用了几个结构体，google来的实现代码一看也均是参照《数据结构（c语言版）》进行的实现，和我自己用C++搞的相去甚远。只得自己纠结纠结再纠结，睡觉也在想，好在终于守得拨云见日。实现过程中对《算法导论》书上描述的伪代码和数据结构做了轻微改动，比如结构体中增加了一个卫星数据child，方便输出强连通分支。强连通分支又叫深度优先森林，说是森林，其实每棵树都是一条线，没有任何分支来着，所以输出时直接用child遍历下去就行。代码整理如下，详见注释，不再赘述。测试一下：
+
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205#include "stdafx.h"#include &lt;iostream&gt;#include &lt;queue&gt; // 广度优先搜索中管理灰色顶点的先进先出队列#include &lt;vector&gt; // 邻接表容器#include &lt;string&gt;#include &lt;limits&gt; // INT_MAX#include &lt;algorithm&gt; // 泛型算法sort的谓词版本进行拓扑排序using namespace std;enum COLOR {WHITE, GRAY, BLACK};struct Vertex {trueint no; // 结点序号truestring name; // 结点名称trueCOLOR color;truevector&lt;int&gt;* Adj; // 邻接表，包含所有满足条件(u, v)∈E的顶点vtrue// 用于广度优先搜索trueint distence; // 广度优先树中从s到v的路径长，对应于图G中从从s到v的一条最短路径长trueVertex* parent; // 广度优先树中结点的父母true// 用于深度优先搜索trueVertex* child; // 深度优先树中结点的孩子，方便输出强联通分支，算是数据结构的扩张的一个应用。。。trueint begin; // 顶点v第一次被发现时记下该时间戳trueint finish; // 结束检查v的邻接表时记下该时间戳};// sort的谓词函数，用作拓扑排序inline bool isLarge(const Vertex* v1, const Vertex* v2){truereturn v1-&gt;finish &gt; v2-&gt;finish;}class Graph {public:true// 构造邻接表truevoid creatGraph();trueinline void displayGraph() const;true// 广度优先搜索truevoid BFS(const int);truevoid printPath(const int, const int) const;true// 深度优先搜索truevoid DFS();truevoid DFSVisit(Vertex*);trueinline void topologicalSort(); // 有向无回路图的拓扑排序truevoid transposition(); // 转置true</p>
+<p class="article-more-link">
+	<a href="/622/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/">Algorithm</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Sort/">Sort</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/">C/C++</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/MFC/">MFC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Qt/">Qt</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/STL/">STL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Syntax/">Syntax</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/">Web</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/Site/">Site</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/">Debug</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/">Softwares</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/">System</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/">Coding</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/MySQL/">MySQL</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/">Reading</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Kindle/">Kindle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Note/">Note</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/">Share</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Article/">Article</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Experience/">Experience</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Movie/">Movie</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Music/">Music</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/">Tools</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/Chrome/">Chrome</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/GFW/">GFW</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/">Thinking</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Dream/">Dream</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Life/">Life</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Society/">Society</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Work/">Work</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2012新生咨询/" style="font-size: 10.00px;">2012新生咨询</a><a href="/tags/21/" style="font-size: 10.00px;">21</a><a href="/tags/ADL/" style="font-size: 10.00px;">ADL</a><a href="/tags/AKG-k420/" style="font-size: 10.00px;">AKG k420</a><a href="/tags/AdBlock/" style="font-size: 10.00px;">AdBlock</a><a href="/tags/BAE/" style="font-size: 10.00px;">BAE</a><a href="/tags/C/" style="font-size: 10.00px;">C++</a><a href="/tags/C-Primer/" style="font-size: 10.00px;">C++ Primer</a><a href="/tags/C-11/" style="font-size: 10.00px;">C++11</a><a href="/tags/CRTP/" style="font-size: 10.00px;">CRTP</a><a href="/tags/Cache/" style="font-size: 10.00px;">Cache</a><a href="/tags/Copy-On-Write/" style="font-size: 10.00px;">Copy-On-Write</a><a href="/tags/DirectShow/" style="font-size: 10.00px;">DirectShow</a><a href="/tags/Effective-C/" style="font-size: 20.00px;">Effective C++</a><a href="/tags/Failure-transparency/" style="font-size: 10.00px;">Failure transparency</a><a href="/tags/InnoDB/" style="font-size: 10.00px;">InnoDB</a><a href="/tags/JSFuck/" style="font-size: 10.00px;">JSFuck</a><a href="/tags/JavaScript/" style="font-size: 17.50px;">JavaScript</a><a href="/tags/Kindle/" style="font-size: 10.00px;">Kindle</a><a href="/tags/Kindle-Paperwhite-2/" style="font-size: 10.00px;">Kindle Paperwhite 2</a><a href="/tags/Linux/" style="font-size: 15.00px;">Linux</a><a href="/tags/Lisp/" style="font-size: 10.00px;">Lisp</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/MX360/" style="font-size: 10.00px;">MX360</a><a href="/tags/MX370/" style="font-size: 10.00px;">MX370</a><a href="/tags/MySQL/" style="font-size: 17.50px;">MySQL</a><a href="/tags/OPPO-X1/" style="font-size: 10.00px;">OPPO X1</a><a href="/tags/OpenCV/" style="font-size: 10.00px;">OpenCV</a><a href="/tags/PR200MKII/" style="font-size: 10.00px;">PR200MKII</a><a href="/tags/QT5/" style="font-size: 12.50px;">QT5</a><a href="/tags/Qt-Plugins/" style="font-size: 10.00px;">Qt Plugins</a><a href="/tags/Read/" style="font-size: 10.00px;">Read</a><a href="/tags/STL/" style="font-size: 10.00px;">STL</a><a href="/tags/Slicing-Problem/" style="font-size: 10.00px;">Slicing Problem</a><a href="/tags/THINKPHP/" style="font-size: 10.00px;">THINKPHP</a><a href="/tags/TextQuery/" style="font-size: 10.00px;">TextQuery</a><a href="/tags/Ubuntu/" style="font-size: 12.50px;">Ubuntu</a><a href="/tags/VS2010/" style="font-size: 10.00px;">VS2010</a><a href="/tags/VS2012/" style="font-size: 10.00px;">VS2012</a><a href="/tags/Varnish/" style="font-size: 10.00px;">Varnish</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        <ul>
+<li><a href="http://www.hekunn.com/" target="_blank" title="hekunn">何坤的小世界</a></li>
+<li><a href="http://www.ray945.com/" target="_blank" title="从今天起，做一只幸福的程序猿">Ray's World</a></li>
+<li><a href="http://www.wdk.pw/" target="_blank" title="从今天起，做一只幸福的程序猿">WDK’s Personal Web</a></li>
+<li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+
+  <div class="outer">
+
+
+  <div class="outer">
+
+
+    <div id="footer-info" class="inner">
+<style type="text/css">
+   #ds-recent-visitors .ds-avatar {
+    float: left;
+</style>
+<ul class="ds-recent-visitors" data-num-items="29"></ul>
+</div>
+
+<div id="footer-info" class="inner">
+      &copy; 2014 <a href="http://www.yekezhong.com" title="YesBlog | 叶科忠的博客">Ye, Kezhong</a> | <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe35b9eb7139bfb03f4f465848a3269c3' type='text/javascript'%3E%3C/script%3E"));
+</script> |  <a href="/sitemap.xml" target="_blank">Sitemap</a>
+<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> | Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> | Theme <a href="https://github.com/yekz/YesLandscape" target="_blank">YesLandscape</a>, by Ye, KeZhong, based on Landscape.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/guestbook" class="mobile-nav-link">Guestbook</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/yekz" class="mobile-nav-link">Github</a>
+  
+    <a href="/tags/自问自答/" class="mobile-nav-link">自问自答</a>
+  
+    <a href="/tags/自言自语/" class="mobile-nav-link">自言自语</a>
+  
+    <a href="/tags/自作自受/" class="mobile-nav-link">自做自受</a>
+  
+    <a href="/tags/自娱自乐/" class="mobile-nav-link">自娱自乐</a>
+  
+</nav>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yekz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+<script type="text/javascript">
+var div = document.getElementById("gbook-gbook");
+if (div) {
+	var div = document.getElementById("gbook");
+	div.parentNode.removeChild(div);
+}
+</script>
+
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
+</div>
+<script src="/scroll2top/scroll2top.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31426108-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

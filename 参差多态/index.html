@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>参差多态 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="奇葩
+我说：这真尼玛是个奇葩寝室，三个玩游戏的人玩三款不同的 MOBA 游戏。果然玩 MOBA 的不管技术如何，吐槽技能都是点满了的。室友接着补上一句：还有个奇葩，不玩游戏。不像其它生活作风同步率高的寝室，我寝用奇葩一词描述也确实准确。两个社团团长，一个班长，一个 MAC 跑 Windows 玩游戏的土豪，一个人缘较差已和寝室离异的二次元艺术工作者，一个和男朋友生活得幸福美满（纯陈述）。除去后两位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="参差多态">
+<meta property="og:url" content="http://www.yekezhong.com/参差多态/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="奇葩
+我说：这真尼玛是个奇葩寝室，三个玩游戏的人玩三款不同的 MOBA 游戏。果然玩 MOBA 的不管技术如何，吐槽技能都是点满了的。室友接着补上一句：还有个奇葩，不玩游戏。不像其它生活作风同步率高的寝室，我寝用奇葩一词描述也确实准确。两个社团团长，一个班长，一个 MAC 跑 Windows 玩游戏的土豪，一个人缘较差已和寝室离异的二次元艺术工作者，一个和男朋友生活得幸福美满（纯陈述）。除去后两位">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="参差多态">
+<meta name="twitter:description" content="奇葩
+我说：这真尼玛是个奇葩寝室，三个玩游戏的人玩三款不同的 MOBA 游戏。果然玩 MOBA 的不管技术如何，吐槽技能都是点满了的。室友接着补上一句：还有个奇葩，不玩游戏。不像其它生活作风同步率高的寝室，我寝用奇葩一词描述也确实准确。两个社团团长，一个班长，一个 MAC 跑 Windows 玩游戏的土豪，一个人缘较差已和寝室离异的二次元艺术工作者，一个和男朋友生活得幸福美满（纯陈述）。除去后两位">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<style type="text/css">
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
+}
+</style>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YesBlog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Learn &amp; Create &amp; Think &amp; Enjoy</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/guestbook">Guestbook</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/yekz">Github</a>
+        
+          <a class="main-nav-link" href="/tags/自问自答/">自问自答</a>
+        
+          <a class="main-nav-link" href="/tags/自言自语/">自言自语</a>
+        
+          <a class="main-nav-link" href="/tags/自作自受/">自做自受</a>
+        
+          <a class="main-nav-link" href="/tags/自娱自乐/">自娱自乐</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.yekezhong.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-参差多态" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/参差多态/" class="article-date">
+  <time datetime="2014-06-15T15:20:45.000Z" itemprop="datePublished">6月 15 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      参差多态 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#奇葩"><span class="toc-number">1.</span> <span class="toc-text">奇葩</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#走上人生巅峰"><span class="toc-number">2.</span> <span class="toc-text">走上人生巅峰</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#面向对象"><span class="toc-number">3.</span> <span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个调查"><span class="toc-number">4.</span> <span class="toc-text">一个调查</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自我"><span class="toc-number">4.1.</span> <span class="toc-text">自我</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#固执"><span class="toc-number">4.2.</span> <span class="toc-text">固执</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步率"><span class="toc-number">4.3.</span> <span class="toc-text">同步率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#幸福"><span class="toc-number">4.4.</span> <span class="toc-text">幸福</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#烧烤酒"><span class="toc-number">5.</span> <span class="toc-text">烧烤酒</span></a></li></ol>
+	</div>
+
+<h1 id="奇葩">奇葩</h1>
+<p>我说：这真尼玛是个奇葩寝室，三个玩游戏的人玩三款不同的 MOBA 游戏。<br>果然玩 MOBA 的不管技术如何，吐槽技能都是点满了的。<br>室友接着补上一句：还有个奇葩，不玩游戏。<br>不像其它生活作风同步率高的寝室，我寝用奇葩一词描述也确实准确。<br>两个社团团长，一个班长，一个 MAC 跑 Windows 玩游戏的土豪，一个人缘较差已和寝室离异的二次元艺术工作者，一个和男朋友生活得幸福美满（纯陈述）。<br>除去后两位，如果非要找出一个剩下四人体系稳定的理由，这一个最为准确：<code>没有一个人用安卓。</code></p>
+<a id="more"></a>
+
+<h1 id="走上人生巅峰">走上人生巅峰</h1>
+<p>这段时间，出于面试见闻或对大学生活行将结束等各因素的刺激，一直在超频思考一些问题。<br>尽管我已经做好了自我批判的心理准备，但是找出足够的论据解决这些问题比想象中难上许多。<br>成长很多时候真是个很残酷的事，两年前我们谈及西藏，是作为一个可以刷人生境界的圣地所在，遗憾的是下午青林说他在海拔 5200 米的 XX 峰顶看雪时，我的第一反映时你拉坨便便看看啥反映。<br><code>屌丝的人生巅峰就是如此残酷。</code></p>
+<h1 id="面向对象">面向对象</h1>
+<p>身为一个软件工程行业的预备从业者，我打算从专业的角度考虑一下现实问题。<br>无非四个字：面向对象。<br>没上学的兄弟哪一个不是久经相亲考验，上学的小伙伴家长也是一句语重心长的<code>别找赔钱货</code>。<br>面向对象有三个要素：封装，继承，多态。<br>反正是瞎想，所以随便怎么想，可以说封装是出入社会个人性格的社会化包装，也可以说是两个独立人的家庭化封装；继承顾名思义就是伟大的传宗接代工作。<br>而我主要考虑的是多态的问题。<br>就像我们寝室，每个人都极具特点，但特点背后的故事却不堪深挖，大学里我认为最厉害的的一个人，谈心他自己能说得一把鼻涕一把泪。<br><code>所谓人生百态，有哪些因果关联？有无好坏对错？有没有可能，通过一些正确方向的努力，进入真正契合自己的态？</code></p>
+<h1 id="一个调查">一个调查</h1>
+<p>前几天，我居心叵测地发了一条说说，请求大家推荐一本自己最推崇的书。<br>之所以说是居心叵测，是因为我想要的并不真是找到几本有意思的书，而是通过书来观察大家的态。<br>几乎没有意外。</p>
+<h2 id="自我">自我</h2>
+<p>作为一群都有一定程度了解的朋友，每个人推荐的书的类型或性质都和我所了解的大家的生活很契合。<br>这些书里面，有成功学，哲学，地理画册，网络小说，小说，金瓶梅。。。<br>很大程度上，书如其人。<br><code>一样东西好不好，大部分人关注的并不是它的普世价值，而仅仅是是否符合自己的嗜好。</code><br>换句话说，大部分朋友在做出推荐时，不说普世价值，甚至并未考虑给出的意见是否会给对方带来价值。<br>我之所以用<code>推崇</code>这个词，就是因为它不同于<code>最爱</code>，后者仅仅是自我世界的珍品，而前者带有价值推广的意识。</p>
+<h2 id="固执">固执</h2>
+<p>每个人都有自己的一个态，并且在心里，有一系列自己认为最好的东西。<br>那么，抛开独立的态来考虑这样的问题：<code>美好的东西的定义是什么？</code></p>
+<ol>
+<li>万物平等，一样东西是否美好，要看是否契合某个态的主观感受；</li>
+<li>存在一系列美好的东西，但是由于个人生活体验的狭隘，使得每个人仅能感受到自己感悟水平和范围的美好。</li>
+</ol>
+<p>如果仔细思考，会发现 1 和 2 都是说的同一个意思：不论一样东西是否天生美好，一个人都只会把契合他的态的东西归为美好。<br>令人忧伤的是：<code>每个态都隔得如此之远，且还极其固执己见。</code><br>在一个社会职能分工极其细化的社会，每一个态的孤立和无知也达到了细思极恐的程度。在知乎很容易找到这种感受的印证。<br>二十二个人热情地分享了自己的爱好，相互之间却完全无法感受，没有交集。<br>令人欣慰的是：<code>显然可以通过一定的试错和成长，来感受到更多的美好。</code><br>比如说，我可以试着把大家推荐都书都翻看一下，有可能会发现其中有错失的美好。<br><code>但是不同态的不同爱好是否有优劣之分？</code><br>我认为有，必须有，网络小说怎么可能比得上金瓶梅。<br>雅俗立分。<br><code>那么一个人的幸福水平是否和他感受美的能力有关系？</code><br>总的来说，试错过程中接触的的丑会更多一些，这导致在尝试打破态与态之间的距离的尝试中大部分时候将是一个充满挫折的过程。</p>
+<h2 id="同步率">同步率</h2>
+<p>上面说到，每一个态都容易孤立且无知，那么不同的态之间如何构成朋友，恋人等等交际关系，取得相互的认同。<br>我认为，这和不同态之间的同步率有关系。<br>同步率有两层意思：</p>
+<ol>
+<li>决定关系能否建立的是：不同态对美好的认同有多少重叠或能相互感受并欣赏。</li>
+<li>决定关系能否维持的是：<code>不同态的学习能力和方向是否同步。</code></li>
+</ol>
+<p>第一点很好理解，第二点的学习能力却是稳定关系的关键。<br>比如说，推荐金瓶梅的几个人，私下里就是皂友。<br>而二十二条评论里，唯一一位推荐到两本我看过的书籍的朋友，是我去年参加 ACM 的队友，也是今年计算机学院正统意义上工作最好，薪水最高的毕业生。<br>其所谓人以群分，不过如此吧。</p>
+<h2 id="幸福">幸福</h2>
+<p>说到底，人生百态，我需要想清楚一个问题，<code>幸福是什么？幸福对应每个态，又是什么？</code><br><code>罗素先生所说：参差不齐乃是幸福本源。</code><br><code>如果真的是参差不齐，那参差不齐，放到现实生活来看，又是指的什么？</code><br>我还没有答案。</p>
+<h1 id="烧烤酒">烧烤酒</h1>
+<p>这段时间，约谈了几位朋友吃烧烤酒，也给几位老朋友通了电话。（约谈这种词真的没问题吗…）<br>和书的小调查一样，本着孤独的人是可耻的的态度，我在尝试从和朋友的相互沟通和了解中寻找一些问题的解决思路，当然，烧烤酒本身是最美好的消遣时光。<br>看来有些问题，烧烤酒已经力不从心。<br>只是可惜，再也不像当年孤独无知的自己，一杯烧烤酒，两壶清热茶，包治百病。</p>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/参差多态/" data-id="yv42wg390pnjfb83" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/烧烤酒/">烧烤酒</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自问自答/">自问自答</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="参差多态" data-title="参差多态" data-url="http://www.yekezhong.com/参差多态/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/想梦2：从庄周梦蝶到梦的解析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          想梦2：从庄周梦蝶到梦的解析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/冷暖自知，无需抱怨：说说环境与适应/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">冷暖自知，无需抱怨：说说环境与适应</div>
+    </a>
+  
+</nav>
+
+
+
+      
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/">Algorithm</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Sort/">Sort</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/">C/C++</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/MFC/">MFC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Qt/">Qt</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/STL/">STL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Syntax/">Syntax</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/">Web</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/Site/">Site</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/">Debug</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/">Softwares</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/">System</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/">Coding</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/MySQL/">MySQL</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/">Reading</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Kindle/">Kindle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Note/">Note</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/">Share</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Article/">Article</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Experience/">Experience</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Movie/">Movie</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Music/">Music</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/">Tools</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/Chrome/">Chrome</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/GFW/">GFW</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/">Thinking</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Dream/">Dream</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Life/">Life</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Society/">Society</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Work/">Work</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2012新生咨询/" style="font-size: 10.00px;">2012新生咨询</a><a href="/tags/21/" style="font-size: 10.00px;">21</a><a href="/tags/ADL/" style="font-size: 10.00px;">ADL</a><a href="/tags/AKG-k420/" style="font-size: 10.00px;">AKG k420</a><a href="/tags/AdBlock/" style="font-size: 10.00px;">AdBlock</a><a href="/tags/BAE/" style="font-size: 10.00px;">BAE</a><a href="/tags/C/" style="font-size: 10.00px;">C++</a><a href="/tags/C-Primer/" style="font-size: 10.00px;">C++ Primer</a><a href="/tags/C-11/" style="font-size: 10.00px;">C++11</a><a href="/tags/CRTP/" style="font-size: 10.00px;">CRTP</a><a href="/tags/Cache/" style="font-size: 10.00px;">Cache</a><a href="/tags/Copy-On-Write/" style="font-size: 10.00px;">Copy-On-Write</a><a href="/tags/DirectShow/" style="font-size: 10.00px;">DirectShow</a><a href="/tags/Effective-C/" style="font-size: 20.00px;">Effective C++</a><a href="/tags/Failure-transparency/" style="font-size: 10.00px;">Failure transparency</a><a href="/tags/InnoDB/" style="font-size: 10.00px;">InnoDB</a><a href="/tags/JSFuck/" style="font-size: 10.00px;">JSFuck</a><a href="/tags/JavaScript/" style="font-size: 17.50px;">JavaScript</a><a href="/tags/Kindle/" style="font-size: 10.00px;">Kindle</a><a href="/tags/Kindle-Paperwhite-2/" style="font-size: 10.00px;">Kindle Paperwhite 2</a><a href="/tags/Linux/" style="font-size: 15.00px;">Linux</a><a href="/tags/Lisp/" style="font-size: 10.00px;">Lisp</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/MX360/" style="font-size: 10.00px;">MX360</a><a href="/tags/MX370/" style="font-size: 10.00px;">MX370</a><a href="/tags/MySQL/" style="font-size: 17.50px;">MySQL</a><a href="/tags/OPPO-X1/" style="font-size: 10.00px;">OPPO X1</a><a href="/tags/OpenCV/" style="font-size: 10.00px;">OpenCV</a><a href="/tags/PR200MKII/" style="font-size: 10.00px;">PR200MKII</a><a href="/tags/QT5/" style="font-size: 12.50px;">QT5</a><a href="/tags/Qt-Plugins/" style="font-size: 10.00px;">Qt Plugins</a><a href="/tags/Read/" style="font-size: 10.00px;">Read</a><a href="/tags/STL/" style="font-size: 10.00px;">STL</a><a href="/tags/Slicing-Problem/" style="font-size: 10.00px;">Slicing Problem</a><a href="/tags/THINKPHP/" style="font-size: 10.00px;">THINKPHP</a><a href="/tags/TextQuery/" style="font-size: 10.00px;">TextQuery</a><a href="/tags/Ubuntu/" style="font-size: 12.50px;">Ubuntu</a><a href="/tags/VS2010/" style="font-size: 10.00px;">VS2010</a><a href="/tags/VS2012/" style="font-size: 10.00px;">VS2012</a><a href="/tags/Varnish/" style="font-size: 10.00px;">Varnish</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        <ul>
+<li><a href="http://www.hekunn.com/" target="_blank" title="hekunn">何坤的小世界</a></li>
+<li><a href="http://www.ray945.com/" target="_blank" title="从今天起，做一只幸福的程序猿">Ray's World</a></li>
+<li><a href="http://www.wdk.pw/" target="_blank" title="从今天起，做一只幸福的程序猿">WDK’s Personal Web</a></li>
+<li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+
+  <div class="outer">
+
+
+  <div class="outer">
+
+
+    <div id="footer-info" class="inner">
+<style type="text/css">
+   #ds-recent-visitors .ds-avatar {
+    float: left;
+</style>
+<ul class="ds-recent-visitors" data-num-items="29"></ul>
+</div>
+
+<div id="footer-info" class="inner">
+      &copy; 2014 <a href="http://www.yekezhong.com" title="YesBlog | 叶科忠的博客">Ye, Kezhong</a> | <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe35b9eb7139bfb03f4f465848a3269c3' type='text/javascript'%3E%3C/script%3E"));
+</script> |  <a href="/sitemap.xml" target="_blank">Sitemap</a>
+<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> | Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> | Theme <a href="https://github.com/yekz/YesLandscape" target="_blank">YesLandscape</a>, by Ye, KeZhong, based on Landscape.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/guestbook" class="mobile-nav-link">Guestbook</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/yekz" class="mobile-nav-link">Github</a>
+  
+    <a href="/tags/自问自答/" class="mobile-nav-link">自问自答</a>
+  
+    <a href="/tags/自言自语/" class="mobile-nav-link">自言自语</a>
+  
+    <a href="/tags/自作自受/" class="mobile-nav-link">自做自受</a>
+  
+    <a href="/tags/自娱自乐/" class="mobile-nav-link">自娱自乐</a>
+  
+</nav>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yekz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+<script type="text/javascript">
+var div = document.getElementById("gbook-gbook");
+if (div) {
+	var div = document.getElementById("gbook");
+	div.parentNode.removeChild(div);
+}
+</script>
+
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
+</div>
+<script src="/scroll2top/scroll2top.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31426108-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

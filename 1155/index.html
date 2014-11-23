@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MySQL 学习笔记 基础篇 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="mysqld 客户/服务器程序libmysqld 嵌入式服务器库：不需要网络使用IS NULL 或IS NOT NULL来对NULL 进行查找。&lt;=&gt;IF(rowname IS NULL, 0, 1) 条件选择语句ORDER BY RAND() LIMIT num 随机取出num条记录SELECT CONCAT(row_name1, ‘ ‘, row_name2) AS name 合并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 学习笔记 基础篇">
+<meta property="og:url" content="http://www.yekezhong.com/1155/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="mysqld 客户/服务器程序libmysqld 嵌入式服务器库：不需要网络使用IS NULL 或IS NOT NULL来对NULL 进行查找。&lt;=&gt;IF(rowname IS NULL, 0, 1) 条件选择语句ORDER BY RAND() LIMIT num 随机取出num条记录SELECT CONCAT(row_name1, ‘ ‘, row_name2) AS name 合并">
+<meta property="og:image" content="/img/15.jpg">
+<meta property="og:image" content="/img/14.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 学习笔记 基础篇">
+<meta name="twitter:description" content="mysqld 客户/服务器程序libmysqld 嵌入式服务器库：不需要网络使用IS NULL 或IS NOT NULL来对NULL 进行查找。&lt;=&gt;IF(rowname IS NULL, 0, 1) 条件选择语句ORDER BY RAND() LIMIT num 随机取出num条记录SELECT CONCAT(row_name1, ‘ ‘, row_name2) AS name 合并">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<style type="text/css">
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
+}
+</style>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YesBlog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Learn &amp; Create &amp; Think &amp; Enjoy</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/guestbook">Guestbook</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://github.com/yekz">Github</a>
+        
+          <a class="main-nav-link" href="/tags/自问自答/">自问自答</a>
+        
+          <a class="main-nav-link" href="/tags/自言自语/">自言自语</a>
+        
+          <a class="main-nav-link" href="/tags/自作自受/">自做自受</a>
+        
+          <a class="main-nav-link" href="/tags/自娱自乐/">自娱自乐</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.yekezhong.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-1155" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/1155/" class="article-date">
+  <time datetime="2014-04-27T08:43:55.000Z" itemprop="datePublished">4月 27 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Learn/Coding/MySQL/">MySQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL 学习笔记 基础篇 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1155" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+
+<!-- toc -->
+
+<p>mysqld 客户/服务器程序<br>libmysqld 嵌入式服务器库：不需要网络<br>使用IS NULL 或IS NOT NULL来对NULL 进行查找。&lt;=&gt;<br>IF(row<em>name IS NULL, 0, 1) 条件选择语句<br>ORDER BY RAND() LIMIT num 随机取出num条记录<br>SELECT CONCAT(row_name1, ‘ ‘, row_name2) AS name 合并列字符串为name=row_name1 row_name2<br>日期：1970-01-01<br>按日期排序/查找某个日期或范围/提取年月日（WHERE MONTH(birth) = 3）/计算距离/加减时间间隔 YEAR(), MONTH(), DAYOFMONTH(), CURDATE()<br>LIKE/NOT LIKE ：</em>匹配一个字符，%匹配任何一个字符序列<br>变量：SELECT @var := value<br>         SELECT @today := CURDATE();<br>去重复：SELECT DISTINCT row_name FROM table_name<br>COUNT(<em>)统计被选中的数据行的总数，COUNT(row_name)只统计全体非NULL值的个数。<br>COUNT(</em>) FROM table_name GROUP BY row_name<br>SELECT row_name, COUNT（*） AS count FROM table_name GROUP BY state HAVING count &gt; 1 ORDER BY count DESC;<br>函数MIN(), MAX(), SUM(), AVG()能够得出某个数据列你的最小值/最大值/总和和平均值。<br>WITH ROLLUP  超级聚合</p>
+<a id="more"></a>
+
+<hr>
+<p><a href="/img/15.jpg"><img src="/img/15.jpg" alt="MySQL存储引擎"></a></p>
+<hr>
+<p>InnoDB数据表的内容都集中保存在一个共享存储空间里。</p>
+<p><a href="/img/14.jpg"><img src="/img/14.jpg" alt="MySQL存储引擎的索引特性"></a><br>ALTER TABLE tbl_name ADD INDEX/UNIQUE/PRIMARY KEY/FULLTEXT/SPATIAL index_name (index_columns); // index_name 是可选的，若省略，MySql将自动挑选一个。<br>CREATE INDEX index_name ON tbl_name (index_columns);  // 同上，且不支持PRIMERY KEY</p>
+<hr>
+<p>INNER JOIN（CROSS JOIN/JOIN）：内连接，笛卡尔积<br>LEFT/RIGHT JOIN ：外连接，找不到匹配的用NULL代替（这个特征可以让你知道右/左数据表里缺少了那些数据行。如：哪些库存商品一件也没卖出去？）<br>EXISTS/NOT EXISTS 测试某个子查询是否返回了数据行 0/1<br>IN/NOT IN 测试一个给定的比较值有没有出现在一个特定的集合里<br>ALL/ANY/SOME ： &lt;= ALL(SELECT…) 测试比较值是否与子查询所返回的部分或一部分匹配</p>
+<hr>
+<p>UNION ： 同一条 UNION 语句里的各有关数据列会是相同的数据类型，如果不一样，MySql会进行必要的类型转换。UNION将剔除重复的数据行（UNION ALL）。</p>
+<hr>
+<p>视图：CREATE VIEW view_name AS SELECT…</p>
+<hr>
+<p>事物：ACID原则：Atomic/Consistent/Isolated/Durable<br>START TRANSACTION;<br>…<br>SAVEPOINT point_name;<br>…<br>ROLLBACK TO SAVEPOINT point_name;<br>…<br>COMMIT/ROLLBACK;</p>
+<hr>
+<p>SET autocommit = 0; // 禁用自动提交模式<br>…<br>COMMIT/ROLLBACK;<br>用来创建/改变或删除数据库其中的对象的DLL语句以及与锁定有关的语句都不能成为事物的一部分。</p>
+<hr>
+<p>外键：InnoDB存储引擎通过这些规则来保证在外键关系里不会有不匹配的东西，这杯称为引用完整性。</p>
+<hr>
+<p>FULLTEXT 索引：CHAR/VARCHAR/TEXT</p>
+<p>自然语言模式：忽略至少在一半数据行里出现过的单词（50%规则），忽略the/after/other等”休止单词“，结果按相关程度排序<br>布尔模式：无50%规则，结果不按相关度排序，可以在没被包括在FULLTEXT索引里的数据列上进行<br>查询扩展模式：搜索分两阶段进行：第一阶段是自然语言搜索，第二阶段使用原来的搜索字符串加上在第一次搜索中找到的相关度最高的匹配数据再进行一次搜索</p>
+<hr>
+<p>BINAARY(20)容纳20个字节，CHAR(20)容纳20个字符</p>
+<p>BLOB和TEXT数据列的删除和修改操作很容易在数据表里产生大量碎片，如果使用了一个MyISAM数据表来保存BLOB或TEXT值，应该定期运行OPTIMIZE TABLE命令以减少碎片和改善系统性能。</p>
+<hr>
+<p>对于数值数据或TIME数据列，超出合法范围的值将被截短到最近的取值范围边界</p>
+<p>对于字符串数据列，太长的字符串将被截短到数据列的最大长度</p>
+<hr>
+<p>LAST_INSERT_ID()返回AUTO_INCREMENT最近生成的序号值。<br>MyISAM/InnoDB : CREATE/ALTER TABLE AUTO_INCREMENT = n<br>MyISAM存储索引支持使用符合（多数据列）索引在同一数据表里创建镀铬相互独立的序列：微数据表创建一个由多个数据列组成的PRIMARY KEY或UNIQUE索引，并把一个AUTO_INCREMENT数据列包括在这个索引里作为它的最后一个数据列。<br>MyISAM：长度固定的数据行会比长度可变的数据行有更好的性能表现。<br>InnoDB在内存里维护计数器以生成后续的序号值，如果从顶端删除了一些值以后重启服务器，这些序号值将被重复使用。<br>TRUNCATE TABLE 重置计数序列<br>重新编排：先删除该数据列，然后再重新添加它</p>
+<hr>
+<p>MySQL使用索引的方式有：</p>
+<ul>
+<li>在查询中把与WHERE字句所给出的条件相匹配的数据行尽快找出来；</li>
+<li>在关联操作中把与其他数据表里的数据行相匹配的数据行尽快找出来；</li>
+<li>对于使用MIN()或MAX()的查询，索引能迅速找到最小值和最大值；</li>
+<li>可以通过索引来避免微一个查询整体读取数据行。<br>缺点：</li>
+</ul>
+<ul>
+<li>降低了在带索引的数据列里插入/删除/修改数值的速度（需要同时修改索引）；</li>
+<li>索引要占据磁盘空间，这会使你较快地到达数据表的尺寸极限。</li>
+</ul>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/1155/" data-id="32wc3xurnfxnggtc" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="1155" data-title="MySQL 学习笔记 基础篇" data-url="http://www.yekezhong.com/1155/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1160/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MySQL 学习笔记 优化篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1143/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每月荐影【2】：阿飞和他的那个女人</div>
+    </a>
+  
+</nav>
+
+
+
+      
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/">Algorithm</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Sort/">Sort</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/">C/C++</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/MFC/">MFC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Qt/">Qt</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/STL/">STL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Syntax/">Syntax</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/">Web</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/Site/">Site</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/">Debug</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/">Softwares</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/">System</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/">Coding</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/MySQL/">MySQL</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/">Reading</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Kindle/">Kindle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Note/">Note</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/">Share</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Article/">Article</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Experience/">Experience</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Movie/">Movie</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Music/">Music</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/">Tools</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/Chrome/">Chrome</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/GFW/">GFW</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/">Thinking</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Dream/">Dream</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Life/">Life</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Society/">Society</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Work/">Work</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2012新生咨询/" style="font-size: 10.00px;">2012新生咨询</a><a href="/tags/21/" style="font-size: 10.00px;">21</a><a href="/tags/ADL/" style="font-size: 10.00px;">ADL</a><a href="/tags/AKG-k420/" style="font-size: 10.00px;">AKG k420</a><a href="/tags/AdBlock/" style="font-size: 10.00px;">AdBlock</a><a href="/tags/BAE/" style="font-size: 10.00px;">BAE</a><a href="/tags/C/" style="font-size: 10.00px;">C++</a><a href="/tags/C-Primer/" style="font-size: 10.00px;">C++ Primer</a><a href="/tags/C-11/" style="font-size: 10.00px;">C++11</a><a href="/tags/CRTP/" style="font-size: 10.00px;">CRTP</a><a href="/tags/Cache/" style="font-size: 10.00px;">Cache</a><a href="/tags/Copy-On-Write/" style="font-size: 10.00px;">Copy-On-Write</a><a href="/tags/DirectShow/" style="font-size: 10.00px;">DirectShow</a><a href="/tags/Effective-C/" style="font-size: 20.00px;">Effective C++</a><a href="/tags/Failure-transparency/" style="font-size: 10.00px;">Failure transparency</a><a href="/tags/InnoDB/" style="font-size: 10.00px;">InnoDB</a><a href="/tags/JSFuck/" style="font-size: 10.00px;">JSFuck</a><a href="/tags/JavaScript/" style="font-size: 17.50px;">JavaScript</a><a href="/tags/Kindle/" style="font-size: 10.00px;">Kindle</a><a href="/tags/Kindle-Paperwhite-2/" style="font-size: 10.00px;">Kindle Paperwhite 2</a><a href="/tags/Linux/" style="font-size: 15.00px;">Linux</a><a href="/tags/Lisp/" style="font-size: 10.00px;">Lisp</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/MX360/" style="font-size: 10.00px;">MX360</a><a href="/tags/MX370/" style="font-size: 10.00px;">MX370</a><a href="/tags/MySQL/" style="font-size: 17.50px;">MySQL</a><a href="/tags/OPPO-X1/" style="font-size: 10.00px;">OPPO X1</a><a href="/tags/OpenCV/" style="font-size: 10.00px;">OpenCV</a><a href="/tags/PR200MKII/" style="font-size: 10.00px;">PR200MKII</a><a href="/tags/QT5/" style="font-size: 12.50px;">QT5</a><a href="/tags/Qt-Plugins/" style="font-size: 10.00px;">Qt Plugins</a><a href="/tags/Read/" style="font-size: 10.00px;">Read</a><a href="/tags/STL/" style="font-size: 10.00px;">STL</a><a href="/tags/Slicing-Problem/" style="font-size: 10.00px;">Slicing Problem</a><a href="/tags/THINKPHP/" style="font-size: 10.00px;">THINKPHP</a><a href="/tags/TextQuery/" style="font-size: 10.00px;">TextQuery</a><a href="/tags/Ubuntu/" style="font-size: 12.50px;">Ubuntu</a><a href="/tags/VS2010/" style="font-size: 10.00px;">VS2010</a><a href="/tags/VS2012/" style="font-size: 10.00px;">VS2012</a><a href="/tags/Varnish/" style="font-size: 10.00px;">Varnish</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        <ul>
+<li><a href="http://www.hekunn.com/" target="_blank" title="hekunn">何坤的小世界</a></li>
+<li><a href="http://www.ray945.com/" target="_blank" title="从今天起，做一只幸福的程序猿">Ray's World</a></li>
+<li><a href="http://www.wdk.pw/" target="_blank" title="从今天起，做一只幸福的程序猿">WDK’s Personal Web</a></li>
+<li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+
+  <div class="outer">
+
+
+  <div class="outer">
+
+
+    <div id="footer-info" class="inner">
+<style type="text/css">
+   #ds-recent-visitors .ds-avatar {
+    float: left;
+</style>
+<ul class="ds-recent-visitors" data-num-items="29"></ul>
+</div>
+
+<div id="footer-info" class="inner">
+      &copy; 2014 <a href="http://www.yekezhong.com" title="YesBlog | 叶科忠的博客">Ye, Kezhong</a> | <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe35b9eb7139bfb03f4f465848a3269c3' type='text/javascript'%3E%3C/script%3E"));
+</script> |  <a href="/sitemap.xml" target="_blank">Sitemap</a>
+<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> | Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> | Theme <a href="https://github.com/yekz/YesLandscape" target="_blank">YesLandscape</a>, by Ye, KeZhong, based on Landscape.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/guestbook" class="mobile-nav-link">Guestbook</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://github.com/yekz" class="mobile-nav-link">Github</a>
+  
+    <a href="/tags/自问自答/" class="mobile-nav-link">自问自答</a>
+  
+    <a href="/tags/自言自语/" class="mobile-nav-link">自言自语</a>
+  
+    <a href="/tags/自作自受/" class="mobile-nav-link">自做自受</a>
+  
+    <a href="/tags/自娱自乐/" class="mobile-nav-link">自娱自乐</a>
+  
+</nav>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yekz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+<script type="text/javascript">
+var div = document.getElementById("gbook-gbook");
+if (div) {
+	var div = document.getElementById("gbook");
+	div.parentNode.removeChild(div);
+}
+</script>
+
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
+</div>
+<script src="/scroll2top/scroll2top.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31426108-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
