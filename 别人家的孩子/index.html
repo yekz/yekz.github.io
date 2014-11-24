@@ -90,39 +90,95 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-别人家的孩子" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/别人家的孩子/" class="article-date">
+  <time datetime="2014-09-07T16:36:21.000Z" itemprop="datePublished">9月 8 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      别人家的孩子 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+<p>你我若谈起我的兴趣和特点的由来，我大概会告诉你我的阅读习惯上受益于教师亲人的资源和启蒙，我之所以成为一个程序员是因为早时邻里有台电脑。<br>当我把自己倒推到童年的这个层次时却发现仍然不够。<br>那年夏天挤在电脑前的少年也有七八，成为一个程序员的只是我。<br>当年相互传阅童话传记和UFO的人，此时也都再无心去感受文字的表达。</p>
+<a id="more"></a>
+
+<p>继续追溯下去，大多问题将面对的是并不愉快却接近根源的事实。<br>我也曾认真地告诉过朋友我从事码农这行是因为我并没有一个从事大多数行业的身体素质。<br>这并不意味这码农对身体素质的要求比大多数行业要低，事实上码农进行的是长时间的强脑力加无松弛体力劳动，所面临的都是身体各个部位慢性的生理病症。<br>如此的实话实说无关于计算机是否是我真实的爱好和梦想，而是折射出自我意志这件事本身的脆弱和不堪。<br>因为阅读也只是被黑夜赶上床后无事的消遣而已，无人不愿一群小伙伴玩不尽的游戏野不完的心性可以没有终结。</p>
+<p>我也老实地告诉你有时童年的欢乐让我追忆到心痛。<br>但我更期望从中找到某些模式和条件，能让我尝试去找回或者说模拟它的一小部分。<br>比方说吧，上初中后我开始把童趣丢了，上高中后我开始把懵懵懂懂无责任感的放肆青春丢了，上大学后我把高中后期形成的一套学习模式丢了，工作了是不是正在慢慢丢掉大学的踏实和诚恳。<br>简单地说，有了学习丢了童趣，有了工作丢了学习，这就是大部分我的同龄人包括部分的我的成长模式，而我在尝试证实的一件事是：学习不能丢，童趣更不能丢，人生是加法，不是说年龄增加，而是体验过一种生活就丢掉一种生活是件很可怕的事，我对人生的理解倾向于尽可能让我的人生的马斯洛需求层次搭建的更高，这意味着我的工作必须建立在童心/学习/踏实努力等一系列既有的经历和经验之上。<br>即是说最理想的状态是童年和青年一直与我同在，无所谓忘却与回忆，唯有无时无刻的成长和圆满。</p>
+<p>事实的情况是，我们虽然抛弃了以前的生活，却不是真的那么绝情，大一的比高一高二高三高四高五的都爱高中，要死的都觉得一辈子没过足瘾。<br>我并不喜欢直接接受<code>“人脑有遗忘痛苦保留欢乐的自我保护机制”</code>这样字字确凿的结论，对我而言远有比在既定轨迹里接受生活更重要的事，不论是凭一己之力轻描淡写地影响生活还是浓墨重彩地刻画我自己的轨迹，尽管可能找到一些端倪也不过是能为大脑减轻一些后期遗忘的工作量。</p>
+<p>“想这么多干嘛”是大家对付我这样的人最常用最厉害的武器。我会尝试给出一些解答。很不幸的，心理分析领域的绝大多数事实都是这样的情况：我们大部分既有的参与我们各种重大决定的性格事实都起源于并不愉快的幼时经历，<br>换句话说，一个通常的人性格仅仅是他的家庭/经历塑造的产物，这是一个完全被动的过程，当一个人做决定时，看似有自由意志，其实不过是父母和社会言传身教所影响塑造出来的产物，哪怕是结婚生子成家立业，也不过是生命路线里有这个女生毕业后这家公司刚好在招人而已，而不是千山万水我终于找到了你们。可以说，这里面并没有真正意义上自我的成分。<br>而“想这么多”要干的事，就是上文说到的期望能在被动的生活里注入一些自由意志的印记。</p>
+<p>我到世上走一着，并不甘心只是被推着绕着太阳滚了几十圈。</p>
+<p>在此我并不想深入地阐述自由意志的问题，因为从根本上推导起来我的做法和我反对的做法其实没有区别，我会想这么多，也仅仅是我刚好是一个被环境左右塑造为一个想的多的人而已，包括我想些什么，都是所有因素既定的因果。<br>可以告诉大家的是：在物理学把量子物理和相对论的矛盾解开到达统一论的终点之前，科学很残酷地支持决定论。<br>当然，我们还有哲学和信仰可以选择。<br>我选择信仰由我自己“想出来”的哲学。<br>尽管从古至今已有无数的哲学家创立并信仰过无数的理论，却能发现他们的理论总能相互印证不完备或被后来的哲学家指出错误，了解这些之后会知道，阅读哲学的意义并不是找到一种完美的哲学来信仰，而是明白哲学属于每一个人，思考过后，每一个人应当建立起自己内心的哲学体系，问心无愧，人问无畏。</p>
+<p>而要做到无畏，正需要无穷尽的学习和思考。<br>需要想得更多。<br>无知当不了无畏，至少在我这不行。<br>我诚惶诚恐地看过的每一本书，学的每一项技能，看过的每一个人，经历的每一件事，都因无知给我带来深深的畏惧。</p>
+<p>这种畏惧，使我幻想过成为每一个你们口中的别人家的孩子。<br>在那之前，<br>别人家的孩子，懂事独立。<br>别人家的孩子，白衣素净。<br>别人家的孩子，口口相传。</p>
+<p>有一天终于我开始学会接受，接受家庭，接受亲人，接受二十年光影，接受老家的路，不，不止接受，我开始学着接纳他们住进我的内心。<br>我独立漂流在异乡的月光里，唯能还给你们的只是一个他们口中的别人家的孩子，作为流传于邻里和菜市场的谈资，请接受。<br>希望还能捎上一句中秋快乐。</p>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/别人家的孩子/" data-id="od6adu58dz6pvvkx" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中秋/">中秋</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/童年/">童年</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自作自受/">自作自受</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自由意志/">自由意志</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="别人家的孩子" data-title="别人家的孩子" data-url="http://www.yekezhong.com/别人家的孩子/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/people-are-strange when-you-are-a-stranger/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          熟悉的陌生人
+        
+      </div>
+    </a>
+  
+  
+    <a href="/清理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">清理</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -222,7 +278,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -339,10 +395,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

@@ -92,372 +92,434 @@
       <div class="outer">
         <section id="main">
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-冷暖自知，无需抱怨：说说环境与适应" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/冷暖自知，无需抱怨：说说环境与适应/" class="article-date">
+  <time datetime="2014-06-05T06:36:32.000Z" itemprop="datePublished">6月 5 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p><img src="/img/16.jpg" alt=""></p>
+<h2 id="孔乙已">孔乙已</h2>
+<p>大约三五年前，我的思维跨度比现在大很多。<br>在仅有皮皮鲁和鲁西西，祥林嫂和孔乙已这些认知背景垫底的情况下，其实除了随着郑渊洁在童话里上天入地，就只剩感受鲁迅带来的痛心疾首。<br>最后成了<code>整天幻想上天入地的孔乙已</code>。</p>
+<p>小学时，借助亲人是教师的便利，读过不少好的童话故事，初中的图书馆，教室出门转角就到，那可怜的一架书籍，通话已经很少，倒是有不少通话性质的名人传记，到了高中，班长某一天突然带回来一本图书馆书目，大家争相传阅，但是争相翻阅的人比较少，而寻宝式地条条看过的人，吃饱了撑的啊，我胃口小，所以经常吃撑。</p>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1233" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1233/" class="article-date">
+  <time datetime="2014-05-30T13:15:34.000Z" itemprop="datePublished">5月 30 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Debug/">Debug</a>►<a class="article-category-link" href="/categories/Debug/System/">System</a>►<a class="article-category-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <h3 id="ext3/4"><strong>ext3/4</strong></h3>
+<p>使用系统内置命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span> e2label /dev/sda1 newLabelName <span class="comment"># 里面的/dev/sda1 应根据实际情况修改</span></div></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="NTFS"><strong>NTFS</strong></h3>
+<p>网上都说用 ntfsprogs，安装发现 E: Package ‘ntfsprogs’ has no installation candidate</p>
+<p>查看 <a href="http://en.wikipedia.org/wiki/Ntfsprogs" target="_blank" rel="external">wiki：ntfsprogs</a> 发现 “On April 12, 2011 Tuxera announced that Ntfsprogs project was merged with NTFS-3G.”，安装了 ntfs-3g，发现只是个挂载工具哇。<br>最后找到：<a href="http://www.installion.co.uk/ubuntu/precise/universe/n/ntfsprogs/cn/install.html" target="_blank" rel="external">要安装 ntfsprogs 只是按照这些说明操作。</a>，安装成功。<br>man 一下  ntfsprogs ：ntfslabel(8) - Show, or set, an NTFS filesystem’s volume label.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span>  ntfslabel /dev/sda1 newLabelName <span class="comment"># 里面的 /dev/sda1 应根据实际情况修改</span></div></pre></td></tr></table></figure>
+
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1233/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1217" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1217/" class="article-date">
+  <time datetime="2014-05-25T11:40:56.000Z" itemprop="datePublished">5月 25 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/C-C/">C/C++</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1217/">void reverse(char* str) 引发的问题</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>我们的问题是：用 C 或 C++ 实现 <span style="text-decoration: underline;">void reverse(char* str)</span> 函数。</p>
+<p>第一版：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">void</span> reverse(<span class="keyword">char</span>* str)</div><div class="line">{</div><div class="line">truesize_t l = <span class="built_in">strlen</span>(str) - <span class="number">1</span>;</div><div class="line">truechar tmp;</div><div class="line">truefor (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l; ++i, --l)</div><div class="line"><span class="keyword">true</span>{</div><div class="line">truetruetmp = str[l];</div><div class="line">truetruestr[l] = str[i];</div><div class="line">truetruestr[i] = tmp;</div><div class="line"><span class="keyword">true</span>}</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</div><div class="line">{</div><div class="line">truechar* str = <span class="string">"hello world!"</span>;</div><div class="line">truereverse(str);</div><div class="line">truecout &lt;&lt; str;</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1217/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1208" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1208/" class="article-date">
+  <time datetime="2014-05-24T10:25:44.000Z" itemprop="datePublished">5月 24 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Dream/">Dream</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1208/">想梦</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>今天是通过缩脚醒来的，最后的梦境是踏进了蛇堆里。</p>
+<p>尽管结果不太完美，还是忍不住让我唏嘘回味梦里的经历，故事和感受。</p>
+<p>很难说梦里的感受和现实有多大不同，如果你能接受并习惯快速失去的失落感。</p>
+<p>很实在地说，我的大脑的造梦能力已经超过了大部分导演。</p>
+<p>这让我开始怀疑一件事，所谓日有所思，夜有所梦，指的是做了多久白日梦，晚上还得梦上多久。</p>
+<p>但是梦想指的肯定不是晚上做梦，白天空想。</p>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1208/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1201" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1201/" class="article-date">
+  <time datetime="2014-05-22T12:15:17.000Z" itemprop="datePublished">5月 22 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Debug/">Debug</a>►<a class="article-category-link" href="/categories/Debug/Softwares/">Softwares</a>►<a class="article-category-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>Linux 下配置 GoAgent 和 windows 稍有不同，部分操作需要手工操作。</p>
+<p>GAE 申请，GoAgent 下载，配置，上传，浏览器代理插件等步骤参考：<a href="http://www.yekezhong.com/127" title="goagent+Chrome/Firefox翻墙教程" target="_blank" rel="external">goagent+Chrome/Firefox翻墙教程</a></p>
+<p>本文主要介绍 Linux 下上述步骤完成后还需要的一些操作。</p>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1201/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1196" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1196/" class="article-date">
+  <time datetime="2014-05-20T12:52:40.000Z" itemprop="datePublished">5月 20 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1196/">长安 长安</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>刚在知乎晃到一个问题：“<span style="font-weight: bold; color: #222222;">豆瓣有哪些评分不低的烂书？</span>”，问题里晃到一句话：<strong>“从来没有人读书，只有书中读自己，发现自己或者检查自己。——罗曼·罗兰”。</strong></p>
+<p>其实此时我应该满脸通红地老实承认，一个小时前我打开Kindle还没翻页就睡着了，当然这和昨晚的蚊子不无关系。</p>
+<p>这篇文章不是要说读书的，我也不知道要写点什么，耳旁老罗的发布会正在进行，我好歹在面试时厚颜无耻地借用了《我的奋斗》一句话：<strong>坚持做自己认为是正确的东西，很多时候也会得到一个非常好的结果</strong>。一个想不通就打开了博客后台。</p>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1196/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1172" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1172/" class="article-date">
+  <time datetime="2014-05-03T12:28:20.000Z" itemprop="datePublished">5月 3 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Debug/">Debug</a>►<a class="article-category-link" href="/categories/Debug/System/">System</a>►<a class="article-category-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>首先在varnish官网找到最新版：<a href="https://www.varnish-cache.org/releases" target="_blank" rel="external">Varnish Cache releases</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget https://repo.varnish-cache.org/<span class="built_in">source</span>/varnish-<span class="number">4.0</span>.<span class="number">0</span>-beta1.tar.gz</div><div class="line">tar -vzxf varnish-<span class="number">4.0</span>.<span class="number">0</span>-beta1.tar.gz</div><div class="line"><span class="built_in">cd</span> varnish-<span class="number">4.0</span>.<span class="number">0</span></div><div class="line">./configure --prefix=/usr/local/varnish</div></pre></td></tr></table></figure>
+
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1172/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1168" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1168/" class="article-date">
+  <time datetime="2014-04-30T08:07:41.000Z" itemprop="datePublished">4月 30 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Learn/Coding/MySQL/">MySQL</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>数据库的应用分为两类：<br>OLTP（在线事物处理）：博客，电子商务，网络游戏等。<strong>分区要小心</strong><br>OLAP（在线分析处理）：数据仓库，数据集市。<strong>分区可提高查询性能</strong></p>
+<p>对于一张大表，一般的B+树需要2~3次的磁盘IO。</p>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1168/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1163" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1163/" class="article-date">
+  <time datetime="2014-04-28T13:56:14.000Z" itemprop="datePublished">4月 28 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Learn/Coding/MySQL/">MySQL</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1163/">MySQL 学习笔记 存储引擎对比篇</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >InnoDB：OLTP在线事务处理，行锁设计，支持外键，非锁定读，通过多版本并发控制（MVCC）来获得高并发性，实现了SQL标准的4种隔离级别，插入缓冲，二次写，自适应哈希索引，预读，使用聚集方式存储表中数据，每张表的数据都按逐渐的顺序存放，如果没有显式地指定主键，会生成一个6字节的ROWID作主键。
+   MyISAM：不支持事务/表锁，对一些OLAP在线分析处理操作速度快，可以使用myisampack来进行赫夫曼压缩，压缩后是只读的。   NDB Cluster：share nothing 的集群架构。数据全部放在内存中，主键查找速度极快，复杂的连接操作很慢。
+   Memory：使用哈希索引，所有数据存放在内存里，适用于临时表。只支持表锁，并发性能较差，不支持TEXT和BLOB。   Archive：只支持INSERT和SELECT，使用zlib算法压缩存储数据，适合存储归档数据，如日志。使用行锁来实现高并发的插入操作。
+   Federated：指向一个远处MySQL数据库服务器上的表。   *Maria：设计目标是取代MyISAM。缓存数据和索引文件，行锁设计，提供MVCC功能，支持事务，以及更好的BLOB处理性能。</p>
+<p class="article-more-link">
+	<a href="/1163/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1160" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1160/" class="article-date">
+  <time datetime="2014-04-27T08:48:01.000Z" itemprop="datePublished">4月 27 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Learn/Coding/MySQL/">MySQL</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1160/">MySQL 学习笔记 优化篇</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>使用索引：</p>
+<ul>
+<li><strong>尽量为用来搜索/分类/分组的数据列编制索引，不要为作为输出显示的数据列编制索引。（WHERE / 联结字句 / ORDER BY / GROUP BY）；</strong></li>
+<li>数据列的维度越高，它包含的独一无二的值就越多，重复的值就越少，索引的使用效果也就越好；</li>
+<li>对短小的值进行索引；</li>
+<li>要为字符串数据列编索引，应当尽可能给出前缀长度；</li>
+<li><strong>复合**</strong>索引中最左边的数据列能够用于匹配数据行；**</li>
+<li>适可而止</li>
+<li>让索引类型与你打算进行的比较操作的类型保持匹配；</li>
+<li>利用慢查询日志找出性能低劣的查询；</li>
+</ul>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1160/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
@@ -564,7 +626,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -681,10 +743,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

@@ -108,39 +108,118 @@ Things To Remember
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-881" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/881/" class="article-date">
+  <time datetime="2013-01-25T11:12:49.000Z" itemprop="datePublished">1月 25 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Item 25: Consider support for a non-throwing swap. <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="881" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_To_Remember"><span class="toc-number">2.</span> <span class="toc-text">Things To Remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Words"><span class="toc-number">3.</span> <span class="toc-text">Key Words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">4.</span> <span class="toc-text">Code</span></a></li></ol>
+	</div>
+
+<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
+<h2 id="Part_4:_Designs_and_Declarations">Part 4: Designs and Declarations</h2>
+<p><a href="http://www.yekezhong.com/881" title="Item 25: Consider support for a non-throwing swap." target="_blank" rel="external">Item 25: Consider support for a non-throwing swap</a>.</p>
+<hr>
+<h2 id="Things_To_Remember">Things To Remember</h2>
+<ul>
+<li>(step 1) Provide a swap member function when std::swap would be inefficient for your type, Make sure your swap doesn’t throw exceptions.</li>
+<li>(step 2) If you offer a member swap, also offer a non-member swap that calls the member,for classes (not templates), specialize std::swap, too.</li>
+<li>(step 3) When calling swap, employ a using declaration for std::swap, then call swap without namespace qualification.</li>
+<li>It’s fine to totally specialize std templates for user-defined types, but never try to add something completely new to std.</li>
+</ul>
+<h2 id="Key_Words">Key Words</h2>
+<p><strong><a href="http://stackoverflow.com/questions/3928480/total-template-specialization" target="_blank" rel="external">total template specialization (全特化) and partially template specialization(偏特化)</a>:</strong></p>
+<p>This is a total template specialization and you do not need to disambiguate any symbols, so no need for typename.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// total template specialization</span></div><div class="line"><span class="keyword">namespace</span> <span class="built_in">std</span> {</div><div class="line">truetemplate&lt;&gt;</div><div class="line">truevoid swap&lt;Widget&gt;(Widget& a, Widget& b)</div><div class="line"><span class="keyword">true</span>{</div><div class="line">truetrueswap(a.pimpl, b.pimpl);</div><div class="line"><span class="keyword">true</span>}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>partially template specialization only works for classes, not functions! You can only totally specialize function templates - anything else is function overloading in the std namespace(which the C++ standard disallows).</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// partially template specialization</span></div><div class="line"><span class="keyword">namespace</span> <span class="built_in">std</span></div><div class="line">{</div><div class="line">    <span class="comment">/* Do **not** do this in the std namespace!!!</span></div><div class="line">       You're not actually partially specializing the function,</div><div class="line">       you're overloading the function in the std namespace</div><div class="line">       which is prohibited by the C++ standard. */</div><div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;        </div><div class="line">    <span class="keyword">void</span> swap&lt;Widget&lt;T&gt; &gt;(Widget&lt;T&gt;& a, Widget&lt;T&gt;& b) {}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong><a href="http://en.wikipedia.org/wiki/Failure_transparency" target="_blank" rel="external">Failure transparency(故障透明)</a>:</strong></p>
+<p>In a <strong>distributed system</strong>, failure transparency refers to the extent to which errors and subsequent recoveries of hosts and sevices within the system are invisible to users and applications.</p>
+<p>Failure transparency is one of the most difficult types of transparency to achieve since it is ofter difficult to determine whether a server has actually failed, or whether it is simply responding very slowly.</p>
+<p>There is also usually a trade-off between achieving a high level of failure transparency and maintaining an adequate level of system performance.</p>
+<p><strong><a href="http://en.wikipedia.org/wiki/Argument-dependent_name_lookup" target="_blank" rel="external">ADL(Argument-dependent name lookup)</a>:</strong></p>
+<p>ADL only occurs if the normal lookup of an unqualified name fails to find a matching class member function. In this case, other namespaces not considered during normal lookup may be searched where the set of namespaces to be searched depends on the types of the function arguments.</p>
+<p>Alternative <strong>std::swap</strong> with <strong>using std::swap</strong> is a classic case of the ADL:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">void</span> doSomething(T& obj1, T& obj2)</div><div class="line">{</div><div class="line">trueusing std::swap; <span class="comment">// make std::swap availiable in this function</span></div><div class="line">trueswap(obj1, obj2); <span class="comment">// call the best swap for objects of type T</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="Code"><strong>Code</strong></h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "stdafx.h"</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> WidgetStuff {</div><div class="line">truetemplate&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> WidgetImpl { };</div><div class="line"></div><div class="line">truetemplate&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Widget {</div><div class="line">truepublic:</div><div class="line">truetrue<span class="comment">// Provide a swap member function when std::swap would be </span></div><div class="line">truetrue<span class="comment">// inefficient for your type, Make sure your swap doesn't</span></div><div class="line">truetrue<span class="comment">// throw exceptions.</span></div><div class="line">truetruevoid swap(Widget& other)</div><div class="line">truetrue{</div><div class="line">truetruetrueusing std::swap;</div><div class="line">truetruetrueswap(pImpl, other.pImpl);</div><div class="line">truetrue}</div><div class="line">trueprivate:</div><div class="line">truetrueWigetImpl *pImpl;</div><div class="line"><span class="keyword">true</span>};</div><div class="line"></div><div class="line"><span class="keyword">true</span><span class="comment">// If you offer a member swap, also offer a non-member swap that calls</span></div><div class="line"><span class="keyword">true</span><span class="comment">// the member, for classes (not templates), specialize std::swap, too.</span></div><div class="line">truetemplate&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> swap(Widget&lt;T&gt;& a, Widget&lt;T&gt;& b)</div><div class="line"><span class="keyword">true</span>{</div><div class="line">truetruea.swap(b);</div><div class="line"><span class="keyword">true</span>}</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">void</span> doSomething(T& obj1, T& obj2)</div><div class="line">{</div><div class="line"><span class="keyword">true</span><span class="comment">// When calling swap, employ a using declaration for std::swap, </span></div><div class="line"><span class="keyword">true</span><span class="comment">// then call swap without namespace qualification.</span></div><div class="line">trueusing std::swap; <span class="comment">// make std::swap availiable in this function</span></div><div class="line">trueswap(obj1, obj2); <span class="comment">// call the best swap for objects of type T</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/881/" data-id="2rovekmocvpklier" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ADL/">ADL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Failure-transparency/">Failure transparency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/偏特化/">偏特化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全特化/">全特化</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="881" data-title="Item 25: Consider support for a non-throwing swap." data-url="http://www.yekezhong.com/881/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/907/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          四川理工学院教务系统自动登录器 suseAutoLoginRobot
+        
+      </div>
+    </a>
+  
+  
+    <a href="/870/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Item 24: Declare non-member functions when type...</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -240,7 +319,7 @@ Things To Remember
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -357,10 +436,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

@@ -96,39 +96,106 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-486" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/486/" class="article-date">
+  <time datetime="2012-06-18T13:18:12.000Z" itemprop="datePublished">6月 18 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Web/">Web</a>►<a class="article-category-link" href="/categories/Coding/Web/Site/">Site</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      蚁群工作室&amp;计算机学院2012届新生咨询网站上线 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="486" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#【四川理工、计算机学院❤欢迎❤2012届的新童鞋】"><span class="toc-number">1.</span> <span class="toc-text">【四川理工、计算机学院❤欢迎❤2012届的新童鞋】</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#_注意："><span class="toc-number">1.1.</span> <span class="toc-text">  注意：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_提示："><span class="toc-number">1.2.</span> <span class="toc-text">   提示：</span></a></li></ol></li></ol>
+	</div>
+
+<h1 id="【四川理工、计算机学院❤欢迎❤2012届的新童鞋】"><span style="color: #ff0000;">【四川理工、计算机学院❤欢迎❤2012届的新童鞋】</span></h1>
+<p>又是一年迎新季，为了让新来的计算机专业的同学能够更好的了解本专业，在此，我们建立了一个计算机学院新生的交流群：62466094，高级群，可以容纳500人，应该大部分计算机学院的童鞋都能进来，我们尽量给所有同学都new一个位置，~当然其他学院的也欢迎来凑热闹哦！</p>
+<p>我们也建立了一个临时网站是 <a href="http://www.suse2012.tk/" target="_blank" rel="external">http://www.suse2012.tk/</a>，在里面你可以参看计算机学院今年的招生情况和各个专业介绍，还可以在里面找到一些新生刚来会出现的问题，我们网站的内容目前还处于更新阶段，由于最近考试较多，可能会在6月底将所有的主要内容都更新完毕，并且在随后逐步更新其他大家觉得问题比较多的内容。</p>
+<p>我们会尽快尽量的debug所有你们提交的FAQ，及时向你们发送需要的message，找寻出你们的漏洞，update上最新的补丁。</p>
+<p>亲，速度加哦！~</p>
+<p><strong><span style="color: #ff0000;">没有妹子的争取进来new 一个妹纸，没有汗纸的，没关系，里面汗纸多。</span></strong></p>
+<h2 id="_注意："><span style="color: #ff0000;">  注意：</span></h2>
+<ol>
+<li>进群的同学请马上定义自己的马甲！</li>
+<li>大二大三的同学也可以加，但是请按照群内格式修改自己的马甲变量！</li>
+<li>群内任何广告我们会当作异常直接飞出去，任何广告都是不允许的！</li>
+</ol>
+<h2 id="_提示："><span style="color: #ff0000;">   提示：</span></h2>
+<ul>
+<li>群内管理主要活动于新浪微博，新浪微博群：<a href="http://q.weibo.com/1850839" target="_blank" rel="external">http://q.weibo.com/1850839</a></li>
+</ul>
+<hr>
+<p>看着<a href="http://www.suse2012.tk/" target="_blank" rel="external">http://www.suse2012.tk/</a>上线，想着构建出一个蚁群的综合信息环境，于是从昨天开始把大概一两个月前写的蚁群工作室的网站拿了出来，修复了一些漏洞和BUG，也在今天上传，域名是<a href="http://www.anter.tk" title="蚁群工作室" target="_blank" rel="external">www.anter.tk</a>。</p>
+<p>由于俺的艺术细胞实在不咋的，纯PS技术也只限于基础使用水平，而咱大蚁群未来的美工人员还在修炼神功之中，所以这个网站对美工的使用几乎为零，没办法做色彩的过渡处理啥的，都是纯色块拼凑，取色也不太协调，给咱大蚁群丢人现眼了~~~</p>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/486/" data-id="18wgslbzny6qmxdn" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2012新生咨询/">2012新生咨询</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/蚁群工作室/">蚁群工作室</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="486" data-title="蚁群工作室&amp;计算机学院2012届新生咨询网站上线" data-url="http://www.yekezhong.com/486/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/491/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2012高考查分防坑指南
+        
+      </div>
+    </a>
+  
+  
+    <a href="/457/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">四川理工学院教务系统无弹窗登录器</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -228,7 +295,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -345,10 +412,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

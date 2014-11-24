@@ -92,372 +92,722 @@
       <div class="outer">
         <section id="main">
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1155" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1155/" class="article-date">
+  <time datetime="2014-04-27T08:43:55.000Z" itemprop="datePublished">4月 27 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Learn/Coding/MySQL/">MySQL</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1155/">MySQL 学习笔记 基础篇</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1155" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
+      
+        <p>mysqld 客户/服务器程序<br>libmysqld 嵌入式服务器库：不需要网络<br>使用IS NULL 或IS NOT NULL来对NULL 进行查找。&lt;=&gt;<br>IF(row<em>name IS NULL, 0, 1) 条件选择语句<br>ORDER BY RAND() LIMIT num 随机取出num条记录<br>SELECT CONCAT(row_name1, ‘ ‘, row_name2) AS name 合并列字符串为name=row_name1 row_name2<br>日期：1970-01-01<br>按日期排序/查找某个日期或范围/提取年月日（WHERE MONTH(birth) = 3）/计算距离/加减时间间隔 YEAR(), MONTH(), DAYOFMONTH(), CURDATE()<br>LIKE/NOT LIKE ：</em>匹配一个字符，%匹配任何一个字符序列<br>变量：SELECT @var := value<br>         SELECT @today := CURDATE();<br>去重复：SELECT DISTINCT row_name FROM table_name<br>COUNT(<em>)统计被选中的数据行的总数，COUNT(row_name)只统计全体非NULL值的个数。<br>COUNT(</em>) FROM table_name GROUP BY row_name<br>SELECT row_name, COUNT（*） AS count FROM table_name GROUP BY state HAVING count &gt; 1 ORDER BY count DESC;<br>函数MIN(), MAX(), SUM(), AVG()能够得出某个数据列你的最小值/最大值/总和和平均值。<br>WITH ROLLUP  超级聚合</p>
+
+        
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="/1155/#more">Read More</a>
           </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+        
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1143" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1143/" class="article-date">
+  <time datetime="2014-03-01T14:29:35.000Z" itemprop="datePublished">3月 1 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Movie/">Movie</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1143/">每月荐影【2】：阿飞和他的那个女人</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1143" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >我的一个兄弟——我考虑了一下，还是决定隐去罗清林的姓名——姑且称其为A吧。
+A是一个未老先衰的传奇人物，和所有你们居民不懂的农村小伙子一样，十七八岁就开始和生活较劲比谁先死，酒品好的一逼，我的意思是爬楼梯和趟厕所的事他没少干。
+有一次，A给我打来电话，一边说着上错了公交车或者撞着呢电杆，一边在电话那头吐得稀里哗啦，后来在成都，A教我吹瓶子，喉咙打开，让酒咕噜咕噜流下去，而不是一口一口吞，我也就学会了那么一天，那个冬天后大家喝酒也不再怎么比一口谁下去得多了。
+总之，A就是这么一个人，生活给他的，他都敞开了喉咙灌到肚子里，实在装不下就去厕所抠出来，拒绝咀嚼辛酸苦辣。
+这么说吧，如果人可以多死几次，那么死过一次之后，再次面对死亡，不会再如第一次那样强烈抗拒或恐惧退缩，这就是我们最真实的感受。
+死之前通宵玩游戏和死之后通宵玩游戏，感觉不大一样。
+十七八岁的时候，A死过一次，谁又没有呢？
+1961年6月15日夜间十时，建中学生的少年杀人案震惊了台湾，1991年，台湾导演杨德昌的《牯岭街少年杀人事件》再次震惊台湾。
+她曾经说：“谁变心，谁就下地狱”。于是他给了她七刀。
+这次是真死了。
+这是我看的第一部台湾电影，如果说全长9个小时的《教父》是一个世纪，那4个小时的《牯岭街少年杀人事件》就是一场人生。
+十七八岁那几年，不管后来是否活着，都感觉过完了整场人生。
+太过短暂。
+还是台湾，郑智化的那首《阿飞和他的那个女人》，说的大概是二十七八的事，又会让多少人再死一次，如鲠在喉。
+死去，什么时候活来？
+
+《阿飞和他的那个女人》阿飞和他的那个女人离开家乡在台北混了几年阿飞曾有满腹的理想事到如今依然一事无成阿飞开始学会埋怨开始厌倦身边所有的一切阿飞每次生气的时候那个女人显得特别可怜这样的日子一天一天阿飞花掉身上仅有的钱阿飞付不起房租买不起烟吃饭喝酒都靠那个女人阿飞的他的那个女人为了生存在酒廊陪酒赚钱活在这个现实的世界难免要学会放弃一点尊严阿飞的脾气变得越来越坏常常一个人自怨自艾只有在喝醉的时候偷偷流泪抱着女人幻想他的未来阿飞的脾气变得越来越坏常常半夜从梦中醒来有时候发现身边的女人不在黑暗中独自摸索他的悲哀啊……阿飞的他的那个女人最后终于决定还是要离开她依然深爱着他的男人但这种男人不会给她未来阿飞的生命从此失去依赖像一个被母亲遗弃的小孩可是骄傲的男人早已被宠坏他依然不知觉悟原性不改……啊……阿飞失去他的女人仿佛失去他自己的灵魂他不再相信所谓的爱情深深怨恨离开他的女人无知的阿飞何时你能长大何时能扛起男人的责任你可知当一个女人对你托付一生她也许离开但她依然在等啊……阿飞和他的那个女人……还在演戏…… ……</p>
+<p class="article-more-link">
+	<a href="/1143/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1133" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1133/" class="article-date">
+  <time datetime="2014-01-29T15:43:03.000Z" itemprop="datePublished">1月 29 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Movie/">Movie</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1133/">每月荐影【1】：四个臭皮匠顶个诸葛亮？</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1133" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >相对来说，我看电影比较多，所以常有朋友叫推荐电影，但是，没有信任基础的推荐容易导致失望。这需要从两方面来解释：拍电影的目的和看电影的目的。只有拍的出发点和看的目的地有联系，大家才会给某部电影点赞。上一篇博文心的距离说的就是这个问题：
+
+世上最遥远的距离不是天涯海角，而是研究者和被研究者的距离。
+换个词：是思考者和被思考者的距离。
+再换个更准确的词：主动和被动的距离。
+就像《心的距离》的嘶吼：衡量你的心直線到我之間，沒有跨越的機會。
+哲学家穷尽一生思考人生的意义，普通人一辈子也不会翻开哲学书籍。
+
+
+看电影，都是为了娱乐，有的娱乐眼睛，有的娱乐脑袋，有的娱乐内心，有的为了治疗失眠。所以，在这样的情况下：无聊啊，有没有好看的电影，推荐一部来看哈！如果让他去看《2001太空漫游》或者《牯岭街少年杀人事件》这样“节奏缓慢，不知所云”的电影，肯定不会有下次了！所以要拿捏好对方对“娱乐性”的需求和我对“有意思”的要求，让对方下次无聊了还能找你，挺困难。正因为这些原因，《两杆大烟枪》是我推荐成功率最高的电影，按我的说法：《疯狂的石头 / Crazy Stone》喜欢吧？《两》是国内疯狂系列的鼻祖，《疯》只学到了《两》一点皮毛而已~我可不希望我写的每月荐书和每月荐影，写的开心，无人问津，《每月荐书【1】：莫言轮回看癔症，小波下乡寻尊严》肯定没能让任何人多看一本书。于是，写到这里，可耻地删掉本来打算写的地中海，第一期，就说说《两杆大烟枪》。——妈的，还多说什么，不满意来找我！——不行，还没点题——电影里的四个臭皮匠能顶个诸葛亮吗？不能，因为导演盖·里奇才是他们背后的诸葛亮。</p>
+<p class="article-more-link">
+	<a href="/1133/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1129" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1129/" class="article-date">
+  <time datetime="2014-01-22T19:46:20.000Z" itemprop="datePublished">1月 23 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1129/">心的距离</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1129" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >去年这时候，做了一个蹲坑蛋糕，黄色部分当然是生日主角吃了。
+这是多年来我吃过的唯一能把生日的快乐延续下来的蛋糕。
+这事就成了后来常用的下酒笑料。
+几年前，朋友问我喜欢啥类型的礼物，我说：能长久保存的。
+现在她送的礼物仍然在我桌子上。
+任何时候送苹果，都比平安夜好。如果是在圣诞节送，人能记你一辈子。
+心意是发自内心，用心包装，而不是跟谁外界的习俗，随波逐流。
+就像生日要吃蛋糕，平安夜要送苹果，这些事就和吃饭一样平常和随意，那么能够传递的心意，就很寒酸。
+花一点心思，以后凡是吃蛋糕、苹果，就能想起有个很有意思的人。。。
+长半衰期的事做得越多，将来的日子也就叠加了越多有意思的回忆。
+回忆有两种，主动创造的，被动经历的。
+主动越多，被动越少，生活喜乐忧愁的主动权越是掌握在自己手里。反之亦然。
+叔本华说：年轻人期望他们的一生能像一部趣味盎然的小说。他们的失望也就由此而来。
+晚上溜出来上网，和清爷走在路上，说到明天他的生日有什么方式“娱乐”。
+。。。这个，真没有。
+说起来，这两年，唯一的娱乐方式就是哥几个喝酒扯淡。
+把前二十年的笑料翻来覆去地咀嚼，生活这坛老酒，确实是越喝越入味。
+失望也就由此而来。
+笑料并没有随着收入的增加、消费的提高而变多。
+相反，都在唏嘘再也找不到好玩的事。
+叔本华又说了：在这青年时期，困扰我们、造成我们不幸福的是我们对于幸福的追求。
+是追求，不是逆来顺受。
+哪怕你被七大姑八大姨灌输了庸碌生活的思想，学习怎么样这次考了多少名有没有女朋友升值了吗有没有加薪呵呵。
+如果你还打算追求幸福，那肯定不怎么幸福。
+我认为的追求幸福，不是努力把生活给你的做好，而是有一个自我探索的过程。
+自己期望什么，有哪些努力的方向，怎么做能让幸福最大化。
+就像高考，追求高分的大部分人，只是跟谁老师的步伐，用多年来常规的书呆子学习方式备考。
+没有在社会需求，知识和能力的平衡上做过考虑，其次，也没有对是否有更高效，更适合自己的学习方法有过丝毫怀疑。
+我的高中有过很长一段低谷期，是因为那时我发现，现行教育体制下的学校生活相对同样时长的社会打拼，所能获得的成长要小得多。
+但是我也发现，我的家庭及自身情况在中途退学进入社会这件事上有极大的阻碍因素，对我来说，以一个知识型的人进入社会更合适，所以我开始备战高考。
+以分数最大化为原则，所有科目的学习方法都经过用心考虑和实践。
+完全可以用特立独行来概括高考前几个月的生活。
+说这些，不是介绍我的高考经验，而是想说，两种人的距离，让人感到绝望。
+世上最遥远的距离不是天涯海角，而是研究者和被研究者的距离。
+换个词：是思考者和被思考者的距离。
+再换个更准确的词：主动和被动的距离。
+就像《心的距离》的嘶吼：衡量你的心直線到我之間，沒有跨越的機會。
+哲学家穷尽一生思考人生的意义，普通人一辈子也不会翻开哲学书籍。
+难怪苏格拉底会被“多数人暴政”审判死刑——研究者整天在大街上拉着被研究者讲道，不是疯子是什么。
+处在心的距离两端的人，一件事，一个想法，最多通过一篇用心写就的文章，数个钟头费心的解释，让对方觉得应该懂你而已，永远也不会真的明白。
+——如果真懂，也就不需要写这篇博客了。
+写了也没用。
+所以我越来越觉得，写博客是为了总结自己的想法，最多引起共鸣，而不能改变不同意见者分毫。</p>
+<p class="article-more-link">
+	<a href="/1129/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1085" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1085/" class="article-date">
+  <time datetime="2014-01-13T08:10:59.000Z" itemprop="datePublished">1月 13 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1085/">每月荐书【1】：莫言轮回看癔症，小波下乡寻尊严</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1085" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >★写在前面
+有很长一段时间，断了读书的习惯。
+这几年里读书不多，但是回忆起来，但凡精神亢奋的时候，都是刚读过一本好书。
+直到买了 kindle kpw ，才开始收心。kindle不是肯德基 —— 说说 Kindle Paperwhite 2 的使用体验和感想
+有人说男人只需要三样东西：食物，性，安静。
+对应上个体心理学的说法，人类所有问题都可归于三类：职业，两性，交际。
+前两样，食色性也，谁也逃不掉。
+交际里安静成分的多少，构成了不同的性格不同的人。
+其实我可以安静坐着不哭不闹大半天，问题是一太浪费时间，二是大家也难理解。。。这丫傻了吧。
+上学在外，我和朋友的联系频率低于一月一次。
+也有喜欢每天拉家常的人。
+俗话说人不怕穷，只怕比。
+我的热闹有两斤，你的才一两，你怎么能活下来啊。。。
+安静这东西，不像吃饭睡觉财产成就，没有可比性。
+所以我的目地不是要打破大家的热闹，拉你们入安静的伙。
+我给大家推荐书，推荐电影，只是描述使我愉快的东西，自我总结。
+而不是把我的生活观和价值观向大家推销，你要觉得有兴趣，不妨看一看。好与不好，都给我留个话，这事才能越做越好。
+王小波说得挺好：我认为，一个人快乐或悲伤，只要不是装出来的，就必有其道理。你可以去分享他的快乐，同情他的悲伤，却不可以命令他怎样怎样，因为这是违背人类的天性的。
+忘了说：阅读，观影，听音乐都是享受安静的一种形式。
+——安静是心里的感受，不止是耳朵里那点破事。
+————————————————————
+★《生死疲劳》——自信与癔症
+读莫言，是奔着诺贝尔这名头去的。
+莫言是华人第一个诺贝尔奖吗？
+不是，他之前，已经有两个和平奖，一个文学奖。华人诺贝尔奖得主列表
+但是我们为什么不知道呢？
+因为政治需要，在任何一个党大于国的社会里，信息的传播形式都不是水波，而是广播。
+这两者有什么区别？
+水波由落入水中的石块激发，然后传播开来，石块和水是一个整体。广播则是事件和听众之间的第三者，在这一层，事实可以被随意过滤，歪曲，捏造。而且，广播还有两个特点：一是信息是单向的，不像水波还可以反弹回来，二是，广播具有地域性，一个广播下的听众，和另一个广播下的听众，沟通的渠道很小。
+这像放养和圈养的区别。
+广播播报毛主席逝世，举国痛哭，照莫言在《生死疲劳》里的描述就是：“收音机里放出了哀乐。这缓慢、沉痛的音乐一响起，先是黄瞳的女人吴秋香带头，然后全村的女人跟着，放声嚎哭起来。女人们哭晕了，不避泥水，一屁股坐在地上，有的用双手拍打着地面——地面很快被拍出水来——有的仰着脸用小手帕捂着嘴巴，有的捂着眼睛，发出各种各样的哭声。哭着哭着就带了彩头：”，“有许多死了亲娘都不流一滴眼泪的人，也为毛泽东的死哭红了眼睛。”
+这其实是由极度的信息不对称造成的，极度的不对称，或者说极度的洗脑，造成了乔治奥威尔在《1984》里杜撰的口号：无知即力量。
+就像是栓养的狗，一只起吠，全村狗嚎。如果村里的狗都是自由放养的，狗群不会一惊一乍。这种稳定的力量，就是培根的名言：知识即力量。
+两种力量，你相信哪一种？
+我说：人有能力把可信和不可信的东西分开，不会把怪诞的想象当真。
+所有人都会认同这句话。
+接着我指出来我们的生活里就充斥着大量的怪诞的想象——至于可信和不可信，除非主动争取，广播下的我们没有选择的权利——大部分人会选择否认荒诞本身，而不是否认自己的能力。
+自信这个词，被滥用得一塌糊涂，大多数人对一件事情发表评论时的自信，都不是来自于自己内心的判断，而是把党和国家广播里宣扬的价值观作为信仰的根基。这不是自信，这是自弃和自欺。
+这种畸形的自信，在新中国成立后的几十年里数次达到了人类历史上前所未有的高疯。
+《生死疲劳》说的是西门闹——西门屯地主，被枪毙后，转生为西门屯的驴、牛、猪、狗、猴、大头婴儿蓝千岁，从1950到2000年，见证了新中国历史的吊诡和狂热，唏嘘和罹难。
+我们的历史书，讲到1949新中国 成立，就直接跳到了邓的改革开放。尽管我们都在老一辈忆苦思甜教育小孩的过程中了解到那时人们的饥荒和癫狂，却不知道其造成的破坏。而老人们在我们脑中的形象，是一个老实本分但不傻的农民，受困于时代。。。
+这就是有必要从亲历者的书籍中直面历史的原因。
+在莫言的《生死疲劳》和王小波的《黄金时代中》中，那个时代的人，每一个都是极度自信的，每一个人都深信广播里发出的一切声音，除了蓝脸，人民公社下西门屯唯一的单干户，除了王小波，和他的“炮友”。
+拿当年的苦教育你的老人，可能正是当年的红卫兵。
+一无所知的人，最容易极度自信。自信过了头，就发了癔症。
+★《黄金时代》——个人的尊严
+《生死疲劳》载录了新中国几十年的历史，却似乎独独忘了一件事：知青下乡。《黄金时代》很好地填补了这个空白。
+王小波写《黄金时代》，和莫言的出发点不同，莫言是要找回历史的尊严，王小波是</p>
+<p class="article-more-link">
+	<a href="/1085/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1079" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1079/" class="article-date">
+  <time datetime="2014-01-11T15:34:19.000Z" itemprop="datePublished">1月 11 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Article/">Article</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1079/">感受百态</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1079" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >臧天朔：
+
+很多歌迷都感动于许巍音乐中渗透的执著。从1982年接触音乐到现在，许巍走过了一段非常坎坷的道路，有过贫穷艰难，患过重度抑郁症一蹶不振……而在他身后，有一位善良坚韧的女人，对他始终不离不弃。说到妻子，许巍说：“我们在一起已经快20年了，彼此相儒以沫。她是我最大的福气。”
+音乐，是许巍的命。从16岁爱上摇滚开始，这个爱乐的西安少年就一直在自己的梦想道路上追寻驰骋。1990年，22岁的许巍当了3年兵后，把战友兼爱人袁枫娶回了家。年轻的许巍满脑子都是音乐，新婚不久，他就拿出自己的费，意气风发地在西安组建了自己的“飞”乐队。此后，他经常与乐队成员在一起喝酒练琴或是四处巡演，不久，**费花了个精光，乐队就此解散。但许巍并不死心，他决定去北京发展，1992年，许巍到北京找到了当时签有国内大部分个性化歌手的红星社签了约。他以为签了约就会发专辑，就会过上好日子。现实却让他看到，困居在北京，自己的音乐没有多少人理会。
+妻子袁枫则发展得很好，在许巍离开西安后，她考取了军校，毕业后回到部队被提升成了军官。每次许巍回家探亲，她都会在他临走前偷偷往他包里塞一笔钱——她并不希望自己的丈夫多么出人头地，只希望许巍能够意识到家的可贵，能跟她一起好好过日子。
+在此期间，许巍内心一直交织着对妻子无法言表的愧疚，加之自身精神世界的极度迷茫，压力可想而知。“这么多年你还在不停奔跑，眼看着明天依然虚无缥缈，在生存面前那纯洁的理想，原来是那么脆弱不堪。”许巍在《那一年》中这样唱道。他的细腻敏感及对自身生存现状的多种真实临摹，迅速地打动了无数如他一般追寻梦想的年轻人。在2000年发布了新专辑《那一年》后，许巍转运了。版税滚滚而来，商演邀请不断。两地分居的八年中，许巍一直信誓旦旦地向妻子保证：“只要我有钱了，马上就在北京买一所大大的房子，把你接来安居乐业，好好补偿你这八年里面独自忍受的孤单和委屈。”可是，当金钱荣誉滚滚而来的时候，个性爽朗的他，发现过去很多许久没有谋面的“哥们”都接踵而至，这个说有好商机建议他去投资；那个说有好楼盘，可以用内部关系给他最低价……半年时间，许巍挣了300万，口袋里的钱还没有捂热，就被源源不断地掏了出去。就在这时，许巍最好的兄弟栾树在青岛结婚，打电话邀请他去参加婚礼。许巍凑了凑身上的钱，竟然连买张机票都不够。他赶紧四处打电话借钱，可那些拿了他钱的人竟然异口同声，不是说钱已经投进生意里面没有闲散资金就是说周转不开。许巍一直觉得烟、酒、兄弟是自己行走的动力和支持，结果被骗得一塌糊涂，世界似乎一下就崩塌了，他灰了心，沉迷烟酒，再也无心去做音乐，整天关在租来的房子里面醉生梦死，经常一连一个星期不出门。
+公司的朋友见许巍的情况实在不对劲了，强行把他送进医院，结果查出他患了重度抑郁症。
+绝不放弃，妻子守护抑郁丈夫
+红星公司建议袁枫将许巍送往精神病院，袁枫拒绝了：“他只是抑郁，不是神经。你们给我找辆车，我带他回西安。”　就这样，分居八年以后，两人终于在西安团聚了。只是，曾经意气风发的摇滚青年如今发如乱草，曾经灵巧拨弄吉他的双手抽搐地颤抖，甚至不知道饱饿和饥渴，不扶他起床，他会静静地在床上一连躺上几天。
+袁枫给单位打了电话，言简意赅：“我丈夫病了，我得在家照顾他。他的病不知道什么时候才能好，我辞职！”
+袁枫的单位分给她的是一套5楼的住房，许巍喜欢晒太阳，只要看见阳光，不声不响地就自己搬个椅子到阳台上坐着。许巍于是总是跟着阳光角度的变化不停地搬动椅子，等到整个阳台都没有了阳光的时候，他就站在栏杆旁边，伸出手去够阳台之外的阳光，努力地向外面探，根本不顾自己身在五楼。袁枫惊出一身冷汗，二话没说，马上换房。一个星期以后，她带着许巍搬到了西郊的一处院落。
+医生再三叮嘱，抑郁症患者需要经常与人沟通。因此，袁枫用尽浑身解数去缠着许巍，有时唱许巍的歌，有时问他还记不记得当年在部队的事情……为了能让更多的人来陪陪许巍，袁枫跟从未接触过的娱乐圈打起了交道，她根据存在许巍手机里的电话号码，一个个联系许巍在北京的朋友。在此之前，袁枫根本不知道许巍电话本里面的那些名字到底哪一个是朋友哪一个只是泛泛之交。她只能硬着头皮把电话拨通，然后告诉对方自己是许巍的妻子，因为许巍目前患上了抑郁症，医生叮嘱需要有更多的亲朋来陪他说话，希望对方能来西安看看许巍。
+这样的麻烦事找上门，推托的是大多数，万幸的是，袁枫打通了臧天朔的电话，他告诉袁枫：“我腾出半个月的时间在你那里扎下了，别的人我来发动，你就放心吧！”三天后，臧天朔带着一车人来了，除了人还有一大堆乐器，把乐器在院子里面摆放到位，一声咬喝，大伙就操练开了。当架子鼓敲响的时候，许巍情不自禁一抖。　一群人在西郊小院扎了半个月，最忙的人还是袁枫。她每天第一个起床，做好早饭再催所有人起床；一群人去院子里面早餐了，她得快手快脚地收拾好所有的地铺铺盖；</p>
+<p class="article-more-link">
+	<a href="/1079/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1060" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1060/" class="article-date">
+  <time datetime="2014-01-03T18:04:17.000Z" itemprop="datePublished">1月 4 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Kindle/">Kindle</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1060/">kindle不是肯德基 —— 说说 Kindle Paperwhite 2 的使用体验和感想</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1060" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >前几天路过@ray 的博客，说到准备考完试好好整理我对 Kindle 的想法和体验。
+身边的小伙伴都开始写博客，这真让人高兴。
+写一篇博客不难，难的是持之以恒。
+我指的不是毅力——写博客是种输出，必须要源源不断地吸收新知识，才能保证输出的连续性——就像拉屎，不是用力就有，你得保证进食量。
+看看我们的生活吧！
+上课下课，手机电脑，吃饭睡觉。三角形的稳定性得到了完美的证明。
+这里面当然也有连续性，吃喝拉撒都可以记录下来——但是拉稀总是不爽的。
+所以还要质量。要吃好喝好，才能拉出色香味俱全的便便。。。
+★Kindle 是什么？
+
+我的观点是，这是一个应该归属到《十万个为什么》的问题——我们应该在小学初中时代就已经了解到他。
+噢，对了，那时 Kindle 还没出世。换句话说，那时实体书的市场依然稳健，能去新华书店仍然是农村娃的远大向往之一。
+对于这个问题，我甚至想过一个小调查，看看图书馆长长的占座队伍里有多少人了解。
+我还认为，自己带书进图书馆看是和带书进新华书店同样无理的行为。
+在大学图书馆观察到很大一部分同学把图书馆作为了复习功课，完成作业的地方，馆藏书籍流动比大家自己带进去的教科书还少。诚然，图书馆是现在少有的大家能自觉保持安静的场所，但是这种‘使用’图书馆的方式是否有不合适的地方？
+一问未平，一问又起，打住！先把第一个问题回答了：
+Kindle 是一本电纸书。没错，是纸。
+因为 Kindle 使用电子墨水技术，显示和阅读效果与纸张一模一样。
+Kindle 包罗万象，但又轻巧灵活。你可以随身携带，教室，公交车，等待上菜，厕所，唾手可得。
+Kindel 肚里能撑船。
+Kindle 就是博尔赫斯做梦都想拥有的无限图书馆。
+有诗为证：
+
+穿越回去，递给博尔赫斯一块
+灰色如其眼眸、大小如其手掌的方镜。告诉他
+梦想已得遂行。这里有他想像中天堂的样子——
+无限辽阔的图书馆，繁密如水中倒映的星星。
+只是须得给100美元，酬劳造镜的巧匠——
+为了纪念孕育你的平原与江河，让你品尝词语与记忆，
+他们自称叫亚马逊。所以，尽管你可以吧‘肯德’当做你最好的基友，形影不离，但他绝不是快餐文化的代表肯德基。
+
+什么，你还是不明白他从哪来到哪去？不妨看看他老妈亚马逊怎么说：全新Kindle Paperwhite电子书阅读器。
+================================
+父母大都不懂得子女，而子女往往看穿了父母的为人。所以前面说了这么多废话，是时候从一个消费者的角度客观说说使用 Kindle 一段时间的感受。
+◇从哪来
+让我们回到文章的开头，那个对《十万个为什么》充满兴趣的时代。那时每当夜晚来临，不论圆月当空，还是风雨交加，都会发生一件不可思议的事——看书睡觉。
+这要归功于时代的愚蠢，我是说那时候的生活似乎还不太智能。
+后来就是一场比焚书坑儒和除四旧更风驰电掣更具毁灭性的集体出卖。
+出卖美感，换取智能。
+其实打破我阅读习惯的不过是诺基亚的功能机。智能机？那时可是土豪们才玩得起的玩意儿！
+电商同时和方方面面的实体经济在争抢客户和市场，却唯独书店叫苦不迭。
+从我的亲身经历来感受，我认为图书市场总体阅读需求量的缩水对实体书店带来的冲击不比电商和电子书（正版+盗版）小。
+你的衣食住行任然井然有序，你的休闲娱乐任然面面俱到。
+但是你不看书了。
+或许你从来就没有喜欢上看书。
+◇到哪去
+如果说阅读需求量（我说的是传统的阅读，而不是微博等时间碎片的黑洞）的减少是智能病最大的并发症，那 Kindle 的问世就应该被认可和人类攻克麻风病具有同等的历史地位。
+Kindle的革命意义被严重低估了。
+准确的说，是被处在特殊国境下的我们低估了。
+或许小米旗下的多看平台会推出一款为发烧而生的电子书，那时大众的神经才会对阅读这件重要的事多一分关注和了解。
+但是如果你承认社会发展无论如何是正向的，那亚马逊的电纸书旋风就早晚会有席卷这片曾经以造纸术和印刷术为傲的大地。
+想当年，你老娘也是个美女！
+当书籍第一次被发明出来，捧在手上，人们心中一定激动万分。直到 Kindle 被发明，这种激动人心才在智能时代得到了真正的传承。说 Kindle 重新发明了书籍，毫不为过。
+★Kindle的体验如何？
+你难掩内心的激动已经洋溢在了脸上，小心翼翼地撕下包装盒封条，慢慢地揭开盒盖，此刻他就优雅地躺在你的眼前，你看见他的脸上像许多新智能手机一样，贴着一张指引开始你第一次探索的纸——不对，根本没有什么纸，一切都是实实在在的图像，从出厂，到经销商，到你手里，那以假乱真的图案从一开始就显示在那里。
+从来没有哪个电子产品胆敢开着机，亮着屏幕就装进包装盒。——不行，顺丰也不行！
+官方说：Kindle Paperwhite电子书阅读器一次充电可以持续长达8周的阅读（按照关闭无线网络，同时将屏幕亮度设为“</p>
+<p class="article-more-link">
+	<a href="/1060/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1056" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1056/" class="article-date">
+  <time datetime="2013-12-08T20:46:26.000Z" itemprop="datePublished">12月 9 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1056/">我，怕冷！</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1056" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >办公室给我最深刻的印象是什么？
+冷。
+说起冷，马上能想起的，有三个场景：
+小学一年级，手冻得握不了笔，颤颤巍巍写课堂作业，没一个字能认出来，愣是不敢交给老师。
+小学六年级，秋季运动会，小伙子要超风度，长袖一件，抖了一天。
+大二，办公室，冷到什么程度呢？我居然从来没想过买一个热水袋。
+上学期换届那顿晚饭上，和涛哥简单谈了来年要做的事。
+办讲座，你讲啥子哇？
+我说：解惑！
+师者，所以传道授业解惑也。。。
+传道，别自大了！
+授业，以前这么搞，群众反响很差。
+只剩解惑。
+这是在换届大会我说的观点。
+我深居网协内部两年，没有从网协学到任何东西，这是我内心深处的声音。
+两年后在换届大会上献丑的水平和大一入校竞选班委一样窘迫。
+你急，我比你急一百倍。
+大二，我和一群大三的天天呆在一起。
+大三，我和一群大二的天天走在一起。
+学校地震了，裂了个缝，所有人都站在坑边惊魂未定，就我掉了下去。。
+强哥常强调一个观念：协会不说在技术上有多好，至少我们那群人心齐。
+这是把结果误作了成果。
+结果，是经历出来的。
+成果，是努力出来的。
+那群人，少不去一个涛哥，也多不了一个叶科忠。
+不同的人群经历，会出现不同的平衡，是结果。
+而且，是纳什均衡。
+纳什均衡，说的是如果某情况下无一参与者可以独自行动而增加收益，则此策略组合被称为纳什均衡点。
+是去是留，肯定是自己为自己权衡好的最佳选择。
+大一报到前就‘有意’拉拢了一群人，大一聚餐，一起玩，最后培养出一群心齐的人。
+这不可能。
+为什么呢？追根到底，最后没能成为想象中的几个齐心好基友，办公室成了耍朋友的场所，还是被‘有意’创造条件认识、撮合的。
+结果不能成为成果，‘成果’当然也不能是想要的结果。
+老蒋以前不经常来办公室的，而在协会事务上，我的能力，大家心知肚明，是非常差的。
+后来老蒋常驻办公室，为啥呢？和霏帅耍朋友了。
+霏帅是最为协会事项劳心劳力的人，主动的。。
+霏帅今天主动搬出办公室了，按照纳什均衡的说法，老蒋也不不会有长留的动力。
+室友问过我：做会长，得到了什么？
+我说：资源。
+校内外的项目、技术需求，如果找到计算机学院，大部分都会转交到我手里。
+前两天三分钟挣了三百块，守株待兔都够吃饱。
+网协，资源庞大，人力稀缺！
+第一场讲座，我一直想的，也是给涛哥说的，就讲解惑。
+我想给大家一个苹果。
+讲座上，心急给了大西瓜，没人能吃完，更别说消化。
+办公室里呢？
+我，怕冷！
+前一年，冷怕了。
+现在有了资源，更愿意把光和热散发出去。。
+你想进驻办公室？
+来吧，欢迎你来，为自己努力，同时祝你过得开心，温暖。
+这个项目，我一天就能做完，把钱挣到手，但是你拿去做吧，实在不会的我帮你写都行，项目里才能学到真东西！
+嘴馋了？行，咱们凑钱买个锅，煮饭下面烫火锅。。。
+天气太冷，咱们还需要暖风机。。
+既然我没有强势传播我所专长的一些经验的能力，那我愿意让更多的人更靠近这份资源。
+但是我要检讨自己，我就是办公室东西最乱的人！
+如果没有芙蓉姐的费神费力，就像没了涛哥，可以想象。
+要是没了霏帅的尽心尽力，我们连会员证都做不好。。
+人多和乱的结果是，办公室出现了被肖大爷查封的危险。
+霏帅，今晚离开办公室了。
+老蒋和芙蓉姐开始跟我商量怎么让更多人离开。
+当问题出现，大家第一反应都是谨遵责问，直接走人，清人。
+你会开始给我抱怨他，他会开始对我抱怨你。。
+它山之石可以攻玉，大家一片好心也有可能被我们做成夫妻肺片。。
+强哥昨晚给了我几条诚恳的意见，我站在我们的团体经历来考虑，除了乱和做饭，也就是办公室对外形象问题，其他我都不能认同。
+意见要听，但不能想都不想。
+传宗接代都成问题，怎嫌人丁太兴旺？
+问题不是我们多了什么，而是我们欠缺什么！
+问题的症结在哪里，如何让领导满意，让师兄放心，让会员称心，办公室。。交心？
+今晚是连续在办公室呆的第三晚，现在的办公室，暖和。
+饱暖饿新鲜，热乎可睡来。</p>
+<p class="article-more-link">
+	<a href="/1056/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1051" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1051/" class="article-date">
+  <time datetime="2013-11-23T13:43:19.000Z" itemprop="datePublished">11月 23 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1051/">站着讲，坐着听</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1051" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >讲座是什么？是输出。
+输出，从计算机网络的角度来说，需要要调用下层服务，消息才能一层一层传播下去。
+所以办讲座，心态很重要，谁在台上，谁就是上层。
+这点需要自己认识到。
+学校社团改革打破了层级平衡。
+促成社团改革的人有错吗？没错！社团改革之后，他可以减轻很多工作量，这个社会，决定了人需要自私，才能生存，我们暂且原谅自私，只考虑影响。
+两年以前，网协会长，副会长，干部，我对他们的心态是什么？
+拘促，敬畏！
+从小到大，看高年级的学长，都会觉得比我们高一个身段。
+往年，领导大三，大二的给大一的传经授道。
+现在，领导是大三，大二给大二的传经授道。
+大家往往会觉得为比自己更早年代去世的人感到惋惜，因为我们比他们感受了更先进的社会发展的成果，而比自己年长当还没死的，却是心存敬畏。
+大二同学尚且偶尔诚恳地向我提出问题，但大二的绝不会向大二的提问。
+佛祖给唐僧讲经，唐僧跪谢了。
+要是唐僧去西天一座庙宇，同是一个和尚给唐僧讲经，唐僧还能阿弥陀佛？恐怕早就阿门了。
+为什么？
+
+唐僧的目地是取经。经是什么？是经验，是经历，最后是经济。佛祖是成功人士，所以敬仰。同等级的僧人，凭什么听你说道。一个整天在寝室LOL的人，内心肯定也是骄傲的。也会觉得你在台上稍有失败就是傻逼。再荒废，也骄傲，为什么呢？因为没有谦虚来综合。
+
+取经人的心态？取经需要经历九九八十一难。我经历了五五二十五难，而大二的同学只经历了四四十六难，中间的九难是什么？这就是大家想得到的东西。如果讲座上光给大家展示了一遍九难的内容，而不是总结的解决办法或经验，那就肯定失败。大家来到讲座现场，希望得到解决今后会遇到的困难的办法，至少是经验。但是缺乏经验的演讲者给大家的是什么：啊！怪兽来了，我擦，怎么办，遭了，只有死了。。。让大家看见了困难，却不仅没给大家解惑，反而给了大家更多的压力！
+
+八十一难？按理说，一年缴纳了数千元的费用，我们就是人名币玩家了。但是这个学校是个局域网。局域网里游戏和广域网有什么区别呢?我们有一万名学生，局域网内却只有一百只怪给大家练级！参加双选会，大家都说感受到了就业压力。担忧放在学校的双选会，本身就是耻辱！企业要什么？一年工作经验，三年工作经验，就是要你打过怪。第一次讲座很失败，但是讲座就是打怪。打了一只怪的人肯定更渴望第二只怪。边缘城市的大学，提供的经验总量非常有限，只能让很小一部分人升到足够进入社会的等级。一次讲座，就是一只怪，就是一大把经验，就是升级。取经路上，凑不够八十一难，大家是九难，你是十八难，经就是你的。任何的讲座，谁收获最大？演讲的人。付出多少，收获多少。站着讲，必定比坐着听收获更大。</p>
+<p class="article-more-link">
+	<a href="/1051/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
   
-    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <article id="post-1047" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1047/" class="article-date">
+  <time datetime="2013-11-22T13:55:47.000Z" itemprop="datePublished">11月 22 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/1047/">迟到的间隔天</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1047" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+<p itemprop="description" >什么是草书？就是每写一个字心里都会草一下。
+实验课上，我用学霸无法理解的速度在实验报告纸上建造草坪，胖子问：大师兄，很痛苦吧。
+我不假思索说不痛苦，他不假思索问为什么。
+有个笑话说：某冬日。上课了，伊万老师背靠教室壁炉站着，对学生们说：“说话前要多考虑，至少要数到50下才说，重要的话要数到100下。”学生们争先恐后地数起来，最后不约而同地爆发出：“99、100，老师的衣服着火了！”。
+所以我没答上来。
+半个小时抄的三张实验报告，是我为这门实验课做的所有的事。这样的课有很多。
+回到办公室，开始和正方教务系统杠上。这是蚂蚁和大象的战斗!
+这本来不难的，但是蚂蚁太多，大象就疯了。
+首先，要爬上大象脚，然后，得爬上大象腿，接着，要费尽全力爬到大象头顶。这时就看见大象鼻子了，然后你应该顺着大象鼻子坐滑梯滑下来，一个头朝下的自由落体。还活着？那就选上了。
+刘慈欣在《球状闪电》里很准确地描述了痛苦：
+张彬教授目击球状闪电后投身球状闪电研究，却三十多年在雷雨中苦苦搜寻再也未谋一面。
+“我能忍受一辈子耗尽心血毫无建树，我能忍受抛弃生活中的一切，孤独地终了一生，我甚至可以在需要时献出生命，但我不能忍受一生中再也见不到它！正是对它的第一次目击决定了我的一生，我们真的不能忍受再也见不到它！这点别人可能很难理解，但你能想象，水手能忍受一生见不到大海吗？登山者能忍受一生见不到雪山吗？飞行员能忍受一生见不到蓝天吗？”
+选课人能忍受从头到尾见不到可选课程列表吗？
+高中时，我们感到痛苦，初中真好！课业轻松下河上树。
+大学时，我们感到痛苦，高中真好！同学情深奋斗情怀。
+来到城区，我们感到痛苦，黄岭真好！环境清静宜生宜学。
+那么，等我们出入社会，是不是继续加上一条：大学真好！
+黄岭有那么好？
+大城市里的大学生，在汲取，在飞速成长，在创业，在革新陈旧的思想，我们在做什么？
+初中好，高中好，黄岭好，大学好，为什么还感到痛苦？
+因为痛苦就像水，如果不用容器装着，给它一个边界，它就会无限蔓延。
+一碗水和摊开来的一碗水不是一样多吗？
+摊开的痛苦，虽然面积大，但是厚度薄。痛苦的感觉不是就应该减弱了？
+不是！
+当痛苦成了路上一条河，我们轧舟过河，是挑战，是享受，是风景，是心安理得。
+当一条河的痛苦铺开成了一地泥泞，就成了打滑，打击，是无助！
+痛苦是相对的，对于蔓延一地的痛苦，前后左右都是泥泞，看不到希望。
+而对于收敛在一定边界的痛苦，哪怕痛苦直接的间隔很短，也有期望在里面。
+别小看期望的力量。
+我们的初中小学高中，快乐是不是集中在放学周末课间十分钟？
+过去的事，往往只能记住快乐，忘记痛苦的感觉。
+这不是犯贱，是大脑的自我保护。
+怎么主动保护自己？
+《迟到的间隔年》鼓励大家毕业之后给自己放次长假，做一次长期的旅行。
+对大多数人来说，经济，观念，家庭，社会压力，都不容许间隔年的奢侈。
+但是我们可以拥有间隔天，间隔时，甚至间隔分。
+放天假，不写代码，去野炊，去骑行。
+休息两个小时，看书，看电影，写文章。
+冥想（发呆）几分钟，整理思绪，放松身体。
+熬夜完成工作？那真是要至死方休。</p>
+<p class="article-more-link">
+	<a href="/1047/#more">Read More</a>
+</p>
+
+
+
+
+      
   </div>
 </article>
 
@@ -564,7 +914,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -681,10 +1031,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

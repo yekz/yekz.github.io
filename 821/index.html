@@ -108,39 +108,113 @@ Prefer non-member">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-821" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/821/" class="article-date">
+  <time datetime="2013-01-17T12:22:37.000Z" itemprop="datePublished">1月 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Item 23: Prefer non-member non-friend functions to member... <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="821" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_To_Remember"><span class="toc-number">2.</span> <span class="toc-text">Things To Remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Points"><span class="toc-number">3.</span> <span class="toc-text">Key Points</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">4.</span> <span class="toc-text">Code</span></a></li></ol>
+	</div>
+
+<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
+<h2 id="Part_4:_Designs_and_Declarations">Part 4: Designs and Declarations</h2>
+<p><a href="http://www.yekezhong.com/821" title="Item 23: Prefer non-member non-friend functions to member functions" target="_blank" rel="external">Item 23: Prefer non-member non-friend functions to member functions</a>.</p>
+<hr>
+<h2 id="Things_To_Remember">Things To Remember</h2>
+<ul>
+<li>Prefer non-member non-friend function. Doing so increases <strong>encapsulation</strong>, <strong>packaging flexibility</strong>, and <strong>functional extensibility</strong>.</li>
+</ul>
+<h2 id="Key_Points">Key Points</h2>
+<p><strong>Increases encapsulation:</strong></p>
+<ul>
+<li>It affords us the flexibility to change things tin a way that affects only a limited member of clients. The less code that can see the data (i.e., access it), the more the data is encapsulated.</li>
+<li>Non-member non-friend function doesn’t increase the number of functions than can access the private parts of the class.</li>
+<li><strong>Module interfaces should be streamlined  as much as possible.</strong></li>
+<li>Two things are worth noting: <strong>1.)</strong> this reasoning applies only to non-member non-friend functions. <strong>2.)</strong> a function be a non-member of one class doesn’t mean it can’t be a member of another class.</li>
+<li><p>A more natural approach would be to make clearBrowser a nonmember function in the same namespace as WebBrowser.<br><strong>Increases packaging flexibility (包装弹性):</strong></p>
+</li>
+<li><p>This is exactly how the standard C++ library is organized. Rather than having a single monolithic &lt;C++StandardLibrary&gt; header containing everything in the std namespace, there are dozens of headers (e.g., <a href="http://www.yekezhong.com/574" title="用allocator实现的标准库vector类模版" target="_blank" rel="external">&lt;vector&gt;</a>, &lt;algorithm&gt;, &lt;member&gt;, etc.), each declaring some of the functionality in std.<br><strong>Increases functional extensibility (功能扩展性):</strong></p>
+</li>
+<li><p>Putting all convenience functions in multiple header files — but one namespace — also means that clients can easily extend the set of convenience functions. All they have to do is add more non-member non-friend functions to the namespace.</p>
+</li>
+<li>Clients can drive new classes to extend the old one, but <strong>derived classes have no access to encapsulated (i.e., private) members in the base class.</strong></li>
+</ul>
+<h2 id="Code">Code</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// header "webbrowser.h" -- header for class WebBrowser itself </span></div><div class="line"><span class="comment">// as well as "core" WebBrowser-releated functionality </span></div><div class="line"><span class="keyword">namespace</span> WebBrowserStuff {</div><div class="line"> 	<span class="keyword">class</span> WebBrowser {</div><div class="line"> 	<span class="keyword">public</span>:</div><div class="line"> 		<span class="comment">// ...</span></div><div class="line"> 		<span class="keyword">void</span> clearCache();</div><div class="line"> 		<span class="keyword">void</span> clearHistory();</div><div class="line"> 		<span class="keyword">void</span> removeCookies();</div><div class="line"> 		<span class="comment">// ... 	};</span></div><div class="line"> 	<span class="comment">// "core" related functionality, e.g. non-member functions almose all clients need</span></div><div class="line"> 	<span class="keyword">void</span> clearBrowser(WebBrowser& wb)</div><div class="line"> 	{ </div><div class="line">truetruewb.clearCache();</div><div class="line"> 		wb.clearHistory;</div><div class="line"> 		wb.removeCookies();</div><div class="line"> 	}</div><div class="line"> 	<span class="comment">// ... </span></div><div class="line">} </div><div class="line"></div><div class="line"><span class="comment">// header "webbrowserbookmarks.h" </span></div><div class="line"><span class="keyword">namespace</span> WebBrowserStuff {</div><div class="line"><span class="comment">// bookmark-releated convenience functions</span></div><div class="line"><span class="keyword">true</span><span class="comment">// ... </span></div><div class="line">} </div><div class="line"></div><div class="line"><span class="comment">//header "webbrowsercookies.h" </span></div><div class="line"><span class="keyword">namespace</span> WebBrowserStuff {</div><div class="line"><span class="comment">// cookie-releated convenience functions</span></div><div class="line"> 	<span class="comment">// ...</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/821/" data-id="x9cv2islv3ngjpt6" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encapsulation/">encapsulation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/functional-extensibility/">functional extensibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/packaging-flexibility/">packaging flexibility</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="821" data-title="Item 23: Prefer non-member non-friend functions to member..." data-url="http://www.yekezhong.com/821/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/870/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Item 24: Declare non-member functions when type...
+        
+      </div>
+    </a>
+  
+  
+    <a href="/810/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Item 22: Declare data members private.</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -240,7 +314,7 @@ Prefer non-member">
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -357,10 +431,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

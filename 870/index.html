@@ -102,39 +102,104 @@ Things To Remem">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-870" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/870/" class="article-date">
+  <time datetime="2013-01-18T08:58:28.000Z" itemprop="datePublished">1月 18 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Item 24: Declare non-member functions when type... <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="870" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_To_Remember"><span class="toc-number">2.</span> <span class="toc-text">Things To Remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Points"><span class="toc-number">3.</span> <span class="toc-text">Key Points</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">4.</span> <span class="toc-text">Code</span></a></li></ol>
+	</div>
+
+<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
+<h2 id="Part_4:_Designs_and_Declarations">Part 4: Designs and Declarations</h2>
+<p><a href="http://www.yekezhong.com/870" title="Item 24: Declare non-member function when type conversions should apply to all parameters" target="_blank" rel="external">Item 24: Declare non-member function when type conversions should apply to all parameters</a>.</p>
+<hr>
+<h2 id="Things_To_Remember">Things To Remember</h2>
+<ul>
+<li>If you need type conversions on all parameters to a function (include the one pointed to by this pointer), the function must be a non-member.</li>
+</ul>
+<h2 id="Key_Points">Key Points</h2>
+<ul>
+<li>The opposite of a member function is a non-member function, not a friend function.</li>
+<li>Wherever you can avoid friend functions, you should, because, much as in real life, friends are often more trouble than they’re worth.</li>
+<li>在设计 C++ 程序时，第一考虑的应该是怎样用最少的 C++ 知识来达成目地。重载操作法，对于不使用 template 的场合，多半不是必要的。所以，更偏向于先实现一个 const Rational MulRational(const Rational&amp; lhs, const Rational&amp; rhs) 的函数，再根据需要实现 operator* 调用它。</li>
+</ul>
+<h2 id="Code">Code</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "stdafx.h"</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> Rational {</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="keyword">true</span><span class="comment">// ctor is deliberately not explicit;</span></div><div class="line"><span class="keyword">true</span><span class="comment">// allows implicit int-to-Rational conversions</span></div><div class="line">trueRational(<span class="keyword">int</span> numerator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>);</div><div class="line"><span class="keyword">true</span><span class="comment">// accessors for numerator and denominator - see Item 22</span></div><div class="line">trueint numerator() <span class="keyword">const</span>;</div><div class="line">trueint denominator() <span class="keyword">const</span>;</div><div class="line"></div><div class="line"><span class="keyword">true</span><span class="comment">// for why this function declared the way it is,</span></div><div class="line"><span class="keyword">true</span><span class="comment">// think of this: if (a * b = c) [Item 3]</span></div><div class="line"><span class="keyword">true</span><span class="comment">/* const Rational operator*(const Rational& rhs) const; */</span></div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line"><span class="keyword">true</span><span class="comment">// ...</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational& lhs, <span class="keyword">const</span> Rational& rhs)</div><div class="line">{</div><div class="line">truereturn Rational(lhs.numerator() * rhs.numerator(),</div><div class="line">truetruetruetruetruelhs.denominator() * rhs.denominator());</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">trueRational oneEight(<span class="number">1</span>, <span class="number">8</span>);</div><div class="line">trueRational oneHarf(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">trueRational result;</div><div class="line">trueresult = oneHarf * <span class="number">2</span>; <span class="comment">// fine</span></div><div class="line"><span class="keyword">true</span><span class="comment">/* result = 2 * oneHarf; // with member operator*, error! */</span></div><div class="line">trueresult = <span class="number">2</span> * oneHarf;</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/870/" data-id="wsdyyhor0qairzyk" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/type-conversion/">type conversion</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="870" data-title="Item 24: Declare non-member functions when type..." data-url="http://www.yekezhong.com/870/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/881/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Item 25: Consider support for a non-throwing swap.
+        
+      </div>
+    </a>
+  
+  
+    <a href="/821/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Item 23: Prefer non-member non-friend functions to member...</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -234,7 +299,7 @@ Things To Remem">
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -351,10 +416,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

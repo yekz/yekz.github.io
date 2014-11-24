@@ -127,39 +127,122 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-608" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/608/" class="article-date">
+  <time datetime="2012-07-16T08:40:17.000Z" itemprop="datePublished">7月 16 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/">Algorithm</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/DP/">DP</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《算法导论》动态规划，贪心算法与分治法 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="608" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#★动态规划"><span class="toc-number">1.</span> <span class="toc-text">★动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#◇设计步骤"><span class="toc-number">1.1.</span> <span class="toc-text">◇设计步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#◇最优子结构（设计步骤1、2）"><span class="toc-number">1.2.</span> <span class="toc-text">◇最优子结构（设计步骤1、2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#◇重叠子问题（设计步骤3）"><span class="toc-number">1.3.</span> <span class="toc-text">◇重叠子问题（设计步骤3）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#◇重新构造一个最优解（设计步骤4）"><span class="toc-number">1.4.</span> <span class="toc-text">◇重新构造一个最优解（设计步骤4）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#◇一种变形：做备忘录"><span class="toc-number">1.5.</span> <span class="toc-text">◇一种变形：做备忘录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#★贪心算法"><span class="toc-number">2.</span> <span class="toc-text">★贪心算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#◇贪心选择性质"><span class="toc-number">2.1.</span> <span class="toc-text">◇贪心选择性质</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#★分治法"><span class="toc-number">3.</span> <span class="toc-text">★分治法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#★一个实例：活动选择问题"><span class="toc-number">4.</span> <span class="toc-text">★一个实例：活动选择问题</span></a></li></ol>
+	</div>
+
+<h1 id="★动态规划">★动态规划</h1>
+<h2 id="◇设计步骤">◇设计步骤</h2>
+<ol>
+<li>描述最优解的结构</li>
+<li>递归定义最优解的值</li>
+<li>按<code>自底向上</code>的方式计算最优解的值</li>
+<li>由计算出的结果构造一个最优解</li>
+</ol>
+<h2 id="◇最优子结构（设计步骤1、2）">◇最优子结构（设计步骤1、2）</h2>
+<p>如果一个问题的最优解中包含了子问题的最优解，则该问题具有最优子结构。</p>
+<h2 id="◇重叠子问题（设计步骤3）">◇重叠子问题（设计步骤3）</h2>
+<p>当一个递归算法不断地调用同一问题时，则该最优问题包含重叠子问题。</p>
+<p>动态规划算法总是充分利用重叠子问题，即通过每个子问题只解一次，把解保存在一个在需要时就可以查看的表中。</p>
+<p>适合用分治法解决的问题旺旺在递归的每一步都产生全新的子问题，且对递归树中重复出现的每个子问题都要重复解一次。</p>
+<h2 id="◇重新构造一个最优解（设计步骤4）">◇重新构造一个最优解（设计步骤4）</h2>
+<p>每一个子问题所做的选择保存在一个表格中，这样在需要时，就不必根据已经储存下来的代价信息来重构这方面的信息了。</p>
+<h2 id="◇一种变形：做备忘录">◇一种变形：做备忘录</h2>
+<p>与原形不同的是，备忘录方法采用的是自顶向下的策略。通过备忘原问题的自然但低效的递归算法，维护一个记录了子问题解的表，但有关填表动作的控制结构更像递归算法。</p>
+<p>如果所有的子问题都至少要被计算一次，则一个自底向上的动态规划算法通常要比一个自顶向下的做备忘录的算法好出一个参数因子，因为前者无需递归的代价。</p>
+<p>如果子问题空间中的某些子问题根本没有必要求解，做备忘录方法有着只解那些肯定要求解的子问题的优点。</p>
+<h1 id="★贪心算法">★贪心算法</h1>
+<h2 id="◇贪心选择性质">◇贪心选择性质</h2>
+<p>一个全局的最优解可以通过局部最优（贪心）选择来达到。</p>
+<p>贪心策略通畅是<code>自顶向下</code>地做的，一个一个地作出贪心选择，不断地将给定的问题实例约为更小的问题。</p>
+<h1 id="★分治法">★分治法</h1>
+<p>适合用分治法解决的问题旺旺在递归的每一步都产生全新的子问题，且对递归树中重复出现的每个子问题都要重复解一次。</p>
+<h1 id="★一个实例：活动选择问题">★一个实例：活动选择问题</h1>
+<p>给定一组活动的开始时间和结束时间，然后他们都需要使用到一个资源，这个资源每次只有一个活动可以用，要求求出一个最大的相互兼容的活动子集。</p>
+<p>首先定义了一个集合S<sub>ij</sub> = {a<sub>k</sub>∈ S :f<sub>i</sub> ≤ s<sub>k</sub> &lt; f<sub>k</sub> ≤ s<sub>j</sub>} , 其中S就是所有活动的集合，fi是活动ai的完成时间si是活动ai的开始时间。</p>
+<p>找出递归式：</p>
+<p><a href="http://img170.poco.cn/mypoco/myphoto/20120716/16/64924895201207161559561748324268178_000.gif" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120716/16/64924895201207161559561748324268178_000.gif" alt="完整递归定义" title="完整递归定义"></a></p>
+<p>关于该问题动态规划算法，发现习题答案和很多网友给出的伪代码或实现都有问题，算法中居然没有对s[],f[]的使用，怎么可能得出结果！</p>
+<p>以下是动态规划和贪心算法（递归和迭代两个版本）的c++实现代码：</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "stdafx.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> size = <span class="number">13</span>; <span class="comment">// 11个活动，加上虚构活动a0和an+1</span></div><div class="line"><span class="comment">// 动态规划：构造最优解</span></div><div class="line"><span class="keyword">void</span> recursive_activity_selector(<span class="keyword">int</span> s[], <span class="keyword">int</span> f[], <span class="keyword">int</span> c[], <span class="keyword">int</span> p[][size], <span class="keyword">int</span> num)</div><div class="line">{</div><div class="line">truefor (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; ++i)</div><div class="line">truetruefor (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; num; ++j)</div><div class="line">truetruetrueif (i &gt;= j)</div><div class="line">truetruetruetruec[i][j] = <span class="number">0</span>;</div><div class="line">truetruetrueelse</div><div class="line">truetruetruetruefor (<span class="keyword">int</span> k = i + <span class="number">1</span>; k &lt; j; k++)</div><div class="line">truetruetruetruetrueif (f[i] &lt;= s[k] && f[k] &lt;= s[j]) <span class="comment">// 习题答案和很多网友给出的伪代码或实现都没有这句，显然有问题</span></div><div class="line">truetruetruetruetruetrueif (c[i][j] &lt; c[i][k] + c[k][j] + <span class="number">1</span>) {</div><div class="line">truetruetruetruetruetruetruec[i][j] = c[i][k] + c[k][j] + <span class="number">1</span>;</div><div class="line">truetruetruetruetruetruetruep[i][j] = k;</div><div class="line">truetruetruetruetruetrue}</div><div class="line">}</div><div class="line"><span class="comment">// 动态规划：输出最优解</span></div><div class="line"><span class="keyword">void</span> print(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> p[][size])</div><div class="line">{</div><div class="line">trueint k = <span class="number">0</span>;</div><div class="line">trueif (p[i][j] == <span class="number">0</span>)</div><div class="line">truetruereturn ;</div><div class="line">truecout &lt;&lt; p[i][j] &lt;&lt; <span class="string">" "</span>;</div><div class="line">trueprint(i, p[i][j], p);</div><div class="line">trueprint(p[i][j], j, p);</div><div class="line">}</div><div class="line"><span class="comment">// 贪心算法：递归版本</span></div><div class="line"><span class="keyword">void</span> recursive_activity_selector(<span class="keyword">int</span> s[], <span class="keyword">int</span> f[], <span class="keyword">int</span> i, <span class="keyword">int</span> n, <span class="keyword">int</span> c[][size])</div><div class="line">{</div><div class="line">trueint m = i + <span class="number">1</span>;</div><div class="line">truewhile (m &lt;= n && s[m] &lt; f[i])</div><div class="line">truetrue++m;</div><div class="line">trueif (m &lt; n) {</div><div class="line">truetruec[i][n] = m;</div><div class="line">truetruerecursive_activity_selector(s, f, m, n, c);</div><div class="line"><span class="keyword">true</span>}</div><div class="line">}</div><div class="line"><span class="comment">// 贪心算法：迭代版本</span></div><div class="line"><span class="keyword">void</span> greedy_activity_selector(<span class="keyword">int</span> s[], <span class="keyword">int</span> f[], <span class="keyword">int</span> i, <span class="keyword">int</span> n, <span class="keyword">int</span> c[][size])</div><div class="line">{</div><div class="line">truefor (<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; ++m)</div><div class="line">truetrueif (s[m] &gt;= f[i]) {</div><div class="line">truetruetruec[i][n] = m;</div><div class="line">truetruetruei = m;</div><div class="line">truetrue}</div><div class="line">}</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">trueint s[size] = {<span class="number">65535</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">12</span>,<span class="number">65535</span>}; <span class="comment">// 开始时间</span></div><div class="line">trueint f[size] = {<span class="number">0</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">0</span>}; <span class="comment">// 结束时间</span></div><div class="line">trueint c[size][size] = {<span class="number">0</span>};</div><div class="line">trueint p[size][size] = {<span class="number">0</span>};</div><div class="line">truerecursive_activity_selector(s, f, c, p, size);</div><div class="line">truefor (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) {</div><div class="line">truetruefor (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; size; j++)</div><div class="line">truetruetruecout &lt;&lt; p[i][j] &lt;&lt; <span class="string">" "</span>;</div><div class="line">truetruecout &lt;&lt; endl;</div><div class="line"><span class="keyword">true</span>}</div><div class="line">truecout &lt;&lt; endl;</div><div class="line">trueprint(<span class="number">0</span>, size - <span class="number">1</span>, p);</div><div class="line">truesystem(<span class="string">"pause"</span>);</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/608/" data-id="bmps0bqm1sr3f1d3" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分治法/">分治法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/活动选择问题/">活动选择问题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法导论/">算法导论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="608" data-title="《算法导论》动态规划，贪心算法与分治法" data-url="http://www.yekezhong.com/608/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/622/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《算法导论》广度优先搜索，深度优先搜索之强联通分支
+        
+      </div>
+    </a>
+  
+  
+    <a href="/574/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">用allocator实现的标准库vector类模版</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -259,7 +342,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -376,10 +459,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

@@ -99,39 +99,96 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-417" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/417/" class="article-date">
+  <time datetime="2012-06-06T11:53:08.000Z" itemprop="datePublished">6月 6 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/C-C/">C/C++</a>►<a class="article-category-link" href="/categories/Coding/C-C/Syntax/">Syntax</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《C++ Primer》 书店程序 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="417" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+<p>对于<a href="http://www.yekezhong.com/archives/310" title="《算法导论》第一部分 C++综合实现" target="_blank" rel="external">《算法导论》第一部分 C++综合实现</a>、<a href="http://www.yekezhong.com/archives/360" title="《算法导论》第六章 堆排序 C++实现" target="_blank" rel="external">《算法导论》第六章 堆排序 C++实现</a>的补充：<br>最近复习《C++ Primer》，注意到一个重要的东西，位于第三章“标准库类型”：<span style="color: #ff0000;"><strong>关键概念：安全的泛型编程</strong></span></p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="stl_container"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;</span>::size_type ix = <span class="number">0</span>; ix != ivec.size(); ++ix)</div><div class="line">    ivec[ix] = <span class="number">0</span>;</div></pre></td></tr></table></figure>
+
+<p><strong><span style="color: #ff0000;">1. c++程序猿习惯于优先选用!=而不是&lt;来编写判断条件。</span></strong><br><strong><span style="color: #ff0000;">2. 有些数据结构（如vector）可以动态增长，所以在for中调用size成员函数，而不是在进入循环前，存储size值的副本。</span></strong><br>于是，之前两篇里的代码大部分循环就都不太符合规范了。如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (elemIndex = <span class="number">0</span>; elemIndex &lt;= heapSize; ++elemIndex)</div></pre></td></tr></table></figure>
+
+<p>最好写成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (elemIndex = <span class="number">0</span>; elemIndex != heapSize - <span class="number">1</span>; ++elemIndex)</div></pre></td></tr></table></figure>
+
+<p>（在堆排序中，heapSize 是堆的元素数，而不是容器中总的元素数，所以不能写成 elemIndex  != elemQueue.size()）</p>
+<p>由于只是复习，这程序的代码大部分书上都有，边复习同时就整理了出来，包括习题的实现，所以没有啥新的感悟。<br>连带复习了不少乱七八糟的知识，Primer这书每一页都藏着天机啊！<br>最重要的是，这次下来，终于是感觉对于“类”的基本知识脑中有了一套比较清晰的知识体系，再也不用像以前提到C++总会说：类和对象这东西蛋疼啊，俺学了那么久都没理明白里面的东西。<br>关键点都在注释里。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "stdafx.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;set&gt;</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">class</span> Item_base {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueItem_base(<span class="keyword">const</span> <span class="built_in">string</span> &book = <span class="string">" "</span>, <span class="keyword">double</span> sales_price = <span class="number">0.0</span>, <span class="keyword">bool</span> dbg = <span class="keyword">false</span>)</div><div class="line">truetrue: isbn(book), price(sales_price), is_debug(dbg) { }</div><div class="line">truestring book() <span class="keyword">const</span> { <span class="keyword">return</span> isbn; }</div><div class="line">truevirtual <span class="keyword">double</span> net_price(size_t n) <span class="keyword">const</span> { <span class="keyword">return</span> n * price; }</div><div class="line"><span class="keyword">true</span><span class="comment">// 该虚函数的基类实例返回类类型的引用或指针，则其派生类实例可以返回基类实例返回的类型的派生类</span></div><div class="line">truevirtual Item_base* clone() <span class="keyword">const</span> { <span class="keyword">return</span> <span class="keyword">new</span> Item_base(*<span class="keyword">this</span>); }</div><div class="line">truevirtual <span class="keyword">void</span> debug(ostream&) <span class="keyword">const</span>; <span class="comment">// 通过is_debug数据成员控制打开或关闭调试信息</span></div><div class="line">truevirtual ~Item_base() { } <span class="comment">// 即使不做任何工作，继承层次的根类也应该定义一个虚析构函数（三法则的重要例外）</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestring isbn;</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">truedouble price;</div><div class="line">truebool is_debug;</div><div class="line">};</div><div class="line"><span class="keyword">void</span> Item_base::debug(ostream &os = <span class="built_in">cout</span>) <span class="keyword">const</span> </div><div class="line">{</div><div class="line">trueif (!is_debug)</div><div class="line">truetruereturn;</div><div class="line">truecout &lt;&lt; isbn &lt;&lt; <span class="string">"\t"</span> &lt;&lt; price;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 关键概念：重构</span></div><div class="line"><span class="comment">// 抽象基类：含有一个或多个纯虚函数</span></div><div class="line"><span class="keyword">class</span> Disc_item : <span class="keyword">public</span> Item_base {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueDisc_item(<span class="keyword">const</span> <span class="built_in">string</span> &book = <span class="string">" "</span>, <span class="keyword">double</span> sales_price = <span class="number">0.0</span>, size_t qty = <span class="number">0</span>, <span class="keyword">double</span> disc_rate = <span class="number">0.0</span>, <span class="keyword">bool</span> dbg = <span class="keyword">false</span>)</div><div class="line">truetrue: Item_base(book, sales_price, dbg), quantity(qty), discount(disc_rate) { }</div><div class="line"><span class="keyword">true</span><span class="comment">// 纯虚函数：该函数为后代类型提供了可以覆盖的借口，但该版本绝不会调用，用户也不能创建Disc_item类型的对象</span></div><div class="line">truedouble net_price(size_t) <span class="keyword">const</span> = <span class="number">0</span>;</div><div class="line">truevoid debug(ostream&) <span class="keyword">const</span>;</div><div class="line"><span class="keyword">true</span>~Disc_item() { }</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">truesize_t quantity;</div><div class="line">truedouble discount;</div><div class="line">};</div><div class="line"><span class="keyword">void</span> Disc_item::debug(ostream& os = <span class="built_in">cout</span>) <span class="keyword">const</span></div><div class="line">{</div><div class="line">trueif (!is_debug)</div><div class="line">truetruereturn;</div><div class="line">trueItem_base::debug(os);</div><div class="line">trueos &lt;&lt;  <span class="string">"\t"</span> &lt;&lt; quantity &lt;&lt; <span class="string">"\t"</span> &lt;&lt; discount &lt;&lt; endl;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">class</span> Lds_item : <span class="keyword">public</span> Disc_item {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueLds_item(<span class="keyword">const</span> <span class="built_in">string</span> &book = <span class="string">" "</span>, <span class="keyword">double</span> sales_price = <span class="number">0.0</span>, size_t qty = <span class="number">0</span>, <span class="keyword">double</span> disc_rate = <span class="number">0.0</span>, <span class="keyword">bool</span> dbg = <span class="keyword">false</span>)</div><div class="line">truetrue: Disc_item(book, sales_price, qty, disc_rate, dbg) { }</div><div class="line">truedouble net_price(size_t) <span class="keyword">const</span>;</div><div class="line">trueLds_item* clone() <span class="keyword">const</span> { <span class="keyword">return</span> <span class="keyword">new</span> Lds_item(*<span class="keyword">this</span>); }</div><div class="line"><span class="keyword">true</span>~Lds_item() { }</div><div class="line">};</div><div class="line"><span class="keyword">double</span> Lds_item::net_price(size_t cnt) <span class="keyword">const</span></div><div class="line">{</div><div class="line">trueif (cnt &lt;= quantity)</div><div class="line">truetruereturn cnt * (<span class="number">1</span> - discount) * price;</div><div class="line">trueelse</div><div class="line">truetruereturn cnt * price - quantity * discount *price;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">class</span> Bulk_item : <span class="keyword">public</span> Disc_item {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueBulk_item(<span class="keyword">const</span> <span class="built_in">string</span> &book = <span class="string">" "</span>, <span class="keyword">double</span> sales_price = <span class="number">0.0</span>, size_t qty = <span class="number">0</span>, <span class="keyword">double</span> disc_rate = <span class="number">0.0</span>, <span class="keyword">bool</span> dbg = <span class="keyword">false</span>)</div><div class="line">truetrue: Disc_item(book, sales_price, qty, disc_rate, dbg) { }</div><div class="line">truedouble net_price(size_t) <span class="keyword">const</span>;</div><div class="line">trueBulk_item* clone() <span class="keyword">const</span> { <span class="keyword">return</span> <span class="keyword">new</span> Bulk_item(*<span class="keyword">this</span>); }</div><div class="line"><span class="keyword">true</span>~Bulk_item() { }</div><div class="line">};</div><div class="line"><span class="keyword">double</span> Bulk_item::net_price(size_t cnt) <span class="keyword">const</span></div><div class="line">{</div><div class="line">trueif (cnt &gt;= quantity)</div><div class="line">truetruereturn cnt * (<span class="number">1</span> - discount) * price;</div><div class="line">trueelse</div><div class="line">truetruereturn cnt * price;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 句柄类（包装类）</span></div><div class="line"><span class="keyword">class</span> Sales_item {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueSales_item() : p(<span class="number">0</span>), use(<span class="keyword">new</span> size_t(<span class="number">1</span>)) { }</div><div class="line">trueSales_item(<span class="keyword">const</span> Item_base &item) : p(item.clone()), use(<span class="keyword">new</span> size_t(<span class="number">1</span>)) { }</div><div class="line">trueSales_item(<span class="keyword">const</span> Sales_item &i) : p(i.p), use(i.use) { ++*use; }</div><div class="line"><span class="keyword">true</span>~Sales_item() { decr_use(); }</div><div class="line">trueSales_item& <span class="keyword">operator</span>=(<span class="keyword">const</span> Sales_item&);</div><div class="line"><span class="keyword">true</span><span class="comment">// 分别返回指针和引用，调用函数将进行动态绑定。</span></div><div class="line"><span class="keyword">true</span><span class="comment">// 只定义了const版本，是因为基础Item_base层次中的成员都是const成员。</span></div><div class="line">trueconst Item_base* <span class="keyword">operator</span>-&gt;() <span class="keyword">const</span> { <span class="keyword">if</span> (p) <span class="keyword">return</span> p; <span class="keyword">else</span> <span class="keyword">throw</span> logic_error(<span class="string">"unbound Sales_item"</span>); }</div><div class="line">trueconst Item_base& <span class="keyword">operator</span>*() <span class="keyword">const</span> { <span class="keyword">if</span> (p) <span class="keyword">return</span> *p; <span class="keyword">else</span> <span class="keyword">throw</span> logic_error(<span class="string">"unbound Sales_item"</span>); }</div><div class="line"><span class="keyword">private</span>:</div><div class="line">trueItem_base *p;</div><div class="line">truesize_t *use;</div><div class="line">truevoid decr_use()</div><div class="line">truetrue{ <span class="keyword">if</span> (--*use == <span class="number">0</span>) { <span class="keyword">delete</span> p; <span class="keyword">delete</span> use; } }</div><div class="line">};</div><div class="line">Sales_item& Sales_item::<span class="keyword">operator</span>=(<span class="keyword">const</span> Sales_item &rhs)</div><div class="line">{</div><div class="line"><span class="keyword">true</span>++*rhs.use;</div><div class="line">truedecr_use();</div><div class="line">truep = rhs.p;</div><div class="line">trueuse = rhs.use;</div><div class="line">truereturn *<span class="keyword">this</span>;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> compare(<span class="keyword">const</span> Sales_item &lhs, <span class="keyword">const</span> Sales_item &rhs)</div><div class="line">{</div><div class="line">truereturn lhs-&gt;book() &lt; rhs-&gt;book();</div><div class="line">}</div><div class="line"><span class="keyword">class</span> Basket {</div><div class="line"><span class="keyword">true</span><span class="comment">// 7.9 指向函数的指针</span></div><div class="line"><span class="keyword">true</span><span class="comment">// 指定了比较器的类型</span></div><div class="line">truetypedef <span class="keyword">bool</span> (*Comp)(<span class="keyword">const</span> Sales_item&, <span class="keyword">const</span> Sales_item&);</div><div class="line"><span class="keyword">public</span>:</div><div class="line">truetypedef <span class="stl_container"><span class="built_in">multiset</span>&lt;Sales_item, Comp&gt;</span> set_type;</div><div class="line">truetypedef set_type::size_type size_type;</div><div class="line">truetypedef set_type::const_iterator const_iter;</div><div class="line">trueBasket() : items(compare) { } <span class="comment">// 提供了一个名为compare的比较函数</span></div><div class="line">truevoid add_item(<span class="keyword">const</span> Sales_item &item) { items.insert(item); }</div><div class="line">truesize_type size(<span class="keyword">const</span> Sales_item &i) <span class="keyword">const</span> { <span class="keyword">return</span> items.count(i); }</div><div class="line">truedouble total() <span class="keyword">const</span>;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">truemultiset&lt;Sales_item, Comp&gt; items;</div><div class="line">};</div><div class="line"><span class="keyword">double</span> Basket::total() <span class="keyword">const</span></div><div class="line">{</div><div class="line">truedouble sum = <span class="number">0.0</span>;</div><div class="line">truefor (const_iter iter = items.begin(); iter != items.end(); iter = items.upper_bound(*iter))</div><div class="line">truetruesum += (*iter)-&gt;net_price(items.count(*iter));</div><div class="line">truereturn sum;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">void</span> print_total(<span class="keyword">const</span> Item_base &item, size_t n)</div><div class="line">{</div><div class="line">truecout &lt;&lt; <span class="string">"ISBN: "</span> &lt;&lt; item.book() &lt;&lt; <span class="string">"\tnumber sold: "</span> &lt;&lt; n &lt;&lt; <span class="string">"\ttotal price: "</span> &lt;&lt; item.net_price(n) &lt;&lt; endl;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">trueSales_item item1(Bulk_item(<span class="string">"7-115-14554-7"</span>, <span class="number">99</span>, <span class="number">20</span>, <span class="number">0.2</span>));</div><div class="line">trueSales_item item2(Item_base(<span class="string">"7-115-14554-8"</span>, <span class="number">39</span>));</div><div class="line">trueSales_item item3(Lds_item(<span class="string">"7-115-14554-9"</span>, <span class="number">50</span>, <span class="number">200</span>, <span class="number">0.2</span>));</div><div class="line">trueSales_item item4(Bulk_item(<span class="string">"7-115-14554-7"</span>, <span class="number">99</span>, <span class="number">20</span>, <span class="number">0.2</span>));</div><div class="line">trueBasket basket;</div><div class="line">truebasket.add_item(item1);</div><div class="line">truebasket.add_item(item2);</div><div class="line">truebasket.add_item(item3);</div><div class="line">truebasket.add_item(item4);</div><div class="line">truecout &lt;&lt; basket.total() &lt;&lt; endl;</div><div class="line">truesystem(<span class="string">"pause"</span>);</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/417/" data-id="bs2xltjz7y5jc5fv" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Primer/">C++ Primer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/书店程序/">书店程序</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="417" data-title="《C++ Primer》 书店程序" data-url="http://www.yekezhong.com/417/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/434/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《C++ Primer》文本查询程序 TextQuery
+        
+      </div>
+    </a>
+  
+  
+    <a href="/410/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MX360,MX370,K420,PR200MKII横向评测</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -231,7 +288,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -348,10 +405,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

@@ -94,39 +94,94 @@ init() 不能实例化类了，proxied 和 proxy">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-1013" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1013/" class="article-date">
+  <time datetime="2013-09-18T02:51:02.000Z" itemprop="datePublished">9月 18 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Web/">Web</a>►<a class="article-category-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      为《基于 MVC 的 Javascript Web 富应用开发》填坑 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1013" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#contacts-js"><span class="toc-number">1.</span> <span class="toc-text">contacts.js</span></a></li></ol>
+	</div>
+
+<p>《基于 MVC 的 Javascript Web 富应用开发》一书出版于2012年五月，作者基于自己写的 spine.js 框架讲解了 MVC JS 框架从无到有的构建方法。然后讲解了一个基于 spine.js 的联系人管理应用，一年之后，spine.js 已经愈加复杂和成熟，坑的地方来了，新的spine.js对旧代码的兼容性几乎为零。</p>
+<p>init() 不能实例化类了，proxied 和 proxyAll 没有了，说好的 this.App 也木有了。。。</p>
+<p>我们当然可以在 <a href="https://github.com/maccman/spine.contacts/tree/js" target="_blank" rel="external">https://github.com/maccman/spine.contacts/tree/js</a> 找到当时的spine.js，但是如果不兼容最新的版本，学了还是无以致用。于是笔者蛋痛地一点一点修正了代码不兼容的地方。算是为作者和后来人填了个天坑。</p>
+<p><a href="/img/1.png"><img src="/img/1.png" alt="基于 MVC 的 Javascript Web 富应用开发 联系人管理应用" title="基于 MVC 的 Javascript Web 富应用开发 联系人管理应用"></a></p>
+<h1 id="contacts-js">contacts.js</h1>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 联系人模型</span></div><div class="line"><span class="keyword">var</span> Contact = Spine.Model.setup(&quot;Contact&quot;, [&quot;first_name&quot;, &quot;last_name&quot;, &quot;email&quot;]);</div><div class="line">Contact.extend(Spine.Model.Local);</div><div class="line">Contact.include({</div><div class="line">truefullName: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetrueif (!<span class="keyword">this</span>.first_name &amp;&amp; !<span class="keyword">this</span>.last_name) <span class="keyword">return</span>;</div><div class="line">truetruereturn(<span class="keyword">this</span>.last_name);</div><div class="line"><span class="literal">true</span>},</div><div class="line"></div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">// 侧边栏控制器</span></div><div class="line">$(<span class="function"><span class="keyword">function</span><span class="params">($)</span> </span>{</div><div class="line">truewindow.Sidebar = Spine.Controller.create({</div><div class="line">truetrueelements: {</div><div class="line">truetruetrue&quot;.items&quot;: &quot;items&quot;,</div><div class="line">truetrue},</div><div class="line">truetrueevents: {</div><div class="line">truetruetrue&quot;click button&quot;: &quot;create&quot;,</div><div class="line">truetrue},</div><div class="line"></div><div class="line">truetruetemplate: <span class="function"><span class="keyword">function</span><span class="params">(items)</span> </span>{</div><div class="line">truetruetruereturn($(&quot;#contactsTemplate&quot;).tmpl(items));</div><div class="line">truetrue},</div><div class="line">truetrueinit: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruethis.list = <span class="keyword">new</span> Spine.List({</div><div class="line">truetruetruetrueel: <span class="keyword">this</span>.items,</div><div class="line">truetruetruetruetemplate: <span class="keyword">this</span>.template,</div><div class="line">truetruetrue});</div><div class="line">truetruetruethis.list.bind(&quot;change&quot;, <span class="keyword">this</span>.proxy(<span class="function"><span class="keyword">function</span><span class="params">(item)</span> </span>{</div><div class="line">truetruetruetrueSpine.trigger(&#<span class="number">039</span>;show:contact&#<span class="number">039</span>;, item);</div><div class="line">truetruetrue}));</div><div class="line">truetruetrueSpine.bind(&quot;show:contact edit:contact&quot;, <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.list.change));</div><div class="line">truetruetrueContact.bind(&quot;refresh change&quot;, <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.render));</div><div class="line">truetrue},</div><div class="line">truetruerender: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruevar items = Contact.all();</div><div class="line">truetruetruethis.list.render(items);</div><div class="line">truetrue},</div><div class="line">truetruecreate: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruevar item = Contact.create();</div><div class="line">truetruetrueconsole.log(item);</div><div class="line">truetruetrueSpine.trigger(&quot;edit:contact&quot;, item);</div><div class="line">truetrue},</div><div class="line"><span class="literal">true</span>});</div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">// 联系人控制器</span></div><div class="line">$(<span class="function"><span class="keyword">function</span><span class="params">($)</span> </span>{</div><div class="line">truewindow.Contacts = Spine.Controller.create({</div><div class="line">truetrueelements: {</div><div class="line">truetruetrue&quot;.show&quot;: &quot;showEl&quot;,</div><div class="line">truetruetrue&quot;.edit&quot;: &quot;editEl&quot;,</div><div class="line">truetruetrue&quot;.show .content&quot;: &quot;showContent&quot;,</div><div class="line">truetruetrue&quot;.edit .content&quot;: &quot;editContent&quot;,</div><div class="line">truetrue},</div><div class="line">truetrueevents: {</div><div class="line">truetruetrue&quot;click .optEdit&quot;: &quot;edit&quot;,</div><div class="line">truetruetrue&quot;click .optDestroy&quot;: &quot;destroy&quot;,</div><div class="line">truetruetrue&quot;click .optSave&quot;: &quot;save&quot;,</div><div class="line">truetrue},</div><div class="line"></div><div class="line">truetrueinit: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruethis.show();</div><div class="line">truetruetrueContact.bind(&quot;change&quot;, <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.render));</div><div class="line">truetruetrueSpine.bind(&quot;show:contact&quot;, <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.show));</div><div class="line">truetruetrueSpine.bind(&quot;edit:contact&quot;, <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.edit));</div><div class="line">truetrue},</div><div class="line">truetruechange: <span class="function"><span class="keyword">function</span><span class="params">(item)</span> </span>{</div><div class="line">truetruetruethis.current = item;</div><div class="line">truetruetruethis.render();</div><div class="line">truetrue},</div><div class="line">truetruerender: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruethis.showContent.html($(&quot;#contactTemplate&quot;).tmpl(<span class="keyword">this</span>.current));</div><div class="line">truetruetruethis.editContent.html($(&quot;#editContactTemplate&quot;).tmpl(<span class="keyword">this</span>.current));</div><div class="line">truetrue},</div><div class="line">truetrueshow: <span class="function"><span class="keyword">function</span><span class="params">(item)</span> </span>{</div><div class="line">truetruetrueif (item &amp;&amp; item.id) <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.change(item));</div><div class="line">truetruetruethis.showEl.show();</div><div class="line">truetruetruethis.editEl.hide();</div><div class="line">truetrue},</div><div class="line">truetrue<span class="comment">// 当点击edit时调用</span></div><div class="line">truetrueedit: <span class="function"><span class="keyword">function</span><span class="params">(item)</span> </span>{</div><div class="line">truetruetrueconsole.log(item);</div><div class="line">truetruetrueif (item &amp;&amp; item.id) <span class="keyword">this</span>.proxy(<span class="keyword">this</span>.change(item));</div><div class="line">truetruetruethis.showEl.hide();</div><div class="line">truetruetruethis.editEl.show();</div><div class="line">truetrue},</div><div class="line">truetruedestroy: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruethis.current.destroy();</div><div class="line">truetrue},</div><div class="line">truetruesave: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruevar atts = <span class="keyword">this</span>.editEl.serializeForm();</div><div class="line">truetruetruethis.current.updateAttributes(atts);</div><div class="line">truetruetruethis.show();</div><div class="line">truetrue}</div><div class="line"><span class="literal">true</span>});</div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">// 应用程序控制器</span></div><div class="line">$(<span class="function"><span class="keyword">function</span><span class="params">($)</span> </span>{</div><div class="line">truewindow.App = Spine.Controller.create({</div><div class="line">truetrueel: $(&quot;body&quot;),</div><div class="line">truetrueelements: {</div><div class="line">truetruetrue&quot;.sidebar&quot;: &quot;sidebarEl&quot;,</div><div class="line">truetruetrue&quot;.contacts&quot;: &quot;contactsEl&quot;,</div><div class="line">truetrue},</div><div class="line">truetrueinit: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">truetruetruethis.sidebar = <span class="keyword">new</span> Sidebar({el: <span class="keyword">this</span>.sidebarEl});</div><div class="line">truetruetruethis.contact = <span class="keyword">new</span> Contacts({el: <span class="keyword">this</span>.contactsEl});</div><div class="line">truetruetrueContact.fetch();</div><div class="line">truetrue},</div><div class="line"><span class="literal">true</span>});</div><div class="line">truenew App();</div><div class="line">});</div></pre></td></tr></table></figure>
+
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/1013/" data-id="60n35wgzlwzw6h1u" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVC/">MVC</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="1013" data-title="为《基于 MVC 的 Javascript Web 富应用开发》填坑" data-url="http://www.yekezhong.com/1013/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1025/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          站直了刻根线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/996/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Chrome 诡异的 {searchterms} bug</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -226,7 +281,7 @@ init() 不能实例化类了，proxied 和 proxy">
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -343,10 +398,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

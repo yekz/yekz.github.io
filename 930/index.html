@@ -96,39 +96,90 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-930" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/930/" class="article-date">
+  <time datetime="2013-03-24T09:22:16.000Z" itemprop="datePublished">3月 24 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/C-C/">C/C++</a>►<a class="article-category-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VS2012下配置opencv+directshow(CCameraDS)，支持多摄像头 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="930" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+<p>最近学习 <a href="http://opencv.org/" target="_blank" rel="external">OpenCV</a>，研究智能监控神马的。简单实现了运动跟踪后，开始着手自己的摄像头类及多摄像头的研究（实际项目环境可能是8个甚至16个摄像头）。</p>
+<p>前期 VS2012 + OpenCV 的配置方法，可以参考 <a href="http://www.sigvc.org/bbs/thread-529-1-1.html" target="_blank" rel="external">Win7下OpenCV2.4.3结合VS2012的配置</a> 等文章，网上资料较多，本文就不详述了。</p>
+<p>问题主要发生在调用多摄像头上，搜索一番，发现只在 <a href="http://www.opencv.org.cn/" target="_blank" rel="external">OpenCV 中文网站 </a>存在一个使用 DirectShow 实现多摄像头支持的 <a href="http://www.opencv.org.cn/index.php/%E4%BD%BF%E7%94%A8DirectShow%E9%87%87%E9%9B%86%E5%9B%BE%E5%83%8F" target="_blank" rel="external">CCameraDS 类</a>。下载并添加到项目里后，发现压缩包里并没有其所说的<strong>“集成了DirectShow，勿需安装庞大的DirectX/Platform SDK”</strong>。真糟糕，只能自己找了，又是一番搜索，发现 DirectShow 这玩意儿似乎已经开始被微软给淘汰了，最后存在是在多年前的 DirectX 9.0b 包里，可以在这里下载到：<a href="http://blog.csdn.net/xxrhuanhuan/article/details/7646695" target="_blank" rel="external">DirectX9.0b SDK下载地址及安装说明</a>。</p>
+<p>在下载过程中，我发现 VS2012旗舰版是自带了 SDK 的，在 C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include。</p>
+<p>如果你也有这玩意儿，那就可以直接在项目属性里 Additional Include Directories 添加 $(FrameworkSDKDir)Include，Additional Library Directories 添加 $(FrameworkSDKDir)Lib。</p>
+<p>完成之后，会发现任然无法 #include “qedit.h”，感情新的 SDK 里已经没了这头文件，也就相当于没了 DirectShow，加上便是，一番寻找后搞定，解决了一点小问题后（qedit.h 里还需包含一个头文件），我把它上传到了博客：<a href="http://www.yekezhong.com/download/qedit.zip" title="qedit.zip" target="_blank" rel="external">点击下载</a>。</p>
+<p>OK，现在，就能像 <a href="http://www.opencv.org.cn/index.php/%E4%BD%BF%E7%94%A8DirectShow%E9%87%87%E9%9B%86%E5%9B%BE%E5%83%8F" target="_blank" rel="external">CCameraDS 类</a> 的例程一样使用这个类了。</p>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/930/" data-id="p0mkev3mrvoy8wyy" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DirectShow/">DirectShow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="930" data-title="VS2012下配置opencv+directshow(CCameraDS)，支持多摄像头" data-url="http://www.yekezhong.com/930/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/936/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          油猴脚本第二炮：googleSearchCountRobot，看看苦逼的程序猿，每天要Google多少次
+        
+      </div>
+    </a>
+  
+  
+    <a href="/907/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">四川理工学院教务系统自动登录器 suseAutoLoginRobot</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -228,7 +279,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -345,10 +396,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

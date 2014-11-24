@@ -114,39 +114,138 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-1160" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
+    <a href="/1160/" class="article-date">
+  <time datetime="2014-04-27T08:48:01.000Z" itemprop="datePublished">4月 27 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Learn/Coding/MySQL/">MySQL</a>
+  </div>
+
   </div>
   <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
+    
+    
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL 学习笔记 优化篇 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>
+    </h1>
+  
 
-<% if (!index){ %>
-
-<!-- toc -->
-<% if(post.toc !== false && toc(post.content)){ %>
-	<div id="toc" class="toc-article">
-		<%- toc(post.content)%>
-	</div>
-<% } %>
 
       </header>
-    <% } %>
+    
     <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-          </p>
-        <% } %>
-      <% } else { %>
-          <%- partial('post/func') %>
-      <% }%>
+      
+          
+
+<!-- toc -->
+
+<p>使用索引：</p>
+<ul>
+<li><strong>尽量为用来搜索/分类/分组的数据列编制索引，不要为作为输出显示的数据列编制索引。（WHERE / 联结字句 / ORDER BY / GROUP BY）；</strong></li>
+<li>数据列的维度越高，它包含的独一无二的值就越多，重复的值就越少，索引的使用效果也就越好；</li>
+<li>对短小的值进行索引；</li>
+<li>要为字符串数据列编索引，应当尽可能给出前缀长度；</li>
+<li><strong>复合**</strong>索引中最左边的数据列能够用于匹配数据行；**</li>
+<li>适可而止</li>
+<li>让索引类型与你打算进行的比较操作的类型保持匹配；</li>
+<li>利用慢查询日志找出性能低劣的查询；</li>
+</ul>
+<a id="more"></a>
+
+<p>MySQL的查询优化程序：</p>
+<ul>
+<li>对数据表进行分析：ANALYSE TABLE；</li>
+<li>使用EXPLAIN语句来验证优化器操作；</li>
+<li>向优化器提供提示或在必要时屏蔽之：FORCE INDEX / USE INDEX / IGNORE INDEX；</li>
+<li><strong>尽量使用数据类型相同的数据列进行比较；</strong></li>
+<li><strong>使带索引的数据列在比较表达式中单独出现；</strong></li>
+<li>不要在LIKE模式的开始位置使用通配符；</li>
+<li>优化器对联结的优化效果要比对子查询的优化效果更好一些；</li>
+<li>实验各种查询的变化格式，而且要多次运行它们；</li>
+<li><p>避免过多使用MySQL的自动类型转换功能;<br>为提高查询效率而挑选数据类型：</p>
+</li>
+<li><p>尽量使用数值操作，少使用字符串操作；</p>
+</li>
+<li>尽量选用最适用与存储引擎的格式：MyISAM尽量适用固定长度的数据列（加快查询，减少碎片，加快修复）；</li>
+<li>尽量把数据列声明为NOT NULL；</li>
+<li>考虑使用ENUM数据列；</li>
+<li>PROCEDURE ANALYSE（）：对数据表里的各数据列的优化建议；select * from lxy_category procedure analyse();</li>
+<li>对容易产生碎片的数据表进行整理：定期使用OPTIMIZE TABLE清理MyISAM数据表里的碎片，其它引擎先用mysqldump转储数据表，再利用转储文件删除并重建一个；</li>
+<li>把数据压缩到BLOB或TEXT数据列里；</li>
+<li>使用人造索引：计算某数据列的散列值并保存到一个数据列里，适用于精确匹配型查询；</li>
+<li>尽量避免对很大的BLOB或TEXT值进行检索；</li>
+<li><p>把BLOB或TEXT数据列剥离到单独一个数据表里；<br>有效加载数据：</p>
+</li>
+<li><p>批量加载的效率比单数据行加载的效率高；</p>
+</li>
+<li>加载有索引的数据表比加载无索引的数据表快一些；</li>
+<li><p>较短的SQL语句与数据加载i较长的语句块；<br>系统管理员所完成的优化：</p>
+</li>
+<li><p>增加数据表缓存：table_open_cache系统变量；</p>
+</li>
+<li>使用MySQL键缓存：MySQL支持建立多个键缓存，我们可以微某个数据表分配一个键缓存并把该数据表的索引提前加载到该缓存；</li>
+<li>禁用那些你不需要的存储引擎；</li>
+<li>使用查询缓存：have_query_cache系统变量：SELECT SQL_CACHE/SQL_NO_CACHE；<br>硬件优化：</li>
+</ul>
+<ul>
+<li>​更多的内存；</li>
+<li>如果有足够的RAM可以让数据交换都发生在一个内存文件系统里，可以重新配置你的系统来删除所有的磁盘数据交换设备；</li>
+<li>更快的磁盘（SSD哈哈）；</li>
+<li>在物理设备之间分散磁盘读写活动，提高并行度；</li>
+<li>使用多处理器硬件（多线程）。</li>
+</ul>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/1160/" data-id="06dvlg7beoioh9kw" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="1160" data-title="MySQL 学习笔记 优化篇" data-url="http://www.yekezhong.com/1160/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1163/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MySQL 学习笔记 存储引擎对比篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1155/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL 学习笔记 基础篇</div>
+    </a>
+  
+</nav>
+
+
+
+      
   </div>
 </article>
 </section>
@@ -246,7 +345,7 @@
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">My douban</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -363,10 +462,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 
