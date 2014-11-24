@@ -108,130 +108,139 @@ set_new_handler allows you to s">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-958" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/958/" class="article-date">
-  <time datetime="2013-05-20T06:08:36.000Z" itemprop="datePublished">5月 20 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Item 49: Understand the behavior of the new-handler. <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="958" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+<% if (!index){ %>
 
 <!-- toc -->
-
+<% if(post.toc !== false && toc(post.content)){ %>
 	<div id="toc" class="toc-article">
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_8:_Customizing_new_and_delete"><span class="toc-number">1.</span> <span class="toc-text">Part 8: Customizing new and delete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_To_Remember"><span class="toc-number">2.</span> <span class="toc-text">Things To Remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Words"><span class="toc-number">3.</span> <span class="toc-text">Key Words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">4.</span> <span class="toc-text">Code</span></a></li></ol>
+		<%- toc(post.content)%>
 	</div>
+<% } %>
 
-<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
-<h2 id="Part_8:_Customizing_new_and_delete">Part 8: Customizing new and delete</h2>
-<p><a href="http://www.yekezhong.com/958" target="_blank" rel="external">Item 49: Understand the behavior of the new-handler.</a></p>
-<hr>
-<h2 id="Things_To_Remember">Things To Remember</h2>
-<ul>
-<li>set_new_handler allows you to specify a function to be called when memory allocation requests cannot be satisfied.</li>
-<li>Nothrow new is of limited utility, because it applies only to memory allocation; subsequent constructor calls may still throw exceptions.</li>
-</ul>
-<hr>
-<h2 id="Key_Words">Key Words</h2>
-<p><strong><a href="http://en.wikipedia.org/wiki/Curiously_recurring_template_pattern" target="_blank" rel="external">curiously recurring template pattern (CRTP) 怪异的循环模版模式</a>: </strong></p>
-<p>The curiously recurring template pattern (CRTP) is a C++ idiom in which a class X derives from a class template instantiation using X itself as template argument.</p>
-<p><a href="http://blog.sina.com.cn/s/blog_45497dfa0100gb1j.html" target="_blank" rel="external">c++ Template CRTP</a></p>
-<p><a href="http://q.cnblogs.com/q/43869/" target="_blank" rel="external">关于c++ template多态——CRTP 模式</a></p>
-<hr>
-<h2 id="Code"><strong>Code</strong></h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;new&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdlib.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> NewHandlerHolder</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueexplicit NewHandlerHolder(std::new_handler nh) : handler(nh) { };</div><div class="line"><span class="keyword">true</span>~NewHandlerHolder() { std::set_new_handler(handler); } <span class="comment">// release it</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestd::new_handler handler; <span class="comment">// remember it</span></div><div class="line">trueNewHandlerHolder(<span class="keyword">const</span> NewHandlerHolder&); <span class="comment">// prevent copying</span></div><div class="line">trueNewHandlerHolder& <span class="keyword">operator</span>=(<span class="keyword">const</span> NewHandlerHolder&);</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// The NewHandlerSupport template never uses its type parameter T.</span></div><div class="line"><span class="comment">// All we need is a different copy of NewHandlerSupport - in particular,</span></div><div class="line"><span class="comment">// it's static data member currentHandler - for each class that</span></div><div class="line"><span class="comment">// inhreits from NewHandlerSupport.</span></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">class</span> NewHandlerSupport</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">truestatic std::new_handler set_new_handler(std::new_handler p) <span class="keyword">throw</span>();</div><div class="line">truestatic <span class="keyword">void</span>* <span class="keyword">operator</span> <span class="keyword">new</span>(std::size_t size) <span class="keyword">throw</span>(std::bad_alloc);</div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestatic std::new_handler currentHandler;</div><div class="line">};</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line">std:: new_handler NewHandlerSupport&lt;T&gt;::set_new_handler(std::new_handler p) <span class="keyword">throw</span>()</div><div class="line">{</div><div class="line">truestd::new_handler oldHandler = currentHandler;</div><div class="line">truecurrentHandler = p;</div><div class="line">truereturn oldHandler;</div><div class="line">}</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">void</span>* NewHandlerSupport&lt;T&gt;::<span class="keyword">operator</span> <span class="keyword">new</span>(std::size_t size) <span class="keyword">throw</span>(std::bad_alloc)</div><div class="line">{</div><div class="line">trueNewHandlerHolder h(std::set_new_handler(currentHandler));</div><div class="line">truereturn ::<span class="keyword">operator</span> <span class="keyword">new</span>(size);</div><div class="line">}</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line">std::new_handler NewHandlerSupport&lt;T&gt;::currentHandler = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="keyword">class</span> Widget : <span class="keyword">public</span> NewHandlerSupport&lt;Widget&gt;</div><div class="line">{</div><div class="line"><span class="keyword">true</span><span class="comment">// ...</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">void</span> outOfMem()</div><div class="line">{</div><div class="line">truestd::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"Unable to satisfy request for memory\n"</span>;</div><div class="line">trueabort();</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line"><span class="keyword">true</span><span class="comment">// set outOfMem as Widget's new-handling function</span></div><div class="line">trueWidget::set_new_handler(outOfMem);</div><div class="line"><span class="keyword">true</span><span class="comment">// if memory allocation fails, call outOfMem</span></div><div class="line">trueWidget* pw1 = <span class="keyword">new</span> Widget;</div><div class="line"><span class="keyword">true</span><span class="comment">// if memory allocation fails, call the global new-handling function (if there if one)</span></div><div class="line">truestd::<span class="built_in">string</span>* ps = <span class="keyword">new</span> std::<span class="built_in">string</span>;</div><div class="line"><span class="keyword">true</span><span class="comment">// set the Widget-specific new-handling function to nothing (i.e., null)</span></div><div class="line">trueWidget::set_new_handler(<span class="number">0</span>);</div><div class="line"><span class="keyword">true</span><span class="comment">// if mem. alloc. fails, throw an exception immediately</span></div><div class="line">trueWidget* pw2 = <span class="keyword">new</span> Widget;</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-
-</div>
-    <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/958/" data-id="7rn1nq3pfv6aagn8" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CRTP/">CRTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/set-new-handler/">set_new_handler</a></li></ul>
-
-    </footer>
-
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="958" data-title="Item 49: Understand the behavior of the new-handler." data-url="http://www.yekezhong.com/958/"></div>
-<!-- 多说评论框 end -->
-</div>
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/974/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          《数学之美》 阅读笔记
-        
-      </div>
-    </a>
-  
-  
-    <a href="/949/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">《黑客与画家》阅读笔记</div>
-    </a>
-  
-</nav>
-
-
-
-      
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.posts.length){ %>
+    
   <div class="widget-wrap">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        <% site.posts.sort('date', -1).limit(20).each(function(post){ %>
+        
           <li>
-            <a href="<%- config.root %><%- post.path %>"><%= post.title || '(no title)' %>(<span class="ds-thread-count" data-thread-key="<%= post.slug %>" data-count-type="comments"></span>)</a>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
           </li>
-        <% }) %>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
       </ul>
     </div>
   </div>
-<% } %>
+
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">My douban</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -348,10 +357,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

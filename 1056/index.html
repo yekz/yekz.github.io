@@ -117,178 +117,139 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-1056" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/1056/" class="article-date">
-  <time datetime="2013-12-08T20:46:26.000Z" itemprop="datePublished">12月 9 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      我，怕冷！ <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1056" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+<% if (!index){ %>
 
 <!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
-<p>办公室给我最深刻的印象是什么？</p>
-<p>冷。</p>
-<p>说起冷，马上能想起的，有三个场景：</p>
-<p>小学一年级，手冻得握不了笔，颤颤巍巍写课堂作业，没一个字能认出来，愣是不敢交给老师。</p>
-<p>小学六年级，秋季运动会，小伙子要超风度，长袖一件，抖了一天。</p>
-<p>大二，办公室，冷到什么程度呢？我居然从来没想过买一个热水袋。</p>
-<p>上学期换届那顿晚饭上，和涛哥简单谈了来年要做的事。</p>
-<p>办讲座，你讲啥子哇？</p>
-<p>我说：解惑！</p>
-<p>师者，所以传道授业解惑也。。。</p>
-<p>传道，别自大了！</p>
-<p>授业，以前这么搞，群众反响很差。</p>
-<p>只剩解惑。</p>
-<p>这是在换届大会我说的观点。</p>
-<p>我深居网协内部两年，没有从网协学到任何东西，这是我内心深处的声音。</p>
-<p>两年后在换届大会上献丑的水平和大一入校竞选班委一样窘迫。</p>
-<p>你急，我比你急一百倍。</p>
-<p>大二，我和一群大三的天天呆在一起。</p>
-<p>大三，我和一群大二的天天走在一起。</p>
-<p>学校地震了，裂了个缝，所有人都站在坑边惊魂未定，就我掉了下去。。</p>
-<p>强哥常强调一个观念：协会不说在技术上有多好，至少我们那群人心齐。</p>
-<p>这是把结果误作了成果。</p>
-<p>结果，是经历出来的。</p>
-<p>成果，是努力出来的。</p>
-<p>那群人，少不去一个涛哥，也多不了一个叶科忠。</p>
-<p>不同的人群经历，会出现不同的平衡，是结果。</p>
-<p>而且，是纳什均衡。</p>
-<p>纳什均衡，说的是如果某情况下无一参与者可以独自行动而增加收益，则此策略组合被称为纳什均衡点。</p>
-<p>是去是留，肯定是自己为自己权衡好的最佳选择。</p>
-<p>大一报到前就‘有意’拉拢了一群人，大一聚餐，一起玩，最后培养出一群心齐的人。</p>
-<p>这不可能。</p>
-<p>为什么呢？追根到底，最后没能成为想象中的几个齐心好基友，办公室成了耍朋友的场所，还是被‘有意’创造条件认识、撮合的。</p>
-<p>结果不能成为成果，‘成果’当然也不能是想要的结果。</p>
-<p>老蒋以前不经常来办公室的，而在协会事务上，我的能力，大家心知肚明，是非常差的。</p>
-<p>后来老蒋常驻办公室，为啥呢？和霏帅耍朋友了。</p>
-<p>霏帅是最为协会事项劳心劳力的人，主动的。。</p>
-<p>霏帅今天主动搬出办公室了，按照纳什均衡的说法，老蒋也不不会有长留的动力。</p>
-<p>室友问过我：做会长，得到了什么？</p>
-<p>我说：资源。</p>
-<p>校内外的项目、技术需求，如果找到计算机学院，大部分都会转交到我手里。</p>
-<p>前两天三分钟挣了三百块，守株待兔都够吃饱。</p>
-<p>网协，资源庞大，人力稀缺！</p>
-<p>第一场讲座，我一直想的，也是给涛哥说的，就讲解惑。</p>
-<p>我想给大家一个苹果。</p>
-<p>讲座上，心急给了大西瓜，没人能吃完，更别说消化。</p>
-<p>办公室里呢？</p>
-<p>我，怕冷！</p>
-<p>前一年，冷怕了。</p>
-<p>现在有了资源，更愿意把光和热散发出去。。</p>
-<p>你想进驻办公室？</p>
-<p>来吧，欢迎你来，为自己努力，同时祝你过得开心，温暖。</p>
-<p>这个项目，我一天就能做完，把钱挣到手，但是你拿去做吧，实在不会的我帮你写都行，项目里才能学到真东西！</p>
-<p>嘴馋了？行，咱们凑钱买个锅，煮饭下面烫火锅。。。</p>
-<p>天气太冷，咱们还需要暖风机。。</p>
-<p>既然我没有强势传播我所专长的一些经验的能力，那我愿意让更多的人更靠近这份资源。</p>
-<p>但是我要检讨自己，我就是办公室东西最乱的人！</p>
-<p>如果没有芙蓉姐的费神费力，就像没了涛哥，可以想象。</p>
-<p>要是没了霏帅的尽心尽力，我们连会员证都做不好。。</p>
-<p>人多和乱的结果是，办公室出现了被肖大爷查封的危险。</p>
-<p>霏帅，今晚离开办公室了。</p>
-<p>老蒋和芙蓉姐开始跟我商量怎么让更多人离开。</p>
-<p>当问题出现，大家第一反应都是谨遵责问，直接走人，清人。</p>
-<p>你会开始给我抱怨他，他会开始对我抱怨你。。</p>
-<p>它山之石可以攻玉，大家一片好心也有可能被我们做成夫妻肺片。。</p>
-<p>强哥昨晚给了我几条诚恳的意见，我站在我们的团体经历来考虑，除了乱和做饭，也就是办公室对外形象问题，其他我都不能认同。</p>
-<p>意见要听，但不能想都不想。</p>
-<p>传宗接代都成问题，怎嫌人丁太兴旺？</p>
-<p>问题不是我们多了什么，而是我们欠缺什么！</p>
-<p>问题的症结在哪里，如何让领导满意，让师兄放心，让会员称心，办公室。。交心？</p>
-<p>今晚是连续在办公室呆的第三晚，现在的办公室，暖和。</p>
-<p>饱暖饿新鲜，热乎可睡来。</p>
-
-
-</div>
-    <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/1056/" data-id="05rlg6rox1uhu48q" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/办公室/">办公室</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/协会/">协会</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自言自语/">自言自语</a></li></ul>
-
-    </footer>
-
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="1056" data-title="我，怕冷！" data-url="http://www.yekezhong.com/1056/"></div>
-<!-- 多说评论框 end -->
-</div>
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/1060/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          kindle不是肯德基 —— 说说 Kindle Paperwhite 2 的使用体验和感想
-        
-      </div>
-    </a>
-  
-  
-    <a href="/1051/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">站着讲，坐着听</div>
-    </a>
-  
-</nav>
-
-
-
-      
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.posts.length){ %>
+    
   <div class="widget-wrap">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        <% site.posts.sort('date', -1).limit(20).each(function(post){ %>
+        
           <li>
-            <a href="<%- config.root %><%- post.path %>"><%= post.title || '(no title)' %>(<span class="ds-thread-count" data-thread-key="<%= post.slug %>" data-count-type="comments"></span>)</a>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
           </li>
-        <% }) %>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
       </ul>
     </div>
   </div>
-<% } %>
+
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">My douban</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -405,10 +366,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

@@ -102,147 +102,139 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-1047" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/1047/" class="article-date">
-  <time datetime="2013-11-22T13:55:47.000Z" itemprop="datePublished">11月 22 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      迟到的间隔天 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="1047" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+<% if (!index){ %>
 
 <!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
-<p>什么是草书？就是每写一个字心里都会草一下。</p>
-<p>实验课上，我用学霸无法理解的速度在实验报告纸上建造草坪，胖子问：大师兄，很痛苦吧。</p>
-<p>我不假思索说不痛苦，他不假思索问为什么。</p>
-<p>有个笑话说：某冬日。上课了，伊万老师背靠教室壁炉站着，对学生们说：“说话前要多考虑，至少要数到50下才说，重要的话要数到100下。”学生们争先恐后地数起来，最后不约而同地爆发出：“99、100，老师的衣服着火了！”。</p>
-<p>所以我没答上来。</p>
-<p>半个小时抄的三张实验报告，是我为这门实验课做的所有的事。这样的课有很多。</p>
-<p>回到办公室，开始和正方教务系统杠上。这是蚂蚁和大象的战斗!</p>
-<p>这本来不难的，但是蚂蚁太多，大象就疯了。</p>
-<p>首先，要爬上大象脚，然后，得爬上大象腿，接着，要费尽全力爬到大象头顶。这时就看见大象鼻子了，然后你应该顺着大象鼻子坐滑梯滑下来，一个头朝下的自由落体。还活着？那就选上了。</p>
-<p>刘慈欣在《球状闪电》里很准确地描述了痛苦：</p>
-<p>张彬教授目击球状闪电后投身球状闪电研究，却三十多年在雷雨中苦苦搜寻再也未谋一面。</p>
-<p>“我能忍受一辈子耗尽心血毫无建树，我能忍受抛弃生活中的一切，孤独地终了一生，我甚至可以在需要时献出生命，但我不能忍受一生中再也见不到它！正是对它的第一次目击决定了我的一生，我们真的不能忍受再也见不到它！这点别人可能很难理解，但你能想象，水手能忍受一生见不到大海吗？登山者能忍受一生见不到雪山吗？飞行员能忍受一生见不到蓝天吗？”</p>
-<p>选课人能忍受从头到尾见不到可选课程列表吗？</p>
-<p>高中时，我们感到痛苦，初中真好！课业轻松下河上树。</p>
-<p>大学时，我们感到痛苦，高中真好！同学情深奋斗情怀。</p>
-<p>来到城区，我们感到痛苦，黄岭真好！环境清静宜生宜学。</p>
-<p>那么，等我们出入社会，是不是继续加上一条：大学真好！</p>
-<p>黄岭有那么好？</p>
-<p>大城市里的大学生，在汲取，在飞速成长，在创业，在革新陈旧的思想，我们在做什么？</p>
-<p>初中好，高中好，黄岭好，大学好，为什么还感到痛苦？</p>
-<p>因为痛苦就像水，如果不用容器装着，给它一个边界，它就会无限蔓延。</p>
-<p>一碗水和摊开来的一碗水不是一样多吗？</p>
-<p>摊开的痛苦，虽然面积大，但是厚度薄。痛苦的感觉不是就应该减弱了？</p>
-<p>不是！</p>
-<p>当痛苦成了路上一条河，我们轧舟过河，是挑战，是享受，是风景，是心安理得。</p>
-<p>当一条河的痛苦铺开成了一地泥泞，就成了打滑，打击，是无助！</p>
-<p>痛苦是相对的，对于蔓延一地的痛苦，前后左右都是泥泞，看不到希望。</p>
-<p>而对于收敛在一定边界的痛苦，哪怕痛苦直接的间隔很短，也有期望在里面。</p>
-<p>别小看期望的力量。</p>
-<p>我们的初中小学高中，快乐是不是集中在放学周末课间十分钟？</p>
-<p>过去的事，往往只能记住快乐，忘记痛苦的感觉。</p>
-<p>这不是犯贱，是大脑的自我保护。</p>
-<p>怎么主动保护自己？</p>
-<p>《迟到的间隔年》鼓励大家毕业之后给自己放次长假，做一次长期的旅行。</p>
-<p>对大多数人来说，经济，观念，家庭，社会压力，都不容许间隔年的奢侈。</p>
-<p>但是我们可以拥有间隔天，间隔时，甚至间隔分。</p>
-<p>放天假，不写代码，去野炊，去骑行。</p>
-<p>休息两个小时，看书，看电影，写文章。</p>
-<p>冥想（发呆）几分钟，整理思绪，放松身体。</p>
-<p>熬夜完成工作？那真是要至死方休。</p>
-
-
-</div>
-    <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/1047/" data-id="3uq4z59cdlxsuwst" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/痛苦/">痛苦</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自言自语/">自言自语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书/">读书</a></li></ul>
-
-    </footer>
-
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="1047" data-title="迟到的间隔天" data-url="http://www.yekezhong.com/1047/"></div>
-<!-- 多说评论框 end -->
-</div>
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/1051/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          站着讲，坐着听
-        
-      </div>
-    </a>
-  
-  
-    <a href="/1041/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">这个苹果智商不高</div>
-    </a>
-  
-</nav>
-
-
-
-      
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.posts.length){ %>
+    
   <div class="widget-wrap">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        <% site.posts.sort('date', -1).limit(20).each(function(post){ %>
+        
           <li>
-            <a href="<%- config.root %><%- post.path %>"><%= post.title || '(no title)' %>(<span class="ds-thread-count" data-thread-key="<%= post.slug %>" data-count-type="comments"></span>)</a>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
           </li>
-        <% }) %>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
       </ul>
     </div>
   </div>
-<% } %>
+
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">My douban</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -359,10 +351,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

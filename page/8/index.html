@@ -92,466 +92,261 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-360" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/360/" class="article-date">
-  <time datetime="2012-05-25T15:00:20.000Z" itemprop="datePublished">5月 25 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/">Algorithm</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/Sort/">Sort</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/360/">《算法导论》第六章 堆排序 C++实现</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="360" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >1.）和第一部分的实现不同，这次用类来实现，毕竟类才是C++的精华。
-使用类相对面向过程有不少好处：
-
-函数的参数简化不少，类成员的隐含this指针使得vector容器的应用传递作参数全部可以省去。
-将elemQueue， priQueue，heapSize作为PriorityQueue的数据成员后，特别是heapSize，在其间的数值关系上简单不少。2.）同样使用vector做容器，其实vector本身已经支持insert,sort等操作，这里只是将其做容器使用，除了迭代器，push_back，size外不使用其它成员。另外，使用vector而不是底层的数组，可能会对算法的时间有影响，不过说到算法分析我就头痛，就不考虑那么多了==！
-
-3.）这章分为堆排序和优先级队列两部分，综合后，堆排序部分也是在元素+优先级的数据结构下进行的排序，而非纯数组排序。
-4.)《算法导论》书中的伪代码有些需要注意的地方：
-
-所有的下标都是从1开始，而实际编程时数组下标是从0开始的，这点差异造成了不少麻烦。
-伪代码中的downto和to在不同的前后环境下，循环上界和下届可能为&gt;=,&gt;,&lt;=,&lt;，是否=具体情况需具体分析，属于一个容易中枪的地方。
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;string&gt;#include &lt;limits&gt;using namespace std;class PriorityQueue{public:truePriorityQueue() { };true~PriorityQueue() { };trueint getParent(int i) { return (i - 1) / 2; } // 数组下标由0开始与书中从1开始不同！trueint getLeftChild(int i) { return i * 2 + 1; }trueint getRightChild(int i) { return i * 2 + 2; }trueinline void addElem(string, int); // 由输入初始化队列truevoid swapTwoElem(int, int);truevoid iniHeapSize() { heapSize = elemQueue.size() - 1; }truevoid display();truevoid maxHeapify(int); // 使以参数为根的子树成为最大堆truevoid buildMaxHeap(); // 构建最大堆truevoid heapSort(); // 堆排序true// 优先级队列trueconst string getElemVal(int elemIndex) { return elemQueue[elemIndex]; }trueconst int getElemPriVal(int elemIndex) { return priQueue[elemIndex]; }trueconst string maximum() { return getElemVal(0); } // 返回具有最大优先级的元素truevoid extractMax(); // 去掉并返回具有最大优先级的元素truevoid increaseKey(int, int); // 提升优先级的值truevoid heapInsert(string, int); // 插入优先级为num的元素true</p>
-<p class="article-more-link">
-	<a href="/360/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
   
-    <article id="post-310" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/310/" class="article-date">
-  <time datetime="2012-05-21T10:50:46.000Z" itemprop="datePublished">5月 21 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/">Algorithm</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/Sort/">Sort</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/310/">《算法导论》第一部分 C++综合实现</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="310" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >1.将第二章和第五章正文和部分习题讲到的算法用C++实现并整理到一个程序中，不同算法使用不同函数即可。
- 2.程序功能：输入任意个整数的序列，生成一个均匀随机排列。3.使用vector作数据容器。
-
-
-第二章 算法入门2.1 插入排序 -&gt; insertSort()2.3 分治法 -&gt; mergeSortByPri()习题 2.3-2 分治法中哨兵的使用算法一：使用哨兵 -&gt; mergeWithSentry()算法二：不使用哨兵 -&gt; mergeNoSentry()第五章 概率分析和随机算法5.3 随机排列数组（详见main()）1.) 优先级排序 PERMUTE-BY-SORTING + 习题 5.3-6 两个或更多优先级相同的情况2.) 原地排序 RANDOMIZE-IN-PLACE
-
-C++ random(a, b)的方法：（random(0, 1)简化即可）
-123#include &lt;time.h&gt;srand((unsigned int)time(0)); // 用时间设置随机数种子rand() % (b - a) + a; // 生成[a, b]内的随机整数
-
-第一轮随机数由时间做种，第二轮由第一轮时间做种，以此类推
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163#include "stdafx.h"#include &lt;iostream&gt;#include &lt;stdlib.h&gt;#include &lt;time.h&gt;#include &lt;vector&gt;using namespace std;int creatRandomNum(int a, int b){    return rand() % (b - a) + a;}void swapTwoNum(vector&lt;int&gt; &ivec, int a, int b){trueint temp = ivec[a];trueivec[a] = ivec[b];trueivec[b] = temp;}// 使用哨兵void mergeWithSentry(vector&lt;int&gt; &numBox, vector&lt;int&gt; &priBox, int begin, int middle, int end){trueint n1 = middle - begin + 1;trueint n2 = end - middle;truevector&lt;int&gt; priL, priR, numL, numR;truefor (int i = 0; i &lt; n1; i++) {truetruepriL.push_back(priBox[begin + i]);        numL.push_back(numBox[begin + i]);true}truefor (int j = 0; j &lt; n2; j++) {truetruepriR.push_back(priBox[middle + j + 1]);truetruenumR.push_back(numBox[middle + j + 1]);true}truepriL.push_back(INT_MAX);truepriR.push_back(INT_MAX);truefor (int i = 0, j = 0, k = begin; k &lt;= end; k++) {truetrueif (priL[i] &lt;= priR[j]) {truetruetruepriBox[k] = priL[i];truetruetruenumBox[k] = numL[i++];truetrue} else {truetruetruepriBox[k] = priR[j];truetruetruenumB</p>
-<p class="article-more-link">
-	<a href="/310/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
   
-    <article id="post-302" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/302/" class="article-date">
-  <time datetime="2012-05-13T12:22:41.000Z" itemprop="datePublished">5月 13 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Design/">Design</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/302/">50个黄色网站</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="302" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >译自：50 Yellow Web Designs to Inspire You中文：50个启发你灵感的黄色系网站设计原作者版权，转载请注明来源，多谢！色彩在网站设计中是一个很重要的方面。 好的设计师会小心的选择色彩来达到一个目的。有的时候，这个目的就是醒目些以获得用户的注意，而黄色正好是一个很棒的“吸引注意”的色彩。黄色是一个高度活跃的色彩，可以引起思维活跃并带来令人愉悦的想法。为了能够提供一些灵感，我们选择了50个有效使用黄颜色的网站设计。你会从中发现，它们中的有些使用谎言是来加亮设计中最重要的部分，而其它的则用来更多地实现醒目的效果。
-paralotna
-
-sebdesign.eu
-
-Trout Creative Thinking
-
-strangenative.com
-
-garethdickey.com
-
-Roome
-
-creative spark
-
-we make
-
-FontShop
-
-ryankeiser.net
-
-Sketchen
-
-teammanager.se
-
-hellobard.com
-
-agatha group
-
-designcharts.com
-
-fcsiauliai.lt
-
-Champion Sound
-
-chemopren.cz
-
-Imaginary Design
-
-IAAH
-
-helveticons.ch
-
-booreiland
-
-espira tecnologias web
-
-chunk.
-
-journey-to-zero.com
-
-itswhite.co.uk
-
-44k.cz
-
-Agent 89
-
-kettle
-
-Bruno Magalhaes
-
-Atelier ZXU
-
-typeish.com
-
-biocate
-
-foodtease.com
-
-riotindustries.com
-
-yearsf.com
-
-CoolCreation
-
-Nancy Felix
-
-mein-eigener-baum.de
-
-kitich.in.ua
-
-wakesomebodyup.com
-
-wipetheworldsass.com
-
-Wilkintie
-
-dfp.com.ph
-
-areyoufrank.com
-
-littlelines
-
-GlasGoWeb.Designers
-
-wsdia.com
-
-creativeunited.dk
-
-theotherdesignagency.co.uk</p>
-<p class="article-more-link">
-	<a href="/302/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
   
-    <article id="post-250" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/250/" class="article-date">
-  <time datetime="2012-05-11T04:19:25.000Z" itemprop="datePublished">5月 11 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Web/">Web</a>►<a class="article-category-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/250/">[亦疯实验室]JavaScript版贪吃蛇</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="250" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >共逃掉高挂科率课4节，高点名率2节，从昨天中午写到半夜，再从早八点弄到现在（等下还要抓紧时间赶物理实验报告:(），这个伟大的工程终于完成了。。。掌声+撑个懒腰。感觉web开发语言都很神奇，几种结合起来就很容易产生不错的效果，这条蛇的起源正式来自这种想法。闲来无事，想着用JS写点好玩的东西（成品可能很弱智，至少技术上好玩。。），转瞬想到贪吃蛇，完全自己实现不太可能，毕竟毫无开发经验，果断百度，诶哟还真有，发现这么个好东西Js版贪吃蛇解析和详细注释，马上down出源码开始研究，半个下午后代码全部照写了一遍，逻辑也研究透彻了，然后到此为止？？of course not!Because:
-
-
-做人不能太不要脸
-原版成品不符合亦疯一贯坚持的亮瞎狗眼原则
-
-
-于是，果断开始进行改造，期间搞出过万花筒写轮蛇，二百五闪光蛇，后来实在是太过混乱，干脆从简，百度了图片两张，效果不错。其它改造的地方包括：
-
-
-炸弹（贪吃蛇木有障碍肿么行，那还不横行霸道了）
-穿墙开关
-分数记录
-速度可自由输入
-速度显示
-
-
-开始游戏：贪吃蛇
-问题：rank应该不是最好的排序算法，我在将snake[1]加上背景色后，发现其一直在循环向后移位，但是funnyhao的注释说的是:“排列数组,时刻保持snake[1]为蛇头”,显然这里存在问题，蛇的所有结点都在变换位置，这也是导致我万花筒写轮蛇，二百五闪光蛇越写越混乱的原因。最简的做法因该可以是：蛇和食物发生碰撞时，蛇的前进状态不变，前进一步后，在蛇尾压入与原蛇尾相同的块。但是由于午饭时间到了，这样完全重构的大工程，我还是觉得午饭为重。
-123456function rank() { // 排列数组,时刻保持snake[1]为蛇头truefor (var len = snake.length; len &gt; 0; len--) {truetruesnake[len] = snake[len - 1];true}truesnake[0] = { };}
-
-本来准备做一个程序逻辑的思维导图，不过搞到现在实在是疲惫了，暂且放下。
-如果您有建议或发现BUG，请回复告诉我，谢谢:)。
-PS：再次感谢funnyhao。
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263264265266267268269270271272273274275276277278279280281282283284285286287288289290291292293294295296297298299300301302303304305306307308309310311312313314315316317318319320321322323324325326327328329330331332333334335336337338/* 2012.05.10 by 叶科忠 *///游戏界面参数var widthNum = 20;  // 游戏界面宽度var heightNum = 15; // 游戏界面高度var nodLength = 30; //单位点大小var snake; // 蛇var food = { };  // 食物var obstacle; // </p>
-<p class="article-more-link">
-	<a href="/250/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
   
-    <article id="post-127" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/127/" class="article-date">
-  <time datetime="2012-05-05T12:42:01.000Z" itemprop="datePublished">5月 5 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Tools/">Tools</a>►<a class="article-category-link" href="/categories/Share/Tools/GFW/">GFW</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/127/">goagent+Chrome/Firefox翻墙教程</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="127" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >本文内容来源于http://www.x-berry.com/，版权归原作者所有，与本人无关。
-博主重要声明：本文之所有内容（包括但不限于汉字、拼音、外文字母、单词、句子、图片、影像、录音，以及前述之各种任意组合等等）完全是复制粘贴，来源于国际互联网，
-本人并不明白其全部或部分之意思（包括但不限于对所复制粘贴之内容的识别、阅读、理解、分析、记忆等等），故本人不对以上及本内容负任何法律责任（包括但不限于刑事、民事责任）及其他潜在责任与义务（包括但不限于相关国家已存在、正在形成、未来将形成之的法律法规之责任），
-请不要跨省追捕（包括但不限于省级市级州级县级镇级乡级村级行政机关、企事业单位、司法机关、立法机关等等任何机构、单位、组织及该机构、单位和组织中的任何个人）。
-要详查请亲自直接联系原作者，
-同时，所有观看本帖者请于观看24小时内自觉、主动忘记，本人不对未能忘记者未来将发生的任何问题与后果负责。感谢!
-i solemnly declare:
-the replies of all content (including but not limited to chinese characters, pinyin, foreign letters, words, sentences, pictures, images, sound recordings, as well as any combination of the aforementioned variety, etc.) is to copy and paste, comes from the internet, i do not understand all or part of its meaning (including but not limited to, copy and paste the contents of the identification, reading, understanding, analysis, memory, etc.), therefore, i do not and the content of the above bear any liability (including but not limited to criminal and civil liability) and other potential liabilities and obligations (including but not limited to the countries already exists, is taking shape, the ｆｏｒｍation of the future will be the responsibility of the laws and regulations) , please do not chase provinces (including but not limited to the provincial level state-level municipal township of village-level administrative organs, enterprises, institutions, judiciary, legislature, etc. any organization, units, organizations and the agencies, units and any individual organization). to detailed investigation of a direct link to original author, please, at the same time, all are invited to watch this with 24 hours of watching and consciously take the initiative to forget that i can not forget those who do not will be any future problems and consequences. thank you!
-the above content completely copy and paste, myself do not understand its meaning, therefore myself do not take the legal liability to above content, please do not want the cross-province to capture</p>
-<p class="article-more-link">
-	<a href="/127/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
   
-    <article id="post-94" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/94/" class="article-date">
-  <time datetime="2012-05-05T09:01:49.000Z" itemprop="datePublished">5月 5 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Tools/">Tools</a>►<a class="article-category-link" href="/categories/Share/Tools/Chrome/">Chrome</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/94/">谷歌Chrome浏览器自用插件推荐</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="94" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >Google Chrome浏览器被称之为目前世界上最快的浏览器，既简洁又高效，用来上网冲浪还真是不错。不过好马也得配好鞍，和很多非IE核心浏览器一样，Chrome也需要利用插件扩展自己的能耐。 如图，进入扩展程序管理页面，在页面底部可以进入应用商店 。  虽然插件很给力，但是也不可安装太多，不然浏览器的启动和响应速度都会有很大影响，默认情况下，打开后Chrome再关闭，插件的进程都会在后台挂起而没有随浏览器进程一起关闭，这也是Google对于插件对浏览器速度的影响的一种改善措施，可见，精选几款最实用的插件是很重要的。
-&nbsp;
-1.IE Tab Multi (Enhance)
-一款最接近 IE 的 Chrome扩展，你可以不用再另外打开 IE 访问只能在 IE 中访问的网站并运行 ActiveX 控件，这个扩展只支持 Windows。还提供了更强大的功能：切换时可自动同步 cookies ，支持自动登录，丰富的主题等等。 yyfc用chrome直接打开死得一塌糊涂：  打开IE Tab后： 
-2.Smooth Gestures
-鼠标手势的功能在搜狗，360等浏览器上都是原生支持的，但是这个功能被接受度并不高，看着一堆左拐右拐的手势，下意识就觉得很麻烦，这种心理我自己也在使用Chrome之前体验很多，但是在花了几分钟配置该插件并熟练使用后，感觉对于浏览效率和体验都有了明显提高，所有推荐大家使用，使用国产浏览器的朋友也是可以尝试的。 
-3.迅雷、快车、旋风专用链自动破解  + 迅雷下载支持测试版
-下载都追求速度两字，显然浏览器自带的下载模块不可能有专业的下载工具那样功能强大，但是Chrome不原生支持下载软件调用，有些遗憾，这两款插件正是为弥补对下载工具支持的不足而生，我是看着这两款插件一路发展过来的，早期的时候，还只能右键手动触发迅雷，现在最新的版本已经支持自动调用，但是观察下来还是没有做到100%的成功率，部分时间还是调用了浏览器自带的下载模块，仍需改进。 需要说明的是，Chrome很强大，但是由于国内浏览器市场长期被IE系统治，导致众多国内网友经常使用的网站和功能在Chrome上得不到良好的支持的兼容，例如网购和对下载工具的支持。对于各种网站构建技术规范，Chrome应该是目前支持最好的浏览器，所以并非Chrome兼容性不好，而是网站作者制作网站时对Chrome或者说是标准技术规范的支持有所欠缺，过分的使用了IE特有但非国际标准的技术。
-4.Recent History (Toolbar Icon)
-可以在一个弹窗中显示你的最近访问历史、最近关闭的标签页、最常访问的页面和最近添加的书签，相当实用，属于绝对必备型。 另外还有一款针对浏览历史的插件Better History，注重于大量历史的归档管理，便捷性略低，大家可自行选择。 
-5.Proxy SwitchySharp
-
-6.YouTube Options for Google Chrome™ (Full Version)
-利用Proxy SwitchySharp翻墙成功后，YouTube是必上的网站，youtube本身不提供视频下载服务，但是遇到好东西想要收入囊中怎么办？该插件就提供了视频下载功能，除此之外，还支持对youtube页面的的个性定制，可以任意屏蔽页首、页尾、推荐等所有元素，视频窗口的个姓调整也很强大，但是相对也功能的强大，设置也很繁琐，并且全是E文，进过一番研究设置，我最终成功关掉了除下载外的所有功能，还是原生的页面用着最舒适。 
-7.惠买购物助手(网购比价利器)
-
-自动货比三家 在网站商品详细页面自动显示各大商城价格，让你轻松比价，省钱省时省力。
-实时商品报价 所有显示的各大商城价格均为实时价格，让你及时掌握各大商城价格最新价格。简而言之，就是在几个常用购物网站挑选商品时，该插件会自动在其它网站搜索这件商品并显示价格，方便购物者对比各大网站的价格，选择最实惠的商品。 网上流传“你还在淘宝购物吗？？那你就OUT了！...”的说法，说是电器该上京东，衣服该上哪里，化妆品该上哪里。。。但是几年淘宝经历下来，笔者想说的是，一个电子产品，京东普遍比淘宝贵10%-20%不等，其它商品和商城均是如此，所以至少目前，淘宝任然是最省钱的地方，有人会说淘宝不省心，假冒伪劣横行，但是笔者淘宝几年未曾上当受骗，不少朋友却屡屡触电，这里面很大的因素还是自身的警觉能力不足，用句四川话来说就是“人不冲火怪家伙，要不得，要不得”。 
-
-&nbsp;
-以上便是笔者浏览上正在使用的插件，当然，群众的智慧才是最大的，如果你还知道什么有用好玩的插件，一定要在评论里告诉我，共同享受Chrome!</p>
-<p class="article-more-link">
-	<a href="/94/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
   
-    <article id="post-79" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/79/" class="article-date">
-  <time datetime="2012-05-04T14:41:30.000Z" itemprop="datePublished">5月 4 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Thinking/">Thinking</a>►<a class="article-category-link" href="/categories/Thinking/Life/">Life</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/79/">叶科忠&#39;s Blog</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="79" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
+<% if (!index){ %>
+
+<!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
       </header>
-    
+    <% } %>
     <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >五一之前做了一个挺神奇的梦，梦里用wordpress鼓捣了一个个人博客，神奇之处在于，昨天真正在现实世界中开始用wordpress搭建这个博客时，才惊讶的发现整个后台操作和模块化的插件使用居然和梦里相差无几。在这之前，自己写网站代码时最纠结的问题是美工，在目前团队里没有美工人才的情况下，逼不得已的办法是在网络上copy各种创意和元素，逐渐发现了使用wordpress、点点网等轻博客的各种网站，页面看似简洁而我居然完全copy不来，但是话也只到这里，还是继续做着苦逼的码农。
-直到那个梦醒来，只见狂风暴雨骤起，天空雷鸣闪电大作，雨若瓢泼一般，心里忽然对搭建一个博客起了强烈的渴望，不过适逢五一流浪计划，只好推迟到五一后开工。主题用的是上座率极高的loper，如我等修炼出24钛金狗眼的少年，亮眼始终是要放在第一位的。
-极低效率学习编程有些年头了，了无建树，半年前因为一次网页设计比赛开始接触网站建设，到一个月前网协蚁群工作室的成立，基本确定这之后的发展方向将是WEB程序开发相关，翻山越岭程序猿，努力吧少年。
-tk + 主机屋，卡到爆，五一丢了钱包，只能下个月再购置域名和空间，用着先。</p>
-<p class="article-more-link">
-	<a href="/79/#more">Read More</a>
-</p>
-
-
-
-
-      
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 
@@ -565,24 +360,100 @@ tk + 主机屋，卡到爆，五一丢了钱包，只能下个月再购置域名
         
           <aside id="sidebar">
   
-    <% if (site.posts.length){ %>
+    
   <div class="widget-wrap">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        <% site.posts.sort('date', -1).limit(20).each(function(post){ %>
+        
           <li>
-            <a href="<%- config.root %><%- post.path %>"><%= post.title || '(no title)' %>(<span class="ds-thread-count" data-thread-key="<%= post.slug %>" data-count-type="comments"></span>)</a>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
           </li>
-        <% }) %>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
       </ul>
     </div>
   </div>
-<% } %>
+
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">My douban</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -699,10 +570,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

@@ -93,112 +93,139 @@ CCTV是个恶心的玩意儿，我也好多年没正眼看过电视了，但就�
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-946" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/946/" class="article-date">
-  <time datetime="2013-05-13T03:48:34.000Z" itemprop="datePublished">5月 13 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      看见 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="946" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+<% if (!index){ %>
 
 <!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
-<p>柴静的《看见》是本好书，我为最初凭感觉将其归为开复哥心灵鸡汤式的自传“小说”而抱歉，看来事情还是要亲眼看见了才能下结论。</p>
-<p>CCTV是个恶心的玩意儿，我也好多年没正眼看过电视了，但就作为洗脑工具和控制社会舆论而言，可谓比媳妇儿还忠贞，结果是，《看见》一书讲述的案例，除了卢安克，我居然都很清楚，尽管柴静的节目对于整个CCTV体系而言是很边缘化的，但是这本书一看 ，很容易给大家造成柴静就是整个CCTV的错觉。</p>
-<p>在体制内生存，不能触碰的底线比一般行业高得离谱，柴静能在“制度与人文的十字路口”飚车不出车祸，实属不易。对此，柴静自己在书里也很隐晦地表达了这只能意会不可言传的苦闷：“每一条细微的新闻背后，都隐藏一条冗长的逻辑链，在我们这，这些逻辑链绝大多数是同一朝向，正式因为这不能言说又不言而喻的秘密，我们需要提醒自己，绝不能走到这条逻辑链的半山腰就嚎啕大哭。”这朝向是什么，相信读到书上这段话时，脑袋清醒点的读者都能对这份大家共同的苦闷充分理解了，真是聪明。</p>
-<p>尽管说是从业十年的自传，但实在是比一般传记精彩高明太多了。通常的自传，自我中心意识浓烈，柴静则在叙事和自我的微妙变化间掌握得很好，在新闻事例的庞大和震撼之前，自我已经显得很渺小了，柴静还一直在书中再三试图弱化自我，其实你看，十年过去了，柴静几乎还是那个柴静，无非经历的事情多了些，变化不大嘛，但回味开来，又觉得十年的自我论证真是酣畅淋漓，高明。</p>
-<p>上个月看了十来本书，《看见》肯定不是最好的，却应该是唯一适合推荐的。矛盾的是，你得看过那些“最好的书”，才能充分理解《看见》在体制的厚重挤压下发芽生根的不容易，大部分的人看着这本书，估计也就是感动感动还是感动，然后呢？没有了。</p>
-
-
-</div>
-    <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/946/" data-id="5xsw0a1o9pam9cbc" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/柴静/">柴静</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/看见/">看见</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自言自语/">自言自语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书/">读书</a></li></ul>
-
-    </footer>
-
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="946" data-title="看见" data-url="http://www.yekezhong.com/946/"></div>
-<!-- 多说评论框 end -->
-</div>
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/949/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          《黑客与画家》阅读笔记
-        
-      </div>
-    </a>
-  
-  
-    <a href="/936/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">油猴脚本第二炮：googleSearchCountRobot，看看苦逼的程序猿，每天要Google多少次</div>
-    </a>
-  
-</nav>
-
-
-
-      
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.posts.length){ %>
+    
   <div class="widget-wrap">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        <% site.posts.sort('date', -1).limit(20).each(function(post){ %>
+        
           <li>
-            <a href="<%- config.root %><%- post.path %>"><%= post.title || '(no title)' %>(<span class="ds-thread-count" data-thread-key="<%= post.slug %>" data-count-type="comments"></span>)</a>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
           </li>
-        <% }) %>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
       </ul>
     </div>
   </div>
-<% } %>
+
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">My douban</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -315,10 +342,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

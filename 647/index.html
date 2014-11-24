@@ -100,130 +100,139 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-647" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/647/" class="article-date">
-  <time datetime="2012-09-01T06:34:24.000Z" itemprop="datePublished">9月 1 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Share/">Share</a>►<a class="article-category-link" href="/categories/Share/Tools/">Tools</a>►<a class="article-category-link" href="/categories/Share/Tools/Chrome/">Chrome</a>
-  </div>
-
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
   </div>
   <div class="article-inner">
-    
-    
+    <%- partial('post/gallery') %>
+    <% if (post.link || post.title){ %>
       <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      屏蔽网页广告 谷歌Chrome浏览器神级插件推荐：AdBlock <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="647" data-count-type="comments"></span>
-    </h1>
-  
+        <%- partial('post/title', {class_name: 'article-title'}) %>
 
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+<% if (!index){ %>
 
 <!-- toc -->
+<% if(post.toc !== false && toc(post.content)){ %>
+	<div id="toc" class="toc-article">
+		<%- toc(post.content)%>
+	</div>
+<% } %>
 
-<p>老婆不在家玩的游戏，还能调整胸部大小，点进去结果就是一弱智仙侠网页游戏，坑爹啊！<br>窗格广告，悬浮广告，弹窗广告，一个网页一半页面都是广告，群魔乱舞，妖孽横行。<br>没辙了?<br>今天就给大家推荐一款谷歌Chrome浏览器的插件：AdBlock，这名字直接翻译过来就是<strong>广告拦截</strong>，斩妖除魔，效果可谓化腐朽为神奇。</p>
-<p>插件安装地址：<a href="https://chrome.google.com/webstore/detail/gighmmpiobklfepjocnamgkkbiglidom?hl=zh-CN" target="_blank" rel="external">https://chrome.google.com/webstore/detail/gighmmpiobklfepjocnamgkkbiglidom?hl=zh-CN</a></p>
-<p>关于谷歌Chrome浏览器插件的相关介绍和安装方法，请先看：<a href="http://www.yekezhong.com/94" title="谷歌Chrome浏览器自用插件推荐" target="_blank" rel="external">谷歌Chrome浏览器自用插件推荐</a>。</p>
-<p><span style="color: #ff0000;"><strong>说明：由于弹新窗口广告的特殊性，阻挡效果不是很理想，这也是唯一不能阻挡的广告类型。</strong></span></p>
-<p>先来一个效果测试：用游民星空网站做测试（游戏网站，广告格外多）。</p>
-<p>开启AdBlock前：</p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_005.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_005.jpg" alt="开启AdBlock前" title="开启AdBlock前"></a></p>
-<p>如图，点击AdBlock的图标，弹出菜单可以选择是否在某个页面或网站使用AdBlock，点击开启，效果如下图：</p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_006.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_006.jpg" alt="开启AdBlock后" title="开启AdBlock后"></a></p>
-<hr>
-<p>除了彻底消灭广告牛皮癣之外，AdBlock还是非常灵活的用来阻挡网页上你不喜欢的东西。</p>
-<p>拿QQ空间为例，左右边栏有一些很恶心的模块，用AdBlock就可以一劳永逸的干掉它们。</p>
-<p>点击AdBlock的图标，选择<strong><em>阻挡此页面上的广告</em></strong></p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_004.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_004.jpg" alt="开启AdBlock" title="开启AdBlock"></a></p>
-<p>把鼠标移动到想要屏蔽掉的内容上，移动鼠标，直到蓝色透明框选中想要去掉的全部内容</p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_003.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_003.jpg" alt="AdBlock操作方法" title="AdBlock操作方法"></a></p>
-<p>点击一下鼠标左键，再点击<em><strong>看来不错</strong></em>即可完成，如果选取的内容少了，可以拖动滑动控制器直到满意</p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_002.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_002.jpg" alt="AdBlock操作方法" title="AdBlock操作方法"></a></p>
-<p>使用前：</p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_001.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_001.jpg" alt="QQ空间使用AdBlock前" title="QQ空间使用AdBlock前"></a></p>
-<p>使用后：我只保留了动态和访客两个东西，清爽方便。</p>
-<p><a href="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_000.jpg" target="_blank" rel="external"><img src="http://img170.poco.cn/mypoco/myphoto/20120901/14/64924895201209011418532925716755188_000.jpg" alt="QQ空间使用AdBlock后" title="QQ空间使用AdBlock后"></a></p>
-<p>另外还可以直接在想要屏蔽的地方单击鼠标右键弹出菜单，可以快捷屏蔽，操作方法基本同上，就不再赘述。</p>
-
-
-</div>
-    <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/647/" data-id="8mvfsz4k0ypeu11c" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AdBlock/">AdBlock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/广告屏蔽/">广告屏蔽</a></li></ul>
-
-    </footer>
-
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="647" data-title="屏蔽网页广告 谷歌Chrome浏览器神级插件推荐：AdBlock" data-url="http://www.yekezhong.com/647/"></div>
-<!-- 多说评论框 end -->
-</div>
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/655/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          百度应用引擎（BAE）配置总结：实现的班级短信通知平台
-        
-      </div>
-    </a>
-  
-  
-    <a href="/631/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">《Windows程序设计》1至3章，代码注释汇总</div>
-    </a>
-  
-</nav>
-
-
-
-      
+      </header>
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+          <%- partial('post/func') %>
+      <% }%>
   </div>
 </article>
 </section>
         
           <aside id="sidebar">
   
-    <% if (site.posts.length){ %>
+    
   <div class="widget-wrap">
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        <% site.posts.sort('date', -1).limit(20).each(function(post){ %>
+        
           <li>
-            <a href="<%- config.root %><%- post.path %>"><%= post.title || '(no title)' %>(<span class="ds-thread-count" data-thread-key="<%= post.slug %>" data-count-type="comments"></span>)</a>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
           </li>
-        <% }) %>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
+          </li>
+        
       </ul>
     </div>
   </div>
-<% } %>
+
 
   
     <div class="widget-wrap">
-    <h3 class="widget-title">My douban</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
       <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
     </div>
@@ -340,10 +349,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 
