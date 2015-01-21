@@ -2,47 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>About Me | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于博主：
+原籍 Windows，母语 C++，后操一口 PHP 口音迁移户口到 Linux，现致力于为灵析添砖加瓦。对产品为公益事业带来的帮助感到自豪。
+想了解我更多?
+对面的程序员看过来：https://github.com/yekz你也喜欢书或电影？http://www.douban.com/people/43685904/什么玩意儿。http://weibo.com/yekezhong相比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About Me">
+<meta property="og:url" content="http://www.yekezhong.com/about/index.html">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="关于博主：
+原籍 Windows，母语 C++，后操一口 PHP 口音迁移户口到 Linux，现致力于为灵析添砖加瓦。对产品为公益事业带来的帮助感到自豪。
+想了解我更多?
+对面的程序员看过来：https://github.com/yekz你也喜欢书或电影？http://www.douban.com/people/43685904/什么玩意儿。http://weibo.com/yekezhong相比">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="About Me">
+<meta name="twitter:description" content="关于博主：
+原籍 Windows，母语 C++，后操一口 PHP 口音迁移户口到 Linux，现致力于为灵析添砖加瓦。对产品为公益事业带来的帮助感到自豪。
+想了解我更多?
+对面的程序员看过来：https://github.com/yekz你也喜欢书或电影？http://www.douban.com/people/43685904/什么玩意儿。http://weibo.com/yekezhong相比">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

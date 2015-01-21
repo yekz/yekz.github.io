@@ -2,47 +2,71 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>理工好网站 | 网页设计大赛投票展示平台 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于本作品
+
+“理工好网站 | 网页设计大赛投票展示平台”由大学生网络技术协会参赛团队“番茄炒蛋”独家冠名制作。
+番茄炒蛋团队由叶科忠（软件113），胥昭，蒋佩忱三位成员组成。
+本网站为四川理工学院2012“动感地带杯”网页设计大赛1号参赛作品，同时作为本次网页设计大赛投票展示平台使用。
+感谢大家支持本作品：)
+
+投票规则：
+
+
+投票前需先注册。
+每个帐号每日有一定可投票数，使用后第二天票数会自动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理工好网站 | 网页设计大赛投票展示平台">
+<meta property="og:url" content="http://www.yekezhong.com/692/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="关于本作品
+
+“理工好网站 | 网页设计大赛投票展示平台”由大学生网络技术协会参赛团队“番茄炒蛋”独家冠名制作。
+番茄炒蛋团队由叶科忠（软件113），胥昭，蒋佩忱三位成员组成。
+本网站为四川理工学院2012“动感地带杯”网页设计大赛1号参赛作品，同时作为本次网页设计大赛投票展示平台使用。
+感谢大家支持本作品：)
+
+投票规则：
+
+
+投票前需先注册。
+每个帐号每日有一定可投票数，使用后第二天票数会自动">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理工好网站 | 网页设计大赛投票展示平台">
+<meta name="twitter:description" content="关于本作品
+
+“理工好网站 | 网页设计大赛投票展示平台”由大学生网络技术协会参赛团队“番茄炒蛋”独家冠名制作。
+番茄炒蛋团队由叶科忠（软件113），胥昭，蒋佩忱三位成员组成。
+本网站为四川理工学院2012“动感地带杯”网页设计大赛1号参赛作品，同时作为本次网页设计大赛投票展示平台使用。
+感谢大家支持本作品：)
+
+投票规则：
+
+
+投票前需先注册。
+每个帐号每日有一定可投票数，使用后第二天票数会自动">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

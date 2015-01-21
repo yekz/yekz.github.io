@@ -2,47 +2,51 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>《算法导论》第一部分 C++综合实现 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.将第二章和第五章正文和部分习题讲到的算法用C++实现并整理到一个程序中，不同算法使用不同函数即可。
+ 2.程序功能：输入任意个整数的序列，生成一个均匀随机排列。3.使用vector作数据容器。
+
+
+第二章 算法入门2.1 插入排序 -&gt; insertSort()2.3 分治法 -&gt; mergeSortByPri()习题 2.3-2 分治法中哨兵的使用算法一：使用哨兵 -&gt; m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《算法导论》第一部分 C++综合实现">
+<meta property="og:url" content="http://www.yekezhong.com/310/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="1.将第二章和第五章正文和部分习题讲到的算法用C++实现并整理到一个程序中，不同算法使用不同函数即可。
+ 2.程序功能：输入任意个整数的序列，生成一个均匀随机排列。3.使用vector作数据容器。
+
+
+第二章 算法入门2.1 插入排序 -&gt; insertSort()2.3 分治法 -&gt; mergeSortByPri()习题 2.3-2 分治法中哨兵的使用算法一：使用哨兵 -&gt; m">
+<meta property="og:image" content="http://img2081.poco.cn/mypoco/myphoto/20120521/20/6492489520120521205016012.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《算法导论》第一部分 C++综合实现">
+<meta name="twitter:description" content="1.将第二章和第五章正文和部分习题讲到的算法用C++实现并整理到一个程序中，不同算法使用不同函数即可。
+ 2.程序功能：输入任意个整数的序列，生成一个均匀随机排列。3.使用vector作数据容器。
+
+
+第二章 算法入门2.1 插入排序 -&gt; insertSort()2.3 分治法 -&gt; mergeSortByPri()习题 2.3-2 分治法中哨兵的使用算法一：使用哨兵 -&gt; m">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

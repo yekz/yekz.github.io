@@ -2,47 +2,39 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>《数学之美》 阅读笔记 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="文字和语言 vs 数字和信息不同的文字系统（包括数学）在记录信息上的能力是等价的。印度人发明了阿拉伯数字，不是阿拉伯人。如果把中文的笔画作为字母，它其实也是一种拼音文字，不过它是二维的而已。所以西方的拼音文字称为罗马式的语言。在东汉以前要将文字刻在其它物件比如龟壳、石碑和竹简上。所以要惜墨如金，这就使得古文异常简洁难懂，而同时期的口语却和今天的白话差别不大（岭南客家话）。如果说从字母到词的构词法是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《数学之美》 阅读笔记">
+<meta property="og:url" content="http://www.yekezhong.com/974/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="文字和语言 vs 数字和信息不同的文字系统（包括数学）在记录信息上的能力是等价的。印度人发明了阿拉伯数字，不是阿拉伯人。如果把中文的笔画作为字母，它其实也是一种拼音文字，不过它是二维的而已。所以西方的拼音文字称为罗马式的语言。在东汉以前要将文字刻在其它物件比如龟壳、石碑和竹简上。所以要惜墨如金，这就使得古文异常简洁难懂，而同时期的口语却和今天的白话差别不大（岭南客家话）。如果说从字母到词的构词法是">
+<meta property="og:image" content="file:///C:/Users/YEKZ/AppData/Local/youdao/ynote/images/FC21E502F3954C2694FE717D2A6C557F/x1.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《数学之美》 阅读笔记">
+<meta name="twitter:description" content="文字和语言 vs 数字和信息不同的文字系统（包括数学）在记录信息上的能力是等价的。印度人发明了阿拉伯数字，不是阿拉伯人。如果把中文的笔画作为字母，它其实也是一种拼音文字，不过它是二维的而已。所以西方的拼音文字称为罗马式的语言。在东汉以前要将文字刻在其它物件比如龟壳、石碑和竹简上。所以要惜墨如金，这就使得古文异常简洁难懂，而同时期的口语却和今天的白话差别不大（岭南客家话）。如果说从字母到词的构词法是">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

@@ -2,47 +2,44 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>坑爹的 varnish-4 之 Ubuntu 安装手记 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先在varnish官网找到最新版：Varnish Cache releases
+1234wget https://repo.varnish-cache.org/source/varnish-4.0.0-beta1.tar.gztar -vzxf varnish-4.0.0-beta1.tar.gzcd varnish-4.0.0./configure --prefix=/usr/local/va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="坑爹的 varnish-4 之 Ubuntu 安装手记">
+<meta property="og:url" content="http://www.yekezhong.com/1172/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="首先在varnish官网找到最新版：Varnish Cache releases
+1234wget https://repo.varnish-cache.org/source/varnish-4.0.0-beta1.tar.gztar -vzxf varnish-4.0.0-beta1.tar.gzcd varnish-4.0.0./configure --prefix=/usr/local/va">
+<meta property="og:image" content="/img/9.png">
+<meta property="og:image" content="/img/10.png">
+<meta property="og:image" content="/img/11.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="坑爹的 varnish-4 之 Ubuntu 安装手记">
+<meta name="twitter:description" content="首先在varnish官网找到最新版：Varnish Cache releases
+1234wget https://repo.varnish-cache.org/source/varnish-4.0.0-beta1.tar.gztar -vzxf varnish-4.0.0-beta1.tar.gzcd varnish-4.0.0./configure --prefix=/usr/local/va">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

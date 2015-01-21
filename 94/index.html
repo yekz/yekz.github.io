@@ -2,47 +2,46 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>谷歌Chrome浏览器自用插件推荐 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Google Chrome浏览器被称之为目前世界上最快的浏览器，既简洁又高效，用来上网冲浪还真是不错。不过好马也得配好鞍，和很多非IE核心浏览器一样，Chrome也需要利用插件扩展自己的能耐。 如图，进入扩展程序管理页面，在页面底部可以进入应用商店 。  虽然插件很给力，但是也不可安装太多，不然浏览器的启动和响应速度都会有很大影响，默认情况下，打开后Chrome再关闭，插件的进程都会在后台挂起而没">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谷歌Chrome浏览器自用插件推荐">
+<meta property="og:url" content="http://www.yekezhong.com/94/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="Google Chrome浏览器被称之为目前世界上最快的浏览器，既简洁又高效，用来上网冲浪还真是不错。不过好马也得配好鞍，和很多非IE核心浏览器一样，Chrome也需要利用插件扩展自己的能耐。 如图，进入扩展程序管理页面，在页面底部可以进入应用商店 。  虽然插件很给力，但是也不可安装太多，不然浏览器的启动和响应速度都会有很大影响，默认情况下，打开后Chrome再关闭，插件的进程都会在后台挂起而没">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_001.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_003.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_006.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_007.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_004.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_005.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_000.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/09/64924895201205070912123660478871485_002.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谷歌Chrome浏览器自用插件推荐">
+<meta name="twitter:description" content="Google Chrome浏览器被称之为目前世界上最快的浏览器，既简洁又高效，用来上网冲浪还真是不错。不过好马也得配好鞍，和很多非IE核心浏览器一样，Chrome也需要利用插件扩展自己的能耐。 如图，进入扩展程序管理页面，在页面底部可以进入应用商店 。  虽然插件很给力，但是也不可安装太多，不然浏览器的启动和响应速度都会有很大影响，默认情况下，打开后Chrome再关闭，插件的进程都会在后台挂起而没">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

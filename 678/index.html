@@ -2,47 +2,41 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>不在路上 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上路就有灰尘，办公室似乎没有。
+清晨赶着上课的人流庞大，虽然我不在他们路上，还是不动声色穿行其中，走快点，总有超越着整个世界的错觉，走慢了，整个世界都在滞后。十字路口的天边有座山，山上有座塔，塔里没有小和尚，每早赶去办公室，习惯望一眼，借它的清晰模糊程度来奠定一天的情绪基调，昨天灰蒙蒙，今天灰蒙蒙，明天似乎也晴朗不了。好像非要有座塔做指引，才能辨识出城市里灰尘漫天飞扬。一点不比路上少。堵住眼睛，堵">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不在路上">
+<meta property="og:url" content="http://www.yekezhong.com/678/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="上路就有灰尘，办公室似乎没有。
+清晨赶着上课的人流庞大，虽然我不在他们路上，还是不动声色穿行其中，走快点，总有超越着整个世界的错觉，走慢了，整个世界都在滞后。十字路口的天边有座山，山上有座塔，塔里没有小和尚，每早赶去办公室，习惯望一眼，借它的清晰模糊程度来奠定一天的情绪基调，昨天灰蒙蒙，今天灰蒙蒙，明天似乎也晴朗不了。好像非要有座塔做指引，才能辨识出城市里灰尘漫天飞扬。一点不比路上少。堵住眼睛，堵">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不在路上">
+<meta name="twitter:description" content="上路就有灰尘，办公室似乎没有。
+清晨赶着上课的人流庞大，虽然我不在他们路上，还是不动声色穿行其中，走快点，总有超越着整个世界的错觉，走慢了，整个世界都在滞后。十字路口的天边有座山，山上有座塔，塔里没有小和尚，每早赶去办公室，习惯望一眼，借它的清晰模糊程度来奠定一天的情绪基调，昨天灰蒙蒙，今天灰蒙蒙，明天似乎也晴朗不了。好像非要有座塔做指引，才能辨识出城市里灰尘漫天飞扬。一点不比路上少。堵住眼睛，堵">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

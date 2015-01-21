@@ -2,47 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>感受百态 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="臧天朔：
+
+很多歌迷都感动于许巍音乐中渗透的执著。从1982年接触音乐到现在，许巍走过了一段非常坎坷的道路，有过贫穷艰难，患过重度抑郁症一蹶不振……而在他身后，有一位善良坚韧的女人，对他始终不离不弃。说到妻子，许巍说：“我们在一起已经快20年了，彼此相儒以沫。她是我最大的福气。”
+音乐，是许巍的命。从16岁爱上摇滚开始，这个爱乐的西安少年就一直在自己的梦想道路上追寻驰骋。1990年，22岁的许巍当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="感受百态">
+<meta property="og:url" content="http://www.yekezhong.com/1079/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="臧天朔：
+
+很多歌迷都感动于许巍音乐中渗透的执著。从1982年接触音乐到现在，许巍走过了一段非常坎坷的道路，有过贫穷艰难，患过重度抑郁症一蹶不振……而在他身后，有一位善良坚韧的女人，对他始终不离不弃。说到妻子，许巍说：“我们在一起已经快20年了，彼此相儒以沫。她是我最大的福气。”
+音乐，是许巍的命。从16岁爱上摇滚开始，这个爱乐的西安少年就一直在自己的梦想道路上追寻驰骋。1990年，22岁的许巍当">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="感受百态">
+<meta name="twitter:description" content="臧天朔：
+
+很多歌迷都感动于许巍音乐中渗透的执著。从1982年接触音乐到现在，许巍走过了一段非常坎坷的道路，有过贫穷艰难，患过重度抑郁症一蹶不振……而在他身后，有一位善良坚韧的女人，对他始终不离不弃。说到妻子，许巍说：“我们在一起已经快20年了，彼此相儒以沫。她是我最大的福气。”
+音乐，是许巍的命。从16岁爱上摇滚开始，这个爱乐的西安少年就一直在自己的梦想道路上追寻驰骋。1990年，22岁的许巍当">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

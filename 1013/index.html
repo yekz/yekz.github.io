@@ -2,47 +2,42 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>为《基于 MVC 的 Javascript Web 富应用开发》填坑 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="《基于 MVC 的 Javascript Web 富应用开发》一书出版于2012年五月，作者基于自己写的 spine.js 框架讲解了 MVC JS 框架从无到有的构建方法。然后讲解了一个基于 spine.js 的联系人管理应用，一年之后，spine.js 已经愈加复杂和成熟，坑的地方来了，新的spine.js对旧代码的兼容性几乎为零。
+init() 不能实例化类了，proxied 和 proxy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为《基于 MVC 的 Javascript Web 富应用开发》填坑">
+<meta property="og:url" content="http://www.yekezhong.com/1013/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="《基于 MVC 的 Javascript Web 富应用开发》一书出版于2012年五月，作者基于自己写的 spine.js 框架讲解了 MVC JS 框架从无到有的构建方法。然后讲解了一个基于 spine.js 的联系人管理应用，一年之后，spine.js 已经愈加复杂和成熟，坑的地方来了，新的spine.js对旧代码的兼容性几乎为零。
+init() 不能实例化类了，proxied 和 proxy">
+<meta property="og:image" content="/img/1.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为《基于 MVC 的 Javascript Web 富应用开发》填坑">
+<meta name="twitter:description" content="《基于 MVC 的 Javascript Web 富应用开发》一书出版于2012年五月，作者基于自己写的 spine.js 框架讲解了 MVC JS 框架从无到有的构建方法。然后讲解了一个基于 spine.js 的联系人管理应用，一年之后，spine.js 已经愈加复杂和成熟，坑的地方来了，新的spine.js对旧代码的兼容性几乎为零。
+init() 不能实例化类了，proxied 和 proxy">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

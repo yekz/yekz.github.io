@@ -2,47 +2,42 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>MySQL 学习笔记 存储引擎对比篇 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="InnoDB：OLTP在线事务处理，行锁设计，支持外键，非锁定读，通过多版本并发控制（MVCC）来获得高并发性，实现了SQL标准的4种隔离级别，插入缓冲，二次写，自适应哈希索引，预读，使用聚集方式存储表中数据，每张表的数据都按逐渐的顺序存放，如果没有显式地指定主键，会生成一个6字节的ROWID作主键。
+   MyISAM：不支持事务/表锁，对一些OLAP在线分析处理操作速度快，可以使用myi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 学习笔记 存储引擎对比篇">
+<meta property="og:url" content="http://www.yekezhong.com/1163/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="InnoDB：OLTP在线事务处理，行锁设计，支持外键，非锁定读，通过多版本并发控制（MVCC）来获得高并发性，实现了SQL标准的4种隔离级别，插入缓冲，二次写，自适应哈希索引，预读，使用聚集方式存储表中数据，每张表的数据都按逐渐的顺序存放，如果没有显式地指定主键，会生成一个6字节的ROWID作主键。
+   MyISAM：不支持事务/表锁，对一些OLAP在线分析处理操作速度快，可以使用myi">
+<meta property="og:image" content="/img/13.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 学习笔记 存储引擎对比篇">
+<meta name="twitter:description" content="InnoDB：OLTP在线事务处理，行锁设计，支持外键，非锁定读，通过多版本并发控制（MVCC）来获得高并发性，实现了SQL标准的4种隔离级别，插入缓冲，二次写，自适应哈希索引，预读，使用聚集方式存储表中数据，每张表的数据都按逐渐的顺序存放，如果没有显式地指定主键，会生成一个6字节的ROWID作主键。
+   MyISAM：不支持事务/表锁，对一些OLAP在线分析处理操作速度快，可以使用myi">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

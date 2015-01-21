@@ -2,47 +2,68 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>叫兽《万万没想到》王大锤 经典语录 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一
+是不是热得跟狗一样就是热狗了汪汪汪，
+剧组盒饭难吃的要死但是不吃一定会死，
+今天也要努力演习因为一天五十块呵呵，
+我是要成为亚洲影帝的男人我一定可以，
+因为我就住在亚洲小区西五栋四三一号。
+本集由韩国宇航局赞助播出。“我们要去远方看看，还有什么是我们的思密达”。
+我的生涯一片无悔。我想起那天下午夕阳下的奔跑，那是我逝去的青春。
+二
+单身是因为他们不了解韭菜包子的真谛，
+是不是能力太强的人都像我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="叫兽《万万没想到》王大锤 经典语录">
+<meta property="og:url" content="http://www.yekezhong.com/992/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="一
+是不是热得跟狗一样就是热狗了汪汪汪，
+剧组盒饭难吃的要死但是不吃一定会死，
+今天也要努力演习因为一天五十块呵呵，
+我是要成为亚洲影帝的男人我一定可以，
+因为我就住在亚洲小区西五栋四三一号。
+本集由韩国宇航局赞助播出。“我们要去远方看看，还有什么是我们的思密达”。
+我的生涯一片无悔。我想起那天下午夕阳下的奔跑，那是我逝去的青春。
+二
+单身是因为他们不了解韭菜包子的真谛，
+是不是能力太强的人都像我">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="叫兽《万万没想到》王大锤 经典语录">
+<meta name="twitter:description" content="一
+是不是热得跟狗一样就是热狗了汪汪汪，
+剧组盒饭难吃的要死但是不吃一定会死，
+今天也要努力演习因为一天五十块呵呵，
+我是要成为亚洲影帝的男人我一定可以，
+因为我就住在亚洲小区西五栋四三一号。
+本集由韩国宇航局赞助播出。“我们要去远方看看，还有什么是我们的思密达”。
+我的生涯一片无悔。我想起那天下午夕阳下的奔跑，那是我逝去的青春。
+二
+单身是因为他们不了解韭菜包子的真谛，
+是不是能力太强的人都像我">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>

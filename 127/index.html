@@ -2,47 +2,67 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <%
-  var title = page.title;
-
-  if (is_archive()){
-    title = 'Archives';
-
-    if (is_month()){
-      title += ': ' + page.year + '/' + page.month;
-    } else if (is_year()){
-      title += ': ' + page.year;
-    }
-  } else if (is_category()){
-    title = 'Category: ' + page.category;
-  } else if (is_tag()){
-    title = 'Tag: ' + page.tag;
-  }
-  %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
-  <% if (theme.rss){ %>
-    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
-  <% } %>
-  <% if (theme.favicon){ %>
-    <link rel="icon" href="<%- theme.favicon %>">
-  <% } %>
   
-  <%- css('css/style') %>
+  <title>goagent+Chrome/Firefox翻墙教程 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文内容来源于http://www.x-berry.com/，版权归原作者所有，与本人无关。
+博主重要声明：本文之所有内容（包括但不限于汉字、拼音、外文字母、单词、句子、图片、影像、录音，以及前述之各种任意组合等等）完全是复制粘贴，来源于国际互联网，
+本人并不明白其全部或部分之意思（包括但不限于对所复制粘贴之内容的识别、阅读、理解、分析、记忆等等），故本人不对以上及本内容负任何法律责任（包括但不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="goagent+Chrome/Firefox翻墙教程">
+<meta property="og:url" content="http://www.yekezhong.com/127/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="本文内容来源于http://www.x-berry.com/，版权归原作者所有，与本人无关。
+博主重要声明：本文之所有内容（包括但不限于汉字、拼音、外文字母、单词、句子、图片、影像、录音，以及前述之各种任意组合等等）完全是复制粘贴，来源于国际互联网，
+本人并不明白其全部或部分之意思（包括但不限于对所复制粘贴之内容的识别、阅读、理解、分析、记忆等等），故本人不对以上及本内容负任何法律责任（包括但不">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070854388502075176103_000.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_021.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_020.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_019.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_018.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_017.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_016.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_015.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_014.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_013.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_010.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_012.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_011.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_009.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_008.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_007.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_006.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_005.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_003.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_004.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_002.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_001.jpg">
+<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120507/08/64924895201205070842284262599450852_000.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="goagent+Chrome/Firefox翻墙教程">
+<meta name="twitter:description" content="本文内容来源于http://www.x-berry.com/，版权归原作者所有，与本人无关。
+博主重要声明：本文之所有内容（包括但不限于汉字、拼音、外文字母、单词、句子、图片、影像、录音，以及前述之各种任意组合等等）完全是复制粘贴，来源于国际互联网，
+本人并不明白其全部或部分之意思（包括但不限于对所复制粘贴之内容的识别、阅读、理解、分析、记忆等等），故本人不对以上及本内容负任何法律责任（包括但不">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <%- partial('google-analytics') %>
+  
 
-  <style type="text/css">
-
+<style type="text/css">
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
-
-
 </style>
 
 </head>
