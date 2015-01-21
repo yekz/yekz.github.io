@@ -2,51 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>四川理工学院教务系统无弹窗登录器 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="又到一期选课时，每到此时教务系统的服务器总是各种奔溃，于是出现了这种“变相强行登录”的东西。之前尝了甜头的童鞋又来寻求登录器，本来改得只有输入框和登录按钮，无聊就做了下美化，顺便加入了对Enter键的响应，使得爆破速度大大加快。哎哟不错哦。
-只需重复按键盘“Enter”、“BackSpace”两个键即可快速向服务器发送登录请求。
-预祝大家选课顺利!
-进入系统：四川理工学院教务系统无弹窗登录器
-为获">
-<meta property="og:type" content="article">
-<meta property="og:title" content="四川理工学院教务系统无弹窗登录器">
-<meta property="og:url" content="http://www.yekezhong.com/457/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="又到一期选课时，每到此时教务系统的服务器总是各种奔溃，于是出现了这种“变相强行登录”的东西。之前尝了甜头的童鞋又来寻求登录器，本来改得只有输入框和登录按钮，无聊就做了下美化，顺便加入了对Enter键的响应，使得爆破速度大大加快。哎哟不错哦。
-只需重复按键盘“Enter”、“BackSpace”两个键即可快速向服务器发送登录请求。
-预祝大家选课顺利!
-进入系统：四川理工学院教务系统无弹窗登录器
-为获">
-<meta property="og:image" content="http://img13.poco.cn/mypoco/myphoto/20120612/19/64924895201206121906596175895333313_000.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="四川理工学院教务系统无弹窗登录器">
-<meta name="twitter:description" content="又到一期选课时，每到此时教务系统的服务器总是各种奔溃，于是出现了这种“变相强行登录”的东西。之前尝了甜头的童鞋又来寻求登录器，本来改得只有输入框和登录按钮，无聊就做了下美化，顺便加入了对Enter键的响应，使得爆破速度大大加快。哎哟不错哦。
-只需重复按键盘“Enter”、“BackSpace”两个键即可快速向服务器发送登录请求。
-预祝大家选课顺利!
-进入系统：四川理工学院教务系统无弹窗登录器
-为获">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

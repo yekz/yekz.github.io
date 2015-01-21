@@ -2,88 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>50个黄色网站 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="译自：50 Yellow Web Designs to Inspire You中文：50个启发你灵感的黄色系网站设计原作者版权，转载请注明来源，多谢！色彩在网站设计中是一个很重要的方面。 好的设计师会小心的选择色彩来达到一个目的。有的时候，这个目的就是醒目些以获得用户的注意，而黄色正好是一个很棒的“吸引注意”的色彩。黄色是一个高度活跃的色彩，可以引起思维活跃并带来令人愉悦的想法。为了能够提供一些灵">
-<meta property="og:type" content="article">
-<meta property="og:title" content="50个黄色网站">
-<meta property="og:url" content="http://www.yekezhong.com/302/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="译自：50 Yellow Web Designs to Inspire You中文：50个启发你灵感的黄色系网站设计原作者版权，转载请注明来源，多谢！色彩在网站设计中是一个很重要的方面。 好的设计师会小心的选择色彩来达到一个目的。有的时候，这个目的就是醒目些以获得用户的注意，而黄色正好是一个很棒的“吸引注意”的色彩。黄色是一个高度活跃的色彩，可以引起思维活跃并带来令人愉悦的想法。为了能够提供一些灵">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites01.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites02.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites03.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites04.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites05.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites06.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites07.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites08.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites09.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites10.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites11.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites12.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites13.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites14.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites15.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites16.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites17.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites18.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites19.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites20.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites21.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites22.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites23.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites24.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites25.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites26.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites27.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites28.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites29.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites30.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites31.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites32.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites33.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites34.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites35.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites36.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites37.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites38.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites39.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites40.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites41.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites42.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites43.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites44.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites45.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites46.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites47.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites48.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites49.jpg">
-<meta property="og:image" content="http://webdesignledger.com/wp-content/uploads/2010/03/yellowsites50.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="50个黄色网站">
-<meta name="twitter:description" content="译自：50 Yellow Web Designs to Inspire You中文：50个启发你灵感的黄色系网站设计原作者版权，转载请注明来源，多谢！色彩在网站设计中是一个很重要的方面。 好的设计师会小心的选择色彩来达到一个目的。有的时候，这个目的就是醒目些以获得用户的注意，而黄色正好是一个很棒的“吸引注意”的色彩。黄色是一个高度活跃的色彩，可以引起思维活跃并带来令人愉悦的想法。为了能够提供一些灵">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

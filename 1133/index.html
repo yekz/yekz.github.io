@@ -2,53 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>每月荐影【1】：四个臭皮匠顶个诸葛亮？ | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="相对来说，我看电影比较多，所以常有朋友叫推荐电影，但是，没有信任基础的推荐容易导致失望。这需要从两方面来解释：拍电影的目的和看电影的目的。只有拍的出发点和看的目的地有联系，大家才会给某部电影点赞。上一篇博文心的距离说的就是这个问题：
-
-世上最遥远的距离不是天涯海角，而是研究者和被研究者的距离。
-换个词：是思考者和被思考者的距离。
-再换个更准确的词：主动和被动的距离。
-就像《心的距离》的嘶吼：衡量你">
-<meta property="og:type" content="article">
-<meta property="og:title" content="每月荐影【1】：四个臭皮匠顶个诸葛亮？">
-<meta property="og:url" content="http://www.yekezhong.com/1133/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="相对来说，我看电影比较多，所以常有朋友叫推荐电影，但是，没有信任基础的推荐容易导致失望。这需要从两方面来解释：拍电影的目的和看电影的目的。只有拍的出发点和看的目的地有联系，大家才会给某部电影点赞。上一篇博文心的距离说的就是这个问题：
-
-世上最遥远的距离不是天涯海角，而是研究者和被研究者的距离。
-换个词：是思考者和被思考者的距离。
-再换个更准确的词：主动和被动的距离。
-就像《心的距离》的嘶吼：衡量你">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每月荐影【1】：四个臭皮匠顶个诸葛亮？">
-<meta name="twitter:description" content="相对来说，我看电影比较多，所以常有朋友叫推荐电影，但是，没有信任基础的推荐容易导致失望。这需要从两方面来解释：拍电影的目的和看电影的目的。只有拍的出发点和看的目的地有联系，大家才会给某部电影点赞。上一篇博文心的距离说的就是这个问题：
-
-世上最遥远的距离不是天涯海角，而是研究者和被研究者的距离。
-换个词：是思考者和被思考者的距离。
-再换个更准确的词：主动和被动的距离。
-就像《心的距离》的嘶吼：衡量你">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

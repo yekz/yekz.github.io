@@ -2,46 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>《算法导论》广度优先搜索，深度优先搜索之强联通分支 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题越来越复杂，《算法导论》一书给出的伪代码越来越坑爹，计算强联通分支几句英语就给俺打发了。
-
-于是邻接表的转置和强联通分支的输出都成了待自行解决的问题，期间因为一些逻辑错误导致一直出不了正确结构，翻看了将用作大二教材的《数据结构（c语言版）》一书，话说俺一直觉得上面给出的代码排版和粗体的标识各种难看，而其对该算法实现的底层也用了几个结构体，google来的实现代码一看也均是参照《数据结构（c语言">
-<meta property="og:type" content="article">
-<meta property="og:title" content="《算法导论》广度优先搜索，深度优先搜索之强联通分支">
-<meta property="og:url" content="http://www.yekezhong.com/622/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="问题越来越复杂，《算法导论》一书给出的伪代码越来越坑爹，计算强联通分支几句英语就给俺打发了。
-
-于是邻接表的转置和强联通分支的输出都成了待自行解决的问题，期间因为一些逻辑错误导致一直出不了正确结构，翻看了将用作大二教材的《数据结构（c语言版）》一书，话说俺一直觉得上面给出的代码排版和粗体的标识各种难看，而其对该算法实现的底层也用了几个结构体，google来的实现代码一看也均是参照《数据结构（c语言">
-<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120802/15/64924895201208021538592710712502108_000.jpg">
-<meta property="og:image" content="http://img13.poco.cn/mypoco/myphoto/20120802/15/64924895201208021536232180436749439_000.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《算法导论》广度优先搜索，深度优先搜索之强联通分支">
-<meta name="twitter:description" content="问题越来越复杂，《算法导论》一书给出的伪代码越来越坑爹，计算强联通分支几句英语就给俺打发了。
-
-于是邻接表的转置和强联通分支的输出都成了待自行解决的问题，期间因为一些逻辑错误导致一直出不了正确结构，翻看了将用作大二教材的《数据结构（c语言版）》一书，话说俺一直觉得上面给出的代码排版和粗体的标识各种难看，而其对该算法实现的底层也用了几个结构体，google来的实现代码一看也均是参照《数据结构（c语言">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

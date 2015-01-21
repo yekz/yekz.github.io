@@ -2,41 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>科X与人文的十字路口 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="马上就要高考了，我的物理还没复习完，挺紧张的。这也算是人生路上挺大的一个十字路口了，但谁要站在某个方向上冲路口上的人大吼大叫：“这边这边”，生生扼杀掉其它两个方向，这定该是反人类的的罪名，好在路口上的早就做牛做马惯了，吼叫的也不觉得有什么不妥。
-但既然是路口，好几个选择摆在哪里，每个选择背后的得失成败，报应称不上，因果总有些。于是选择的时候就要格外慎重，哪怕你早就在前路上丢失了自己，捂着耳朵蒙着眼">
-<meta property="og:type" content="article">
-<meta property="og:title" content="科X与人文的十字路口">
-<meta property="og:url" content="http://www.yekezhong.com/970/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="马上就要高考了，我的物理还没复习完，挺紧张的。这也算是人生路上挺大的一个十字路口了，但谁要站在某个方向上冲路口上的人大吼大叫：“这边这边”，生生扼杀掉其它两个方向，这定该是反人类的的罪名，好在路口上的早就做牛做马惯了，吼叫的也不觉得有什么不妥。
-但既然是路口，好几个选择摆在哪里，每个选择背后的得失成败，报应称不上，因果总有些。于是选择的时候就要格外慎重，哪怕你早就在前路上丢失了自己，捂着耳朵蒙着眼">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="科X与人文的十字路口">
-<meta name="twitter:description" content="马上就要高考了，我的物理还没复习完，挺紧张的。这也算是人生路上挺大的一个十字路口了，但谁要站在某个方向上冲路口上的人大吼大叫：“这边这边”，生生扼杀掉其它两个方向，这定该是反人类的的罪名，好在路口上的早就做牛做马惯了，吼叫的也不觉得有什么不妥。
-但既然是路口，好几个选择摆在哪里，每个选择背后的得失成败，报应称不上，因果总有些。于是选择的时候就要格外慎重，哪怕你早就在前路上丢失了自己，捂着耳朵蒙着眼">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

@@ -2,41 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>《黑客与画家》阅读笔记 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么书呆子不受欢迎
-《蝇王》 8.3在一个人产生良知之前，折磨就是一种娱乐。老师很像监狱的狱卒。美丽心灵书呆子已经在思考的东西，正是真实世界看重的东西。他们与别人不一样，不把所有时间用来玩一种耗尽全力但又毫无意义的游戏。学校的真正目的是把儿童都关在同一个地方，一遍大人们白天可以腾出手来把事情做完。问题是：1.不告诉他们这一点；2.把这监狱的大部分交给犯人来管理。文艺复兴时期的学徒是整天劳碌的牧羊">
-<meta property="og:type" content="article">
-<meta property="og:title" content="《黑客与画家》阅读笔记">
-<meta property="og:url" content="http://www.yekezhong.com/949/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="为什么书呆子不受欢迎
-《蝇王》 8.3在一个人产生良知之前，折磨就是一种娱乐。老师很像监狱的狱卒。美丽心灵书呆子已经在思考的东西，正是真实世界看重的东西。他们与别人不一样，不把所有时间用来玩一种耗尽全力但又毫无意义的游戏。学校的真正目的是把儿童都关在同一个地方，一遍大人们白天可以腾出手来把事情做完。问题是：1.不告诉他们这一点；2.把这监狱的大部分交给犯人来管理。文艺复兴时期的学徒是整天劳碌的牧羊">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《黑客与画家》阅读笔记">
-<meta name="twitter:description" content="为什么书呆子不受欢迎
-《蝇王》 8.3在一个人产生良知之前，折磨就是一种娱乐。老师很像监狱的狱卒。美丽心灵书呆子已经在思考的东西，正是真实世界看重的东西。他们与别人不一样，不把所有时间用来玩一种耗尽全力但又毫无意义的游戏。学校的真正目的是把儿童都关在同一个地方，一遍大人们白天可以腾出手来把事情做完。问题是：1.不告诉他们这一点；2.把这监狱的大部分交给犯人来管理。文艺复兴时期的学徒是整天劳碌的牧羊">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

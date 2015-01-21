@@ -2,38 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>别人家的孩子 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="你我若谈起我的兴趣和特点的由来，我大概会告诉你我的阅读习惯上受益于教师亲人的资源和启蒙，我之所以成为一个程序员是因为早时邻里有台电脑。当我把自己倒推到童年的这个层次时却发现仍然不够。那年夏天挤在电脑前的少年也有七八，成为一个程序员的只是我。当年相互传阅童话传记和UFO的人，此时也都再无心去感受文字的表达。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="别人家的孩子">
-<meta property="og:url" content="http://www.yekezhong.com/别人家的孩子/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="你我若谈起我的兴趣和特点的由来，我大概会告诉你我的阅读习惯上受益于教师亲人的资源和启蒙，我之所以成为一个程序员是因为早时邻里有台电脑。当我把自己倒推到童年的这个层次时却发现仍然不够。那年夏天挤在电脑前的少年也有七八，成为一个程序员的只是我。当年相互传阅童话传记和UFO的人，此时也都再无心去感受文字的表达。">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="别人家的孩子">
-<meta name="twitter:description" content="你我若谈起我的兴趣和特点的由来，我大概会告诉你我的阅读习惯上受益于教师亲人的资源和启蒙，我之所以成为一个程序员是因为早时邻里有台电脑。当我把自己倒推到童年的这个层次时却发现仍然不够。那年夏天挤在电脑前的少年也有七八，成为一个程序员的只是我。当年相互传阅童话传记和UFO的人，此时也都再无心去感受文字的表达。">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

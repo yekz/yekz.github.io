@@ -2,50 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>MX360,MX370,K420,PR200MKII横向评测 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6-14补充修正：
-一周又已过去，之前说到“听歌和煲机的时间也有几十个小时”，原以为不会再有大变化，完全错了！
-文中说的“还原出来的细节容易影响整体听感”，比如齿音，尖锐感，经过又一周的半煲半听，几乎完全不存在了，透彻而无刺耳的锋芒。
-而且这种改变还在继续。
-在入PR200MKII之前，一直习惯K420接笔记本听歌（一方面隔去寝室的嘈杂和枪声），感觉很好。这几天习惯200后，发现K420的声音已无">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MX360,MX370,K420,PR200MKII横向评测">
-<meta property="og:url" content="http://www.yekezhong.com/410/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="6-14补充修正：
-一周又已过去，之前说到“听歌和煲机的时间也有几十个小时”，原以为不会再有大变化，完全错了！
-文中说的“还原出来的细节容易影响整体听感”，比如齿音，尖锐感，经过又一周的半煲半听，几乎完全不存在了，透彻而无刺耳的锋芒。
-而且这种改变还在继续。
-在入PR200MKII之前，一直习惯K420接笔记本听歌（一方面隔去寝室的嘈杂和枪声），感觉很好。这几天习惯200后，发现K420的声音已无">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MX360,MX370,K420,PR200MKII横向评测">
-<meta name="twitter:description" content="6-14补充修正：
-一周又已过去，之前说到“听歌和煲机的时间也有几十个小时”，原以为不会再有大变化，完全错了！
-文中说的“还原出来的细节容易影响整体听感”，比如齿音，尖锐感，经过又一周的半煲半听，几乎完全不存在了，透彻而无刺耳的锋芒。
-而且这种改变还在继续。
-在入PR200MKII之前，一直习惯K420接笔记本听歌（一方面隔去寝室的嘈杂和枪声），感觉很好。这几天习惯200后，发现K420的声音已无">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

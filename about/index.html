@@ -2,62 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>about | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于博主：
-30年众生马牛，60年诸佛龙象。
-联系博主：
-
-QQ：767053703Email：yekezhong315#gmail.com微博：http://weibo.com/yekezhongGithub: https://github.com/yekz
-
-关于博客：
-
-域名 : 50RMB/Year （Godaddy）空间：主机屋 &gt; WP Hostz &gt; Github Pag">
-<meta property="og:type" content="article">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://www.yekezhong.com/about/index.html">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="关于博主：
-30年众生马牛，60年诸佛龙象。
-联系博主：
-
-QQ：767053703Email：yekezhong315#gmail.com微博：http://weibo.com/yekezhongGithub: https://github.com/yekz
-
-关于博客：
-
-域名 : 50RMB/Year （Godaddy）空间：主机屋 &gt; WP Hostz &gt; Github Pag">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于博主：
-30年众生马牛，60年诸佛龙象。
-联系博主：
-
-QQ：767053703Email：yekezhong315#gmail.com微博：http://weibo.com/yekezhongGithub: https://github.com/yekz
-
-关于博客：
-
-域名 : 50RMB/Year （Godaddy）空间：主机屋 &gt; WP Hostz &gt; Github Pag">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>
@@ -132,7 +117,7 @@ QQ：767053703Email：yekezhong315#gmail.com微博：http://weibo.com/yekezhongG
         
   
     <h1 class="article-title" itemprop="name">
-      about <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
+      About Me <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="undefined" data-count-type="comments"></span>
     </h1>
   
 
@@ -146,21 +131,10 @@ QQ：767053703Email：yekezhong315#gmail.com微博：http://weibo.com/yekezhongG
 <!-- toc -->
 
 <p>关于博主：</p>
-<p>30年众生马牛，60年诸佛龙象。</p>
-<p>联系博主：</p>
-<blockquote>
-<p>QQ：767053703<br>Email：yekezhong315#gmail.com<br>微博：<a href="http://weibo.com/yekezhong" target="_blank" rel="external">http://weibo.com/yekezhong</a><br>Github: <a href="https://github.com/yekz" target="_blank" rel="external">https://github.com/yekz</a></p>
-</blockquote>
-<p>关于博客：</p>
-<blockquote>
-<p>域名 : 50RMB/Year （Godaddy）<br>空间：主机屋 &gt; WP Hostz &gt; <a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a><br>程序：WordPress &gt; <a href="http://hexo.io/" target="_blank" rel="external">hexo</a><br>主题：<a href="https://github.com/yekz/YesLandscape" target="_blank" rel="external">YesLandscape</a></p>
-</blockquote>
-<p>博客主题</p>
-<blockquote>
-<p>翻山越岭程序猿，摘得果实与你分享。<br>对无知心怀敬畏，对已知心怀感恩。</p>
-</blockquote>
-<p>您还可以访问<a href="/guestbook">留言板</a>给我留言或建议。祝您浏览愉快！</p>
-<p>Build At 2012-5-06.</p>
+<p>原籍 Windows，母语 C++，后操一口 PHP 口音迁移户口到 Linux，现致力于为<a href="http://www.lingxi360.com/" target="_blank" rel="external">灵析</a>添砖加瓦。<br>对产品为公益事业带来的帮助感到自豪。</p>
+<p>想了解我更多?</p>
+<p>对面的程序员看过来：<a href="https://github.com/yekz" target="_blank" rel="external">https://github.com/yekz</a><br>你也喜欢书或电影？<a href="http://www.douban.com/people/43685904/" target="_blank" rel="external">http://www.douban.com/people/43685904/</a><br>什么玩意儿。<a href="http://weibo.com/yekezhong" target="_blank" rel="external">http://weibo.com/yekezhong</a><br>相比<a href="/guestbook">留言</a>，我更喜欢写长篇的邮件对话：yekezhong315#gmail.com</p>
+<p>————————————————————<br>Build At 2012-5-06.<br>Enjoy IT :)</p>
 
 
 </div>
@@ -175,7 +149,7 @@ QQ：767053703Email：yekezhong315#gmail.com微博：http://weibo.com/yekezhongG
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="about" data-url="http://www.yekezhong.com/about/index.html"></div>
+	<div class="ds-thread" data-thread-key="undefined" data-title="About Me" data-url="http://www.yekezhong.com/about/index.html"></div>
 <!-- 多说评论框 end -->
 </div>
 

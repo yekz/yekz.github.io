@@ -2,64 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>JavaScript破解网页右键、复制限制 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有的网页限制了鼠标右键和复制功能，有时很不方便，看得见摸不着。
-俺这里有三种方法，都可以破除限制，各位客官往下看。
-问题、意见和建议，欢迎留言交流！
-方法一：点击下面的链接，将【一键破解限制】添加到收藏夹即可，遇上有限制的网页，只需点击一下即可破解。【注：Google浏览器不支持此方法，请看方法二】
-【加入收藏夹】
-// 
-
-方法二：自动不支持，手工即可，俺已把代码上传到了博客，使用步骤如下：">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript破解网页右键、复制限制">
-<meta property="og:url" content="http://www.yekezhong.com/504/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="有的网页限制了鼠标右键和复制功能，有时很不方便，看得见摸不着。
-俺这里有三种方法，都可以破除限制，各位客官往下看。
-问题、意见和建议，欢迎留言交流！
-方法一：点击下面的链接，将【一键破解限制】添加到收藏夹即可，遇上有限制的网页，只需点击一下即可破解。【注：Google浏览器不支持此方法，请看方法二】
-【加入收藏夹】
-// 
-
-方法二：自动不支持，手工即可，俺已把代码上传到了博客，使用步骤如下：">
-<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120626/17/64924895201206261720143638479395645_004.jpg">
-<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120626/17/64924895201206261720143638479395645_001.jpg">
-<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120626/17/64924895201206261720143638479395645_000.jpg">
-<meta property="og:image" content="http://img13.poco.cn/mypoco/myphoto/20120626/17/64924895201206261737102924152001107_000.jpg">
-<meta property="og:image" content="http://img170.poco.cn/mypoco/myphoto/20120626/17/64924895201206261720143638479395645_003.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript破解网页右键、复制限制">
-<meta name="twitter:description" content="有的网页限制了鼠标右键和复制功能，有时很不方便，看得见摸不着。
-俺这里有三种方法，都可以破除限制，各位客官往下看。
-问题、意见和建议，欢迎留言交流！
-方法一：点击下面的链接，将【一键破解限制】添加到收藏夹即可，遇上有限制的网页，只需点击一下即可破解。【注：Google浏览器不支持此方法，请看方法二】
-【加入收藏夹】
-// 
-
-方法二：自动不支持，手工即可，俺已把代码上传到了博客，使用步骤如下：">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

@@ -2,50 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>迟到的间隔天 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是草书？就是每写一个字心里都会草一下。
-实验课上，我用学霸无法理解的速度在实验报告纸上建造草坪，胖子问：大师兄，很痛苦吧。
-我不假思索说不痛苦，他不假思索问为什么。
-有个笑话说：某冬日。上课了，伊万老师背靠教室壁炉站着，对学生们说：“说话前要多考虑，至少要数到50下才说，重要的话要数到100下。”学生们争先恐后地数起来，最后不约而同地爆发出：“99、100，老师的衣服着火了！”。
-所以我没答上">
-<meta property="og:type" content="article">
-<meta property="og:title" content="迟到的间隔天">
-<meta property="og:url" content="http://www.yekezhong.com/1047/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="什么是草书？就是每写一个字心里都会草一下。
-实验课上，我用学霸无法理解的速度在实验报告纸上建造草坪，胖子问：大师兄，很痛苦吧。
-我不假思索说不痛苦，他不假思索问为什么。
-有个笑话说：某冬日。上课了，伊万老师背靠教室壁炉站着，对学生们说：“说话前要多考虑，至少要数到50下才说，重要的话要数到100下。”学生们争先恐后地数起来，最后不约而同地爆发出：“99、100，老师的衣服着火了！”。
-所以我没答上">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="迟到的间隔天">
-<meta name="twitter:description" content="什么是草书？就是每写一个字心里都会草一下。
-实验课上，我用学霸无法理解的速度在实验报告纸上建造草坪，胖子问：大师兄，很痛苦吧。
-我不假思索说不痛苦，他不假思索问为什么。
-有个笑话说：某冬日。上课了，伊万老师背靠教室壁炉站着，对学生们说：“说话前要多考虑，至少要数到50下才说，重要的话要数到100下。”学生们争先恐后地数起来，最后不约而同地爆发出：“99、100，老师的衣服着火了！”。
-所以我没答上">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

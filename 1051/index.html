@@ -2,59 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>站着讲，坐着听 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="讲座是什么？是输出。
-输出，从计算机网络的角度来说，需要要调用下层服务，消息才能一层一层传播下去。
-所以办讲座，心态很重要，谁在台上，谁就是上层。
-这点需要自己认识到。
-学校社团改革打破了层级平衡。
-促成社团改革的人有错吗？没错！社团改革之后，他可以减轻很多工作量，这个社会，决定了人需要自私，才能生存，我们暂且原谅自私，只考虑影响。
-两年以前，网协会长，副会长，干部，我对他们的心态是什么？
-拘促，">
-<meta property="og:type" content="article">
-<meta property="og:title" content="站着讲，坐着听">
-<meta property="og:url" content="http://www.yekezhong.com/1051/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="讲座是什么？是输出。
-输出，从计算机网络的角度来说，需要要调用下层服务，消息才能一层一层传播下去。
-所以办讲座，心态很重要，谁在台上，谁就是上层。
-这点需要自己认识到。
-学校社团改革打破了层级平衡。
-促成社团改革的人有错吗？没错！社团改革之后，他可以减轻很多工作量，这个社会，决定了人需要自私，才能生存，我们暂且原谅自私，只考虑影响。
-两年以前，网协会长，副会长，干部，我对他们的心态是什么？
-拘促，">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="站着讲，坐着听">
-<meta name="twitter:description" content="讲座是什么？是输出。
-输出，从计算机网络的角度来说，需要要调用下层服务，消息才能一层一层传播下去。
-所以办讲座，心态很重要，谁在台上，谁就是上层。
-这点需要自己认识到。
-学校社团改革打破了层级平衡。
-促成社团改革的人有错吗？没错！社团改革之后，他可以减轻很多工作量，这个社会，决定了人需要自私，才能生存，我们暂且原谅自私，只考虑影响。
-两年以前，网协会长，副会长，干部，我对他们的心态是什么？
-拘促，">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

@@ -2,44 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>长安 长安 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="刚在知乎晃到一个问题：“豆瓣有哪些评分不低的烂书？”，问题里晃到一句话：“从来没有人读书，只有书中读自己，发现自己或者检查自己。——罗曼·罗兰”。
-其实此时我应该满脸通红地老实承认，一个小时前我打开Kindle还没翻页就睡着了，当然这和昨晚的蚊子不无关系。
-这篇文章不是要说读书的，我也不知道要写点什么，耳旁老罗的发布会正在进行，我好歹在面试时厚颜无耻地借用了《我的奋斗》一句话：坚持做自己认为是正确">
-<meta property="og:type" content="article">
-<meta property="og:title" content="长安 长安">
-<meta property="og:url" content="http://www.yekezhong.com/1196/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="刚在知乎晃到一个问题：“豆瓣有哪些评分不低的烂书？”，问题里晃到一句话：“从来没有人读书，只有书中读自己，发现自己或者检查自己。——罗曼·罗兰”。
-其实此时我应该满脸通红地老实承认，一个小时前我打开Kindle还没翻页就睡着了，当然这和昨晚的蚊子不无关系。
-这篇文章不是要说读书的，我也不知道要写点什么，耳旁老罗的发布会正在进行，我好歹在面试时厚颜无耻地借用了《我的奋斗》一句话：坚持做自己认为是正确">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="长安 长安">
-<meta name="twitter:description" content="刚在知乎晃到一个问题：“豆瓣有哪些评分不低的烂书？”，问题里晃到一句话：“从来没有人读书，只有书中读自己，发现自己或者检查自己。——罗曼·罗兰”。
-其实此时我应该满脸通红地老实承认，一个小时前我打开Kindle还没翻页就睡着了，当然这和昨晚的蚊子不无关系。
-这篇文章不是要说读书的，我也不知道要写点什么，耳旁老罗的发布会正在进行，我好歹在面试时厚颜无耻地借用了《我的奋斗》一句话：坚持做自己认为是正确">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>

@@ -2,59 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>心的距离 | YesBlog</title>
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="去年这时候，做了一个蹲坑蛋糕，黄色部分当然是生日主角吃了。
-这是多年来我吃过的唯一能把生日的快乐延续下来的蛋糕。
-这事就成了后来常用的下酒笑料。
-几年前，朋友问我喜欢啥类型的礼物，我说：能长久保存的。
-现在她送的礼物仍然在我桌子上。
-任何时候送苹果，都比平安夜好。如果是在圣诞节送，人能记你一辈子。
-心意是发自内心，用心包装，而不是跟谁外界的习俗，随波逐流。
-就像生日要吃蛋糕，平安夜要送苹果，这些事">
-<meta property="og:type" content="article">
-<meta property="og:title" content="心的距离">
-<meta property="og:url" content="http://www.yekezhong.com/1129/">
-<meta property="og:site_name" content="YesBlog">
-<meta property="og:description" content="去年这时候，做了一个蹲坑蛋糕，黄色部分当然是生日主角吃了。
-这是多年来我吃过的唯一能把生日的快乐延续下来的蛋糕。
-这事就成了后来常用的下酒笑料。
-几年前，朋友问我喜欢啥类型的礼物，我说：能长久保存的。
-现在她送的礼物仍然在我桌子上。
-任何时候送苹果，都比平安夜好。如果是在圣诞节送，人能记你一辈子。
-心意是发自内心，用心包装，而不是跟谁外界的习俗，随波逐流。
-就像生日要吃蛋糕，平安夜要送苹果，这些事">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="心的距离">
-<meta name="twitter:description" content="去年这时候，做了一个蹲坑蛋糕，黄色部分当然是生日主角吃了。
-这是多年来我吃过的唯一能把生日的快乐延续下来的蛋糕。
-这事就成了后来常用的下酒笑料。
-几年前，朋友问我喜欢啥类型的礼物，我说：能长久保存的。
-现在她送的礼物仍然在我桌子上。
-任何时候送苹果，都比平安夜好。如果是在圣诞节送，人能记你一辈子。
-心意是发自内心，用心包装，而不是跟谁外界的习俗，随波逐流。
-就像生日要吃蛋糕，平安夜要送苹果，这些事">
-
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
   
-    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-
+  <%- css('css/style') %>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <%- partial('google-analytics') %>
 
-<style type="text/css">
+  <style type="text/css">
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 400;
   src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
 }
+
+
 </style>
 
 </head>
