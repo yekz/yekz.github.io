@@ -118,16 +118,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>您好，<br>由于在简历发出之后我对博客进行了一次重构，页面结构发生了变化，新的页面在 <a href="http://yekezhong.com/archives/" target="_blank" rel="external">这里</a>。<br>给您带来不便，在此致歉：）</p>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/program/index.html" data-id="d05hmc9cl2439edy" class="article-share-link">Share</a>
-      
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -136,15 +132,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="program" data-url="http://www.yekezhong.com/program/index.html"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -371,10 +372,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

@@ -126,20 +126,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>选择了 Chrome Dev 版本，就得接受其三天两头的抽筋，最让人感到蛋痛的 bug，莫过于诡异的 {searchterms}，在 <a href="https://support.google.com/chrome/?p=settings_omnibox" target="_blank" rel="external">omnibox</a> 地址栏输入关键字搜索，都会转为搜索 {searchterms} 。</p>
-<p>记忆中已经出现过多次了，有谁知道原因和解决办法吗？怀疑是自己乱改搜索引擎设置导致的。<a href="http://img13.poco.cn/mypoco/myphoto/20130823/23/6492489520130823231436042.png" target="_blank" rel="external"><img src="http://img13.poco.cn/mypoco/myphoto/20130823/23/6492489520130823231436042.png" alt=""></a></p>
-<dl class="wp-caption alignnone" id="" style="width: 795px;"><dd class="wp-caption-dd"></dd></dl>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/996/" data-id="7t59pd0q1i7sdgz9" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google/">google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/-searchterms/">{searchterms}</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -148,34 +140,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="996" data-title="Chrome 诡异的 {searchterms} bug" data-url="http://www.yekezhong.com/996/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/1013/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          为《基于 MVC 的 Javascript Web 富应用开发》填坑
-        
-      </div>
-    </a>
-  
-  
-    <a href="/992/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">叫兽《万万没想到》王大锤 经典语录</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -402,10 +380,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

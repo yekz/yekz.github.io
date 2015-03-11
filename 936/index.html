@@ -132,27 +132,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>先声明，纯属无聊念头，粗制滥造，感慨于每天一半时间都在Google上度过，写个小程序看看每天Google多少次。。</p>
-<p><span style="color: #ff0000;">注：由于不是用 chrome 扩展的办法做的，似乎没办法把 .com .hk .cn 神马的数据整合到一起，反正用 Google 肯定也只用一个吧。</span></p>
-<p><span style="color: #ff0000;">另注：开了 Google Instant predictions（Google 即搜即得联想功能） 的，俺还没研究怎么监测。。。</span></p>
-<p>总之就是个闲来无事的小玩意儿，如果你认为有什么好玩的值得实现，欢迎留言。。。</p>
-<p>使用方法参见 <a href="http://www.yekezhong.com/907" title="四川理工学院教务系统自动登录器 suseAutoLoginRobot" target="_blank" rel="external">四川理工学院教务系统自动登录器 suseAutoLoginRobot</a>。</p>
-<p>点击下载：<a href="http://www.yekezhong.com/labor/googleSearchCountRobot.user.js" target="_blank" rel="external">/labor/googleSearchCountRobot.user.js</a></p>
-<p>或者到 <a href="http://userscripts.org/scripts/show/163880" target="_blank" rel="external">http://userscripts.org/scripts/show/163880</a> 安装。</p>
-<p>截图一张，数据就在左下角了。</p>
-<p><a href="/img/7.png"><img src="/img/7.png" alt="googleSearchCountRobot"></a></p>
-<p>另外构想了一个复杂一点的把戏，清明后再研究吧。菇凉等着俺来了~~</p>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/936/" data-id="e3475y63pmhlpbmj" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google/">google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/googleSearchCountRobot/">googleSearchCountRobot</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -161,34 +146,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="936" data-title="油猴脚本第二炮：googleSearchCountRobot，看看苦逼的程序猿，每天要Google多少次" data-url="http://www.yekezhong.com/936/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/946/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          看见
-        
-      </div>
-    </a>
-  
-  
-    <a href="/930/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">VS2012下配置opencv+directshow(CCameraDS)，支持多摄像头</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -415,10 +386,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

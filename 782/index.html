@@ -140,53 +140,12 @@ Never return">
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-	<div id="toc" class="toc-article">
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_to_remember"><span class="toc-number">2.</span> <span class="toc-text">Things to remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_words"><span class="toc-number">3.</span> <span class="toc-text">Key words</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack_and_Heap(Isn’t_std::stack_or_heap(data_structure)_“heap(data_structure)”)):"><span class="toc-number">3.1.</span> <span class="toc-text">Stack and Heap(Isn’t std::stack or heap(data structure) “heap(data structure)”)):</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code_analysis"><span class="toc-number">4.</span> <span class="toc-text">Code analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">5.</span> <span class="toc-text">Code</span></a></li></ol>
-	</div>
-
-<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
-<h2 id="Part_4:_Designs_and_Declarations">Part 4: Designs and Declarations</h2>
-<p><a href="http://www.yekezhong.com/782" title="Item 21: Don’t try to return a reference when you must return an object" target="_blank" rel="external">Item 21: Don’t try to return a reference when you must return an object</a>.</p>
-<hr>
-<h2 id="Things_to_remember">Things to remember</h2>
-<ul>
-<li>Never return a pointer or reference to a local stack object, a reference to a heap-allocated object, or a pointer or reference to a local static object if there is a chance that more than one such object will be needed.</li>
-</ul>
-<h2 id="Key_words">Key words</h2>
-<h3 id="Stack_and_Heap(Isn’t_std::stack_or_heap(data_structure)_“heap(data_structure)”)):"><a href="http://www.learncpp.com/cpp-tutorial/79-the-stack-and-the-heap/" title="The stack and the heap" target="_blank" rel="external">Stack and Heap</a>(Isn’t <a href="http://www.cplusplus.com/reference/stack/stack/" title="LIFO stack" target="_blank" rel="external">std::stack</a> or <a href="http://en.wikipedia.org/wiki/Heap_(data_structure" target="_blank" rel="external">heap(data structure)</a> “heap(data structure)”)):</h3>
-<ul>
-<li>A function can create a new object in only two ways: on the stack or on the heap.</li>
-<li><strong>Value types</strong> are created on the stack, and <strong>reference types</strong> are created on the heap.</li>
-<li>About stack, system will allocate memory to the instance of object automatically, and to the heap, you must allocate memory to the instance of object with <strong>new</strong> or <strong>malloc </strong>manually.</li>
-<li>When function ends, system will automatically free the memory area of the stack, but to the heap, you must free the memory area manually with<strong> free</strong> or <strong>delete</strong>, else it will result in the <strong>memory leak</strong>.</li>
-</ul>
-<h2 id="Code_analysis">Code analysis</h2>
-<p><strong>Bad code 1:</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/************************************************************************</span></div><div class="line">* warning! bad code!</div><div class="line">************************************************************************/</div><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Rational& <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational& lhs, <span class="keyword">const</span> Rational& rhs) </div><div class="line">{</div><div class="line">trueRational result(lhs.n * rhs.n, lhs.d * rhs.d);</div><div class="line"> 	<span class="keyword">return</span> result;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>A more serious problem is that this function returns a reference to result, but result is a local object, and local objects are destroyed when the function exits. This version of operator*, then, doesn’t return a reference to a Rational — it returns a reference to a former  and empty Rational.</p>
-<p><strong>Bad code 2:</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Rational& <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational& lhs, <span class="keyword">const</span> Rational& rhs)</div><div class="line">{</div><div class="line">trueRational *result = <span class="keyword">new</span> Rational(lhs.n * rhs.n, lhs.d * rhs.d);</div><div class="line"> 	<span class="keyword">return</span> *result;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>Will, who will apply delete to the object conjured up by your use of new？</p>
-<p><strong>Bad code 3:</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Rational& <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational& lhs, <span class="keyword">const</span> Rational& rhs)</div><div class="line">{</div><div class="line">truestatic Rational result;</div><div class="line"> 	result = ...;</div><div class="line"> 	result result;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>All designs employing the use of static objects, this one immediately raises our thread-safety hackles.<br>The expression if (operator==(operator<em>(a, b), operator</em>(c, d))) will always evaluate to true, regardless of the value of a, b, c, and d!<br><strong>In any case, should avoid the use of global variables and static variables within a function.</strong></p>
-<h2 id="Code">Code</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "stdafx.h" </span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt; </span></div><div class="line"></div><div class="line"><span class="keyword">class</span> Rational { </div><div class="line"><span class="keyword">public</span>: </div><div class="line">trueRational(<span class="keyword">int</span> numberator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>) \</div><div class="line"> 		: n(numberator), d(denominator) { } </div><div class="line">truedouble getNum() { <span class="keyword">if</span> (d != <span class="number">0</span>) <span class="keyword">return</span> n / d; };</div><div class="line"><span class="keyword">private</span>: </div><div class="line">truedouble n, d;</div><div class="line"> 	<span class="keyword">friend</span> <span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational& lhs, <span class="keyword">const</span> Rational &rhs);</div><div class="line"> 	<span class="comment">/**********************************************************************</span></div><div class="line">true* warning! bad code!</div><div class="line">true**********************************************************************/</div><div class="line"> 	<span class="comment">// friend const Rational& operator*(const Rational& lhs, const Rational &rhs); }; </span></div><div class="line">trueinline <span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational& lhs, <span class="keyword">const</span> Rational& rhs) { </div><div class="line">truetruereturn Rational(lhs.n * rhs.n, lhs.d * rhs.d);</div><div class="line"><span class="keyword">true</span>} </div><div class="line"><span class="keyword">true</span><span class="comment">/************************************************************************ </span></div><div class="line">true* warning! bad code!</div><div class="line">true************************************************************************/</div><div class="line"><span class="keyword">true</span><span class="comment">// inline const Rational& operator*(const Rational& lhs, const Rational& rhs)</span></div><div class="line"><span class="keyword">true</span><span class="comment">// {</span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	Rational result(lhs.n * rhs.n, lhs.d * rhs.d);</span></div><div class="line"><span class="keyword">true</span><span class="comment">// </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	local objects are destroyed when the function exits.</span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	return result; </span></div><div class="line"><span class="keyword">true</span><span class="comment">// } </span></div><div class="line"><span class="keyword">true</span><span class="comment">// inline const Rational& operator*(const Rational& lhs, const Rational& rhs) </span></div><div class="line"><span class="keyword">true</span><span class="comment">// { </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	Rational *result = new Rational(lhs.n * rhs.n, lhs.d * rhs.d); </span></div><div class="line"><span class="keyword">true</span><span class="comment">// </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	who will apply delete to the object conjured up by your use of new ? </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	return *result; </span></div><div class="line"><span class="keyword">true</span><span class="comment">// } </span></div><div class="line"><span class="keyword">true</span><span class="comment">// inline const Rational& operator*(const Rational& lhs, const Rational& rhs) </span></div><div class="line"><span class="keyword">true</span><span class="comment">// { </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	static Rational result; </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	result = ...; </span></div><div class="line"><span class="keyword">true</span><span class="comment">// </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	raises our thread-safety hackles </span></div><div class="line"><span class="keyword">true</span><span class="comment">// </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	if (operator==(operator*(a, b), operator*(c, d)) will always evaluate to true </span></div><div class="line"><span class="keyword">true</span><span class="comment">// 	result result; </span></div><div class="line"><span class="keyword">true</span><span class="comment">// } </span></div><div class="line">}</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">trueRational a(<span class="number">1</span>, <span class="number">2</span>); </div><div class="line">trueRational b(<span class="number">3</span>, <span class="number">5</span>); </div><div class="line">trueRational c = a * b; </div><div class="line">truestd::<span class="built_in">cout</span> &lt;&lt; c.getNum() &lt;&lt; std::endl; 	system(<span class="string">"pause"</span>);</div><div class="line"> 	<span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">}</div></pre></td></tr></table></figure>
-
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/782/" data-id="nvizmap2thvoj76o" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heap/">heap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/">stack</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -195,34 +154,20 @@ Never return">
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="782" data-title="Item 21: Don’t try to return a reference when you must return..." data-url="http://www.yekezhong.com/782/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/810/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Item 22: Declare data members private.
-        
-      </div>
-    </a>
-  
-  
-    <a href="/753/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Item 20: Prefer pass-by-reference-to-const to pass-by-value</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -449,10 +394,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

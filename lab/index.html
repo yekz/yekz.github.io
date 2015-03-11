@@ -151,44 +151,12 @@ DEMO： http://9playing.com
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>本页面列出了部分方便提供在线查看的软件/网站作品，供您参考：）</p>
-<p>JavaScript 贪吃蛇</p>
-<blockquote>
-<p>游戏说明：<a href="http://www.yekezhong.com/250" target="_blank" rel="external">JavaScript 贪吃蛇</a><br>进入游戏：<a href="http://61.139.106.3:8087/yekz/labor/snake/" target="_blank" rel="external">贪吃蛇</a></p>
-</blockquote>
-<p>56大学购物网</p>
-<blockquote>
-<p>DEMO： <a href="http://9playing.com" target="_blank" rel="external">http://9playing.com</a></p>
-</blockquote>
-<p>四川理工学院教务系统无弹窗登录器</p>
-<blockquote>
-<p>功能说明：<a href="http://www.yekezhong.com/457/" target="_blank" rel="external">http://www.yekezhong.com/457/</a><br>登录器：<a href="http://61.139.106.3:8087/yekz/labor/autoLogin.html" target="_blank" rel="external">http://61.139.106.3:8087/yekz/labor/autoLogin.html</a></p>
-</blockquote>
-<p>理工好网站 网页设计大赛投票系统</p>
-<blockquote>
-<p>介绍 PTT：<a href="http://wenku.baidu.com/view/55e02187d5bbfd0a7956736e.html" target="_blank" rel="external">http://wenku.baidu.com/view/55e02187d5bbfd0a7956736e.html</a></p>
-</blockquote>
-<p>基于GPRS的危险气体监测警报系统</p>
-<blockquote>
-<p>程序文档：<a href="http://pan.baidu.com/s/1nthZqu1" target="_blank" rel="external">http://pan.baidu.com/s/1nthZqu1</a></p>
-</blockquote>
-<p>大学生网络技术协会（微信公众号） 工院助手（微信公众号）</p>
-<blockquote>
-<p>功能介绍：<a href="http://tieba.baidu.com/p/2673853348" target="_blank" rel="external">http://tieba.baidu.com/p/2673853348</a></p>
-</blockquote>
-<p>部分校内网站作品：</p>
-<blockquote>
-<p><a href="http://61.139.106.3:8087/zzxy/" target="_blank" rel="external">四川理工学院青年价值观研究所网站</a><br><a href="http://61.139.106.3:8087/lxy_sx/" target="_blank" rel="external">四川理工学院本科专业信息平台</a><br><a href="http://61.139.106.3:8087/aqzsjs/" target="_blank" rel="external">大学生安全知识竞赛系统</a></p>
-</blockquote>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/lab/index.html" data-id="ih7to7ifhvi8t894" class="article-share-link">Share</a>
-      
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -197,15 +165,20 @@ DEMO： http://9playing.com
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="lab" data-url="http://www.yekezhong.com/lab/index.html"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -432,10 +405,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

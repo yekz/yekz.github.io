@@ -122,19 +122,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;Windows.h&gt;</span></div><div class="line"></div><div class="line">LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM);</div><div class="line"><span class="comment">// win32中hPrevInstance总是NULL</span></div><div class="line"><span class="keyword">int</span> WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, <span class="keyword">int</span> iCmdShow)</div><div class="line">{</div><div class="line">truestatic TCHAR szAppName[] = TEXT(<span class="string">"HelloWin"</span>);</div><div class="line">trueHWND hwnd;        <span class="comment">// 视窗代号</span></div><div class="line"></div><div class="line">trueMSG msg;          <span class="comment">// 讯息结构</span></div><div class="line">truetruetruetrue<span class="comment">/*</span></div><div class="line">truetruetruetruetruetypedef struct tagMSG {</div><div class="line">truetruetruetruetruetrueHWND hwnd;</div><div class="line">truetruetruetruetruetrueUINT message;</div><div class="line">truetruetruetruetruetrueWPARAM wParam;    // 一个32位元的讯息参数</div><div class="line">truetruetruetruetruetrueLPARAM lParam;    // 一个32位元的讯息参数</div><div class="line">truetruetruetruetruetrueDWORD time;       // 讯息放入讯息伫列的时间</div><div class="line">truetruetruetruetruetruePOINT pt;         // 讯息放入讯息伫列时的滑鼠坐标</div><div class="line">truetruetruetruetrue} MSG, *PMSG;</div><div class="line"></div><div class="line">truetruetruetruetruetypedef struct tagPOINT {</div><div class="line">truetruetruetruetruetrueLONG x;</div><div class="line">truetruetruetruetruetrueLONG y;</div><div class="line">truetruetruetruetrue} POINT, *PPOINT;</div><div class="line">truetruetruetrue*/</div><div class="line"></div><div class="line">trueWNDCLASS wndclass; <span class="comment">// 视窗类别结构</span></div><div class="line">truetruetruetrue<span class="comment">/*</span></div><div class="line">truetruetruetruetrue// Unicode版本</div><div class="line">truetruetruetruetruetypedef struct tagWNDCLASSW {</div><div class="line">truetruetruetruetruetrueUINT style;</div><div class="line">truetruetruetruetruetrueWNDPROC lpfnWndProc;</div><div class="line">truetruetruetruetruetrueint cbClsExtra;</div><div class="line">truetruetruetruetruetrueint cbWndExtra;</div><div class="line">truetruetruetruetruetrueHINSTANCE hInstance;</div><div class="line">truetruetruetruetruetrueHICON hIcon;</div><div class="line">truetruetruetruetruetrueHCURSOR hCursor;</div><div class="line">truetruetruetruetruetrueHBRUSH hbrBackground;</div><div class="line">truetruetruetruetruetrueLPCWSTR lpszMenuName;</div><div class="line">truetruetruetruetruetrueLPCWSTR lpszClassName;</div><div class="line">truetruetruetruetrue} WNDCLASSW, *PWNDCLASSW, NEAR *NPWNDCLASSW, FAR *LPWNDCLASSW;</div><div class="line">truetruetruetrue*/</div><div class="line"></div><div class="line">truewndclass.style               = CS_HREDRAW | CS_VREDRAW;</div><div class="line"><span class="keyword">true</span><span class="comment">// 处理依据这个视窗类别建立的所有视窗的全部信息（提供的是指向函数的指针）</span></div><div class="line">truewndclass.lpfnWndProc     = WndProc; <span class="comment">// lpfn:指向函数的长指针</span></div><div class="line">truewndclass.cbClsExtra      = <span class="number">0</span>; <span class="comment">// 预留的位元数组</span></div><div class="line">truewndclass.cbWndExtra      = <span class="number">0</span>;</div><div class="line">truewndclass.hInstance       = hInstance; <span class="comment">// 程序执行实体代号</span></div><div class="line">truewndclass.hIcon           = LoadIcon(NULL, IDI_APPLICATION);</div><div class="line">truewndclass.hCursor         = LoadCursor(NULL, IDC_ARROW);</div><div class="line">truewndclass.hbrBackground   = (HBRUSH) GetStockObject(WHITE_BRUSH); <span class="comment">// 背景颜色</span></div><div class="line">truewndclass.lpszMenuName    = NULL; <span class="comment">// 视窗类别功能表</span></div><div class="line">truewndclass.lpszClassName   = szAppName;</div><div class="line"></div><div class="line">trueif (!RegisterClass(&wndclass)) { <span class="comment">// 注册视窗类别</span></div><div class="line">truetrueMessageBox(NULL, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</div><div class="line">truetruereturn <span class="number">0</span>;</div><div class="line"><span class="keyword">true</span>}</div><div class="line"></div><div class="line"><span class="keyword">true</span><span class="comment">// 传回被建立的视窗的代号，如果一个程序建立了许多视窗，则每个视窗具有一个代号</span></div><div class="line">truehwnd = CreateWindow(    szAppName,                  <span class="comment">// window class</span></div><div class="line">                            TEXT(<span class="string">"The Hello Program"</span>),  <span class="comment">// window caption</span></div><div class="line">                            WS_OVERLAPPEDWINDOW,        <span class="comment">// window style</span></div><div class="line">                            CW_USEDEFAULT,              <span class="comment">// initial x position</span></div><div class="line">                            CW_USEDEFAULT,              <span class="comment">// initial y position</span></div><div class="line">                            CW_USEDEFAULT,              <span class="comment">// initial x size</span></div><div class="line">                            CW_USEDEFAULT,              <span class="comment">// initial y size</span></div><div class="line">                            NULL,                       <span class="comment">// parent window handle</span></div><div class="line">                            NULL,                       <span class="comment">// window menu handle</span></div><div class="line">                            hInstance,                  <span class="comment">// program instance handle</span></div><div class="line">                            NULL,                       <span class="comment">// creation parameters</span></div><div class="line"><span class="keyword">true</span>);</div><div class="line">trueShowWindow(hwnd, iCmdShow);</div><div class="line">trueUpdateWindow(hwnd);</div><div class="line"></div><div class="line"><span class="keyword">true</span><span class="comment">// 讯息回圈</span></div><div class="line">truewhile (GetMessage(&msg, NULL, <span class="number">0</span>, <span class="number">0</span>)) {</div><div class="line">truetrueTranslateMessage(&msg);</div><div class="line">truetrueDispatchMessage(&msg);</div><div class="line"><span class="keyword">true</span>}</div><div class="line">truereturn msg.wParam;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 必须返回0</span></div><div class="line">LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</div><div class="line">{</div><div class="line">trueHDC hdc;               <span class="comment">// 装置内容代号</span></div><div class="line"></div><div class="line">truePAINTSTRUCT ps;        <span class="comment">// 绘图结构</span></div><div class="line">truetruetruetrue<span class="comment">/*</span></div><div class="line">truetruetruetruetruetypedef struct tagPAINTSTRUCT {</div><div class="line">truetruetruetruetruetrue// 使用者程序使用</div><div class="line">truetruetruetruetruetrueHDC hdc;</div><div class="line">truetruetruetruetruetrueBOOL fErase; // 大多数时候为FALSE(0)，意味着已经擦除了无效矩形的背景</div><div class="line">truetruetruetruetruetrueRECT rcPaint; // 无效边框的边界</div><div class="line">truetruetruetruetruetrue// windows内部使用</div><div class="line">truetruetruetruetruetrueBOOL fRestore;</div><div class="line">truetruetruetruetruetrueBOOL fIncUpdate;</div><div class="line">truetruetruetruetruetrueBYTE rgbReserved[32];</div><div class="line">truetruetruetruetrue} PAINTSTRUCT;</div><div class="line">truetruetruetrue*/</div><div class="line"></div><div class="line"><span class="keyword">true</span><span class="comment">// 四个栏位为：left, top, right, bottom，以像素为单位，相对于显示区域的左上角</span></div><div class="line">trueRECT rect;             <span class="comment">// 矩形结构</span></div><div class="line">truestatic <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">trueswitch(message) {</div><div class="line">truecase WM_CREATE:</div><div class="line">truetruereturn <span class="number">0</span>;</div><div class="line">truecase WM_PAINT:</div><div class="line">truetruehdc = BeginPaint(hwnd, &ps); <span class="comment">// 从BeginPaint取得的hdc为无效区域</span></div><div class="line">truetrueGetClientRect(hwnd, &rect);</div><div class="line">truetruestatic TCHAR szBuffer[<span class="number">40</span>];</div><div class="line">truetrueDrawText(hdc, TEXT(<span class="string">"Hello, Windows 7!"</span>), -<span class="number">1</span>, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);</div><div class="line">truetrueTextOut(hdc, <span class="number">40</span>, <span class="number">60</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"Hello, Windows %d"</span>), i++));</div><div class="line">truetrueEndPaint(hwnd, &ps);</div><div class="line">truetruereturn <span class="number">0</span>;</div><div class="line">truecase WM_DESTROY:</div><div class="line">truetruePostQuitMessage(<span class="number">0</span>); <span class="comment">// 在讯息伫列中插入一个WM_QUIT讯息</span></div><div class="line">truetruereturn <span class="number">0</span>;</div><div class="line"><span class="keyword">true</span>}</div><div class="line">truereturn DefWindowProc(hwnd, message, wParam, lParam);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/631/" data-id="7d2f7ze0bcl3b7v3" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Windows程序设计》/">《Windows程序设计》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程-MFC/">编程 . MFC</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -143,34 +136,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="631" data-title="《Windows程序设计》1至3章，代码注释汇总" data-url="http://www.yekezhong.com/631/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/647/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          屏蔽网页广告 谷歌Chrome浏览器神级插件推荐：AdBlock
-        
-      </div>
-    </a>
-  
-  
-    <a href="/622/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">《算法导论》广度优先搜索，深度优先搜索之强联通分支</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -397,10 +376,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

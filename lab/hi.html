@@ -123,17 +123,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>本页面列出了部分方便提供在线查看的软件/网站作品，供您参考：）</p>
-<p><img src="http://yekezhong.com/img/21.png" alt=""><br><img src="http://yekezhong.com/img/22.png" alt=""><br><img src="http://yekezhong.com/img/23.png" alt=""><br><img src="http://yekezhong.com/img/24.jpg" alt=""><br><img src="http://yekezhong.com/img/25.jpg" alt=""></p>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/lab/hi.html" data-id="51o2dph3mzombiy6" class="article-share-link">Share</a>
-      
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -142,15 +137,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="hi" data-url="http://www.yekezhong.com/lab/hi.html"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -377,10 +377,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

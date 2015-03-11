@@ -140,39 +140,12 @@ Prefer pass-by-value-to-c">
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-	<div id="toc" class="toc-article">
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_to_remember"><span class="toc-number">2.</span> <span class="toc-text">Things to remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_words"><span class="toc-number">3.</span> <span class="toc-text">Key words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Copy-On-Write_(COW)："><span class="toc-number">4.</span> <span class="toc-text">Copy-On-Write (COW)：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">4.1.</span> <span class="toc-text">Code</span></a></li></ol></li></ol>
-	</div>
-
-<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
-<h2 id="Part_4:_Designs_and_Declarations">Part 4: Designs and Declarations</h2>
-<p><a href="http://www.yekezhong.com/753" title="Item 20: Prefer pass-by-reference-to-const to pass-by-value" target="_blank" rel="external">Item 20: Prefer pass-by-reference-to-const to pass-by-value</a>.</p>
-<hr>
-<h2 id="Things_to_remember">Things to remember</h2>
-<ul>
-<li>Prefer pass-by-value-to-const over pass-by-value. It’s typically more efficient and it avoids the slicing problem.</li>
-<li>The rule doesn’t apply to build-in types and<a href="http://www.yekezhong.com/574" title="Iterator 简单实现" target="_blank" rel="external"> STL iterator</a> and function object types. For them, pass by value is usually appropriate.</li>
-<li>对于正常的 <a href="http://www.yekezhong.com/cpp" title="Category Archives: C++" target="_blank" rel="external">C++</a> 程序，传值的地方传 <a href="http://www.yekezhong.com/574" title="关于const成员函数的使用" target="_blank" rel="external">const</a> 引用总是没错的。对象复制不仅成本太高，正确实现对象复制也不是件容易的事。如果想把对象置入一个<a href="http://www.yekezhong.com/574" title="用allocator实现的标准库vector容器类模版" target="_blank" rel="external">容器</a>，最好是使用它的引用。</li>
-</ul>
-<h2 id="Key_words">Key words</h2>
-<h2 id="Copy-On-Write_(COW)："><strong><a href="http://en.wikipedia.org/wiki/Copy-on-write" title="Copy-on-write wikipedia" target="_blank" rel="external">Copy-On-Write</a> (COW)：</strong></h2>
-<p>copy-on-write is the name give to the process of identifying when a task attempts to make a change to shared information, creating a separate(private) copy of that information for the task and redirecting the task to making changes to the private copy to prevent its changes from becoming visible to all other tasks.</p>
-<p><strong><a href="http://stackoverflow.com/questions/274626/what-is-the-slicing-problem-in-c" title="What is the slicing problem in C++?" target="_blank" rel="external">Slicing Problem</a>：</strong></p>
-<p>“Slicing” is where you assign an object of a derived class to an instance of a base class, thereby losing part of the information - some of it is “sliced” away.</p>
-<h3 id="Code">Code</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "stdafx.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string&gt;</span></div><div class="line"><span class="keyword">using</span> std::<span class="built_in">string</span>;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Person {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">truePerson(<span class="built_in">string</span> name, <span class="built_in">string</span> address): name(name), address(address) { }</div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestring name;</div><div class="line">truestring address;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">class</span> Student : <span class="keyword">public</span> Person {</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueStudent(<span class="built_in">string</span> name, <span class="built_in">string</span> address, <span class="built_in">string</span> schoolName, <span class="built_in">string</span> schoolAddress) \</div><div class="line">truetrue: Person(name, address), schoolName(schoolName), schoolAddress(schoolAddress) { }</div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestring schoolName;</div><div class="line">truestring schoolAddress;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">bool</span> validateStudent(Student s)</div><div class="line">{</div><div class="line">truereturn <span class="keyword">true</span>; <span class="comment">// test</span></div><div class="line">}</div><div class="line"><span class="keyword">bool</span> validateStudent2(<span class="keyword">const</span> Student& s)</div><div class="line">{</div><div class="line">truereturn <span class="keyword">true</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">trueStudent plato(<span class="string">"plato"</span>, <span class="string">"Athens"</span>, <span class="string">"Socrates"</span>, <span class="string">"Athens"</span>);</div><div class="line"><span class="keyword">true</span><span class="comment">// the overall cost of passing a Student by value is six constructors</span></div><div class="line"><span class="keyword">true</span><span class="comment">// and six destructors!</span></div><div class="line">truebool platoIsOK = validateStudent(plato);</div><div class="line">truesystem(<span class="string">"pause"</span>);</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/753/" data-id="928ht0ep2ytokf1j" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Copy-On-Write/">Copy-On-Write</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slicing-Problem/">Slicing Problem</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pass-by-reference-to-const/">pass-by-reference-to-const</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pass-by-value/">pass-by-value</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -181,34 +154,20 @@ Prefer pass-by-value-to-c">
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="753" data-title="Item 20: Prefer pass-by-reference-to-const to pass-by-value" data-url="http://www.yekezhong.com/753/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/782/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Item 21: Don’t try to return a reference when you must return...
-        
-      </div>
-    </a>
-  
-  
-    <a href="/844/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">《Effective C++》读书笔记 (系列)</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -435,10 +394,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

@@ -139,52 +139,12 @@ Help docu">
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>可喜可贺，<a href="http://qt.digia.com/" target="_blank" rel="external">Digia</a>在末日第二天发布了<a href="http://blog.qt.digia.com/blog/2012/12/19/qt-5-0/" title="Introducing Qt 5.0" target="_blank" rel="external">QT5</a>，同时面世的还有<a href="http://blog.qt.digia.com/blog/2012/12/19/visual-studio-add-in-1-2-0-for-qt-5-released/" title="Visual Studio Add-In 1.2.0 for Qt 5 Released" target="_blank" rel="external">qt-vs-addin-1.2.0</a>，让我们看看有哪些新玩意儿：</p>
-<blockquote>
-<ul>
-<li>Project creation wizards updated to follow Qt 5 module structure</li>
-<li>Project settings form updated to follow Qt 5 module structure</li>
-<li>Help documents updated to Qt 5.0</li>
-<li><span style="color: #ff0000;">Support for Visual Studio 2012</span>, 2010 and 2008</li>
-<li>Parameter passing to lupdate fixed (QTVSADDINBUG-131)<br>没错，1.2.0终于支持VS2012了！</li>
-</ul>
-</blockquote>
-<p>下载安装一路顺利，意料之中情理之外，问题接踵而至，按先后顺序罗列如下，希望对遇到相同问题的程序猿有所帮助。</p>
-<p>当新建一个QT5  Application，并按下F5后，第一颗地雷引爆了：</p>
-<blockquote>
-<p><em><strong>Error 1 error LNK2038: mismatch detected for ‘_MSC_VER’: value ‘1600’ doesn’t match value ‘1700’ in cell.obj D:\Projects\QT\qt5\qt5\qtmaind.lib(qtmain_win.obj) qt5</strong></em><br>错误原因很明显，坑爹的QT发布的包是for VS2010的，纵然qt-vs-addin支持了VS2012，也不能直接编译。好在类似的问题早在两三个月前给老师做的一个MFC上就遇见过，<strong>在装有VS2010 的情况下，打开项目属性，将Platform Toolset从V110修改为V100，使用VS2010的平台工具集来编译【必须安装VS2010】</strong>，问题即可解决。如图。</p>
-</blockquote>
-<p><a href="http://img2081.poco.cn/mypoco/myphoto/20121225/11/64924895201212251136181220947404197_001.jpg" target="_blank" rel="external"><img src="http://img2081.poco.cn/mypoco/myphoto/20121225/11/64924895201212251136181220947404197_001.jpg" alt="设置平台工具集为V100" title="设置平台工具集为V100"></a></p>
-<p>测试程序终于编译通过，但是更蛋痛的问题接踵而至，困扰了俺整整一天，其间修复重装了VS2010和VS2012，任然没能解决。</p>
-<p>修改为V100后，初始生成的程序能编译通过，但是俺震精地发现不能往项目里添加文件了，alert如下：</p>
-<blockquote>
-<p><strong><em>The item type ‘None’ is not supported by this project item provider. Parameter name: itemType</em></strong><br>再次打开项目属性，居然只剩下可怜两项，没办法再设置回V110了！</p>
-</blockquote>
-<p>哎尼玛，这不科学！</p>
-<p>其中各种google资料就不说了，反正是没同样命运的二货遇上相同问题。</p>
-<p>纠结了一天之后，终于在某个惊天动地的时刻，俺灵感顿现，想到俺的VS2010是中文的，而VS2012是英文的，会不是是这个原因导致VS2012上不能正常使用VS2010 的平台工具集呢，，马上测试，居然还真是这样，坑爹啊!</p>
-<p>立马把VS2012改回中文，看起来终于正常了。</p>
-<p>结果把前几天用QT4写到一半的一个程序搬过来，一编译，一大堆错误，各种GUI库里的widget类没定义，可是我明明有写#include &lt;QtGui&gt;</p>
-<p>打开QtGui文件一看，果然，以往包含在里面的</p>
-<blockquote>
-<p><strong><em>class QCheckBox;</em></strong></p>
-<p><strong><em>class QLabel;</em></strong></p>
-<p><strong><em>class QLineEdit;</em></strong></p>
-<p><strong><em>class QPushButton;</em></strong><br>等等玩意儿全不见了，<a href="http://www.kdab.com/porting-from-qt-4-to-qt-5/" target="_blank" rel="external">Google一下</a>:<br><strong><em>One of the major internal infrastructural changes in Qt 5 compared to Qt 4 is the splitting of widgets from the QtGui module into a new QtWidgets module.</em></strong><br>原来，QT5把这些类全部从QtGui搬到了QtWidgets。</p>
-</blockquote>
-<p>悉数修改，终于编译通过，QT5及qt-vs-addin-1.2.0之VS2012配置算是圆满收工，剩下的就是在VS2012上享受QT5了。</p>
-<p><a href="http://img2081.poco.cn/mypoco/myphoto/20121225/11/64924895201212251136181220947404197_000.jpg" target="_blank" rel="external"><img src="http://img2081.poco.cn/mypoco/myphoto/20121225/11/64924895201212251136181220947404197_000.jpg" alt="VS2012&amp;QT5" title="VS2012&amp;QT5"></a></p>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/698/" data-id="5su891uvrk0fw1x2" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QT5/">QT5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2010/">VS2010</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2012/">VS2012</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qt-vs-addin/">qt-vs-addin</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -193,34 +153,20 @@ Help docu">
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="698" data-title="QT5及qt-vs-addin-1.2.0之VS2012配置小结" data-url="http://www.yekezhong.com/698/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/704/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Qt5：自定义窗口部件 | How to Create Qt Plugins in Qt5
-        
-      </div>
-    </a>
-  
-  
-    <a href="/692/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">理工好网站 | 网页设计大赛投票展示平台</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -447,10 +393,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

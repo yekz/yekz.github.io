@@ -128,30 +128,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>刚在知乎晃到一个问题：“<span style="font-weight: bold; color: #222222;">豆瓣有哪些评分不低的烂书？</span>”，问题里晃到一句话：<strong>“从来没有人读书，只有书中读自己，发现自己或者检查自己。——罗曼·罗兰”。</strong></p>
-<p>其实此时我应该满脸通红地老实承认，一个小时前我打开Kindle还没翻页就睡着了，当然这和昨晚的蚊子不无关系。</p>
-<p>这篇文章不是要说读书的，我也不知道要写点什么，耳旁老罗的发布会正在进行，我好歹在面试时厚颜无耻地借用了《我的奋斗》一句话：<strong>坚持做自己认为是正确的东西，很多时候也会得到一个非常好的结果</strong>。一个想不通就打开了博客后台。</p>
-<a id="more"></a>
-
-
-<p>最近一个月确实学到非常多的东西，并且奠定了目前较为良好的状态。很遗憾的是求职到最后仍然没能拿下最后有脸来写面试经验的成果，于是就这篇文章来说，我其实是一种便秘的状态。</p>
-<p>如果不是多次被问到此次北京之行有何不同的感觉，我会认为坐长途火车这件事比北京更让我感到新奇。物是人也没非，尽管我也期待“北上广，有妖气”的状态，但我甚至不对此感到奇怪，你就能想象这有多奇怪。</p>
-<p>没有郑钧在《长安 长安》里唱到的让我坚强，也没有河图在《不见长安》里唱到的“可我为什么忽然失措 在长安”，但如果非要找首歌来表达状态，我希望是《不来也不去》，痛如骊歌，乐如儿歌，像我没来过，没去过。</p>
-<p>另外，食物是一个很值得吐槽的点，但是作为一个瘦癌晚期患者我不太屑于拿食物说话。</p>
-<p><strong>“从来没有人去北京，只有在北京中读自己，发现自己或者检查自己。——科忠·叶”。</strong></p>
-<p>还有事，今天就到这里，拜。</p>
-<embed width="480" height="400" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/XMjEwMzIzOTU2/v.swf" allowfullscreen="allowfullscreen" quality="high" align="middle" allowscriptaccess="always">
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/1196/" data-id="kati5ytaxlknlup1" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/北京/">北京</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自作自受/">自作自受</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -160,34 +142,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="1196" data-title="长安 长安" data-url="http://www.yekezhong.com/1196/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/1201/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Ubuntu 配置 goagent ，解决证书问题
-        
-      </div>
-    </a>
-  
-  
-    <a href="/1172/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">坑爹的 varnish-4 之 Ubuntu 安装手记</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -414,10 +382,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

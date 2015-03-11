@@ -143,31 +143,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-<p>高考已经过去一年，还记得那时的准考证背面有三种查分方式。后来我吐了这么一个嘈：</p>
-<blockquote>
-<p><span style="color: #ff0000;"><strong>高考查分一共七个入口，准考证后提供了三种，无巧不成书，刚好是需要收费的三种。</strong></span><br>例如，在四川，免费的查分方式就有：</p>
-<ul>
-<li>四川招生考试信息网(<a href="http://www.zk789.net" target="_blank" rel="external">www.zk789.net</a>)</li>
-<li>四川教育考试院(<a href="http://www.四川省教育考试院.cn" target="_blank" rel="external">www.四川省教育考试院.cn</a>)</li>
-<li>四川教育网(<a href="http://www.scedu.net" target="_blank" rel="external">www.scedu.net</a>)</li>
-<li>四川移动查询专线（免费）：10086,或12580<br>可见，查分渠道其实很多，网上查分服务器一时虽然会崩溃，但是还有<span style="color: #ff0000;"><a href="http://www.baidu.com/s?ie=utf-8&amp;bs=12580+%E9%AB%98%E8%80%83%E6%9F%A5%E5%88%86&amp;f=8&amp;rsv_bp=1&amp;wd=10086+%E9%AB%98%E8%80%83%E6%9F%A5%E5%88%86&amp;inputT=1569" target="_blank" rel="external">10086</a>，<a href="http://www.baidu.com/s?ie=utf-8&amp;bs=%E9%AB%98%E8%80%83%E6%9F%A5%E5%88%86+12580&amp;f=8&amp;rsv_bp=1&amp;wd=12580+%E9%AB%98%E8%80%83%E6%9F%A5%E5%88%86&amp;inputT=21430" target="_blank" rel="external">12580</a><strong>等免费查分入口</strong></span>。</li>
-</ul>
-</blockquote>
-<p>尽管如此，当时来看，我的同学还是有不少碍于消息不灵通，上了准考证的当，花了很多冤枉钱。</p>
-<p>这篇文章旨在为今年可能再次上当的童鞋提个醒，多查询一下你那里有哪些免费的查分方式吧。</p>
-<p>本来有一个像做<a href="http://www.yekezhong.com/archives/457" title="四川理工学院教务系统无弹窗登录器" target="_blank" rel="external">四川理工学院教务系统无弹窗登录器</a>一样做一个高考查分接口的想法，来缓解教育网的压力，给部分童鞋提供方便，但是考虑到很多不确定因素，万一触电就不好了。</p>
-<p>查分之后，欢迎来<a href="http://www.yekezhong.com/archives/486" title="蚁群工作室&amp;计算机学院2012届新生咨询网站上线" target="_blank" rel="external">蚁群工作室&amp;计算机学院2012届新生咨询网站</a>围观哦！</p>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/491/" data-id="cdo6k9we8v9km5al" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四川高考查分/">四川高考查分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高考查分/">高考查分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高考查分方式/">高考查分方式</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -176,34 +157,20 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="491" data-title="2012高考查分防坑指南" data-url="http://www.yekezhong.com/491/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/504/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JavaScript破解网页右键、复制限制
-        
-      </div>
-    </a>
-  
-  
-    <a href="/486/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">蚁群工作室&amp;计算机学院2012届新生咨询网站上线</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -430,10 +397,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 

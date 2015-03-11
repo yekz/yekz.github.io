@@ -143,44 +143,12 @@ NTFS
     <div class="article-entry" itemprop="articleBody">
       
           
-
-<!-- toc -->
-
-	<div id="toc" class="toc-article">
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ext3/4"><span class="toc-number">1.</span> <span class="toc-text">ext3/4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS"><span class="toc-number">2.</span> <span class="toc-text">NTFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FAT32"><span class="toc-number">3.</span> <span class="toc-text">FAT32</span></a></li></ol>
-	</div>
-
-<h3 id="ext3/4"><strong>ext3/4</strong></h3>
-<p>使用系统内置命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span> e2label /dev/sda1 newLabelName <span class="comment"># 里面的/dev/sda1 应根据实际情况修改</span></div></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="NTFS"><strong>NTFS</strong></h3>
-<p>网上都说用 ntfsprogs，安装发现 E: Package ‘ntfsprogs’ has no installation candidate</p>
-<p>查看 <a href="http://en.wikipedia.org/wiki/Ntfsprogs" target="_blank" rel="external">wiki：ntfsprogs</a> 发现 “On April 12, 2011 Tuxera announced that Ntfsprogs project was merged with NTFS-3G.”，安装了 ntfs-3g，发现只是个挂载工具哇。<br>最后找到：<a href="http://www.installion.co.uk/ubuntu/precise/universe/n/ntfsprogs/cn/install.html" target="_blank" rel="external">要安装 ntfsprogs 只是按照这些说明操作。</a>，安装成功。<br>man 一下  ntfsprogs ：ntfslabel(8) - Show, or set, an NTFS filesystem’s volume label.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span>  ntfslabel /dev/sda1 newLabelName <span class="comment"># 里面的 /dev/sda1 应根据实际情况修改</span></div></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h3 id="FAT32"><strong>FAT32</strong></h3>
-<p>自己 google 吧，我的硬盘上没 fat 格式的分区，关键是自己学会寻求解决方法才是最重要的不是么？</p>
-<hr>
-<p>下一步，要做的是挂载分区，我的电脑上因为上了 SSD，是两个硬盘，第二个硬盘都必须开机后点击一次分区后才会挂载，这样，金山快盘就不能设置为开机启动，会找不到同步目录（放在硬盘二）。<br>于是，现在需要达到的是：<strong>开机自动挂载这些分区</strong>。<br>修改 fstab，请自行 google 为什么是 fstab!</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">sudo</span> vim /etc/fstab</div></pre></td></tr></table></figure>
-
-<p>在我的其系统下，修改如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/dev/sdb1 /media/C ext4 default <span class="number">0</span> <span class="number">0</span></div><div class="line">/dev/sdb3 /media/D ntfs default <span class="number">0</span> <span class="number">0</span></div><div class="line">/dev/sdb5 /media/E ntfs default <span class="number">0</span> <span class="number">0</span></div></pre></td></tr></table></figure>
-
-<hr>
-<p>修改金山快盘为开机启动，perfect!</p>
-
+<%- post.content %>
 
 </div>
     <footer class="article-footer">
-      <a data-url="http://www.yekezhong.com/1233/" data-id="hpwfpre55w6hytnc" class="article-share-link">Share</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分区/">分区</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具控/">工具控</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/快盘/">快盘</a></li></ul>
-
+      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
+      <%- partial('tag') %>
     </footer>
 
 <!-- baidu start -->
@@ -189,34 +157,20 @@ NTFS
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="1233" data-title="Linux 盘符修改 &amp; 开机自动挂载分区" data-url="http://www.yekezhong.com/1233/"></div>
+	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
 <!-- 多说评论框 end -->
 </div>
 
+<% } else { %>
+<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p class="article-more-link">
+	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+</p>
+<% } %>
 
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/冷暖自知，无需抱怨：说说环境与适应/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          冷暖自知，无需抱怨：说说环境与适应
-        
-      </div>
-    </a>
-  
-  
-    <a href="/1217/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">void reverse(char* str) 引发的问题</div>
-    </a>
-  
-</nav>
-
-
+<% if (!index){ %>
+  <%- partial('nav') %>
+<% } %>
 
       
   </div>
@@ -443,10 +397,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="/scroll2top/scroll2top.js"></script>
+<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
 
 
 
