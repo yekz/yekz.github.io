@@ -96,6 +96,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-753" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/753/" class="article-date">
+  <time datetime="2013-01-15T08:45:33.000Z" itemprop="datePublished">1月 15 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>►<a class="article-category-link" href="/categories/Learn/Reading/">Reading</a>►<a class="article-category-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/753/">Item 20: Prefer pass-by-reference-to-const to pass-by-value</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="753" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+<p itemprop="description" >This article is one of &lt;Effective C++&gt; reading notes.
+Part 4: Designs and Declarations
+Item 20: Prefer pass-by-reference-to-const to pass-by-value.
+
+Things to remember
+
+Prefer pass-by-value-to-const over pass-by-value. It’s typically more efficient and it avoids the slicing problem.
+The rule doesn’t apply to build-in types and STL iterator and function object types. For them, pass by value is usually appropriate.
+对于正常的 C++ 程序，传值的地方传 const 引用总是没错的。对象复制不仅成本太高，正确实现对象复制也不是件容易的事。如果想把对象置入一个容器，最好是使用它的引用。
+
+Key words
+Copy-On-Write (COW)：
+copy-on-write is the name give to the process of identifying when a task attempts to make a change to shared information, creating a separate(private) copy of that information for the task and redirecting the task to making changes to the private copy to prevent its changes from becoming visible to all other tasks.
+Slicing Problem：
+“Slicing” is where you assign an object of a derived class to an instance of a base class, thereby losing part of the information - some of it is “sliced” away.
+Code
+12345678910111213141516171819202122232425262728293031323334353637383940#include "stdafx.h"#include &lt;iostream&gt;#include &lt;string&gt;using std::string;class Person {public:truePerson(string name, string address): name(name), address(address) { }private:truestring name;truestring address;};class Student : public Person {public:trueStudent(string name, string address, string schoolName, string schoolAddress) \truetrue: Person(name, address), schoolName(schoolName), schoolAddress(schoolAddress) { }private:truestring schoolName;truestring schoolAddress;};bool validateStudent(Student s){truereturn true; // test}bool validateStudent2(const Student& s){truereturn true;}int main(){trueStudent plato("plato", "Athens", "Socrates", "Athens");true// the overall cost of passing a Student by value is six constructorstrue// and six destructors!truebool platoIsOK = validateStudent(plato);truesystem("pause");truereturn 0;}</p>
+<p class="article-more-link">
+	<a href="/753/#more">Read More</a>
+</p>
+
+
+
+
+      
+  </div>
+</article>
+
+  
     <article id="post-844" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/844/" class="article-date">
@@ -640,51 +697,6 @@ $_POST就能接收到一个手机号码的数组，然后调用array_chunk() 函
 </article>
 
   
-    <article id="post-622" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/622/" class="article-date">
-  <time datetime="2012-08-02T07:48:31.000Z" itemprop="datePublished">8月 2 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Coding/">Coding</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/">Algorithm</a>►<a class="article-category-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/622/">《算法导论》广度优先搜索，深度优先搜索之强联通分支</a> <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="622" data-count-type="comments"></span>
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-<p itemprop="description" >问题越来越复杂，《算法导论》一书给出的伪代码越来越坑爹，计算强联通分支几句英语就给俺打发了。
-
-于是邻接表的转置和强联通分支的输出都成了待自行解决的问题，期间因为一些逻辑错误导致一直出不了正确结构，翻看了将用作大二教材的《数据结构（c语言版）》一书，话说俺一直觉得上面给出的代码排版和粗体的标识各种难看，而其对该算法实现的底层也用了几个结构体，google来的实现代码一看也均是参照《数据结构（c语言版）》进行的实现，和我自己用C++搞的相去甚远。只得自己纠结纠结再纠结，睡觉也在想，好在终于守得拨云见日。实现过程中对《算法导论》书上描述的伪代码和数据结构做了轻微改动，比如结构体中增加了一个卫星数据child，方便输出强连通分支。强连通分支又叫深度优先森林，说是森林，其实每棵树都是一条线，没有任何分支来着，所以输出时直接用child遍历下去就行。代码整理如下，详见注释，不再赘述。测试一下：
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205#include "stdafx.h"#include &lt;iostream&gt;#include &lt;queue&gt; // 广度优先搜索中管理灰色顶点的先进先出队列#include &lt;vector&gt; // 邻接表容器#include &lt;string&gt;#include &lt;limits&gt; // INT_MAX#include &lt;algorithm&gt; // 泛型算法sort的谓词版本进行拓扑排序using namespace std;enum COLOR {WHITE, GRAY, BLACK};struct Vertex {trueint no; // 结点序号truestring name; // 结点名称trueCOLOR color;truevector&lt;int&gt;* Adj; // 邻接表，包含所有满足条件(u, v)∈E的顶点vtrue// 用于广度优先搜索trueint distence; // 广度优先树中从s到v的路径长，对应于图G中从从s到v的一条最短路径长trueVertex* parent; // 广度优先树中结点的父母true// 用于深度优先搜索trueVertex* child; // 深度优先树中结点的孩子，方便输出强联通分支，算是数据结构的扩张的一个应用。。。trueint begin; // 顶点v第一次被发现时记下该时间戳trueint finish; // 结束检查v的邻接表时记下该时间戳};// sort的谓词函数，用作拓扑排序inline bool isLarge(const Vertex* v1, const Vertex* v2){truereturn v1-&gt;finish &gt; v2-&gt;finish;}class Graph {public:true// 构造邻接表truevoid creatGraph();trueinline void displayGraph() const;true// 广度优先搜索truevoid BFS(const int);truevoid printPath(const int, const int) const;true// 深度优先搜索truevoid DFS();truevoid DFSVisit(Vertex*);trueinline void topologicalSort(); // 有向无回路图的拓扑排序truevoid transposition(); // 转置true</p>
-<p class="article-more-link">
-	<a href="/622/#more">Read More</a>
-</p>
-
-
-
-
-      
-  </div>
-</article>
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -699,6 +711,10 @@ $_POST就能接收到一个手机号码的数组，然后调用array_chunk() 函
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/svn-post-commit-hook-email-notice/">通过 post-commit hook 实现 SVN Commit 邮件通知</a>(<span class="ds-thread-count" data-thread-key="svn-post-commit-hook-email-notice" data-count-type="comments"></span>)
+          </li>
         
           <li>
             <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
@@ -776,10 +792,6 @@ $_POST就能接收到一个手机号码的数组，然后调用array_chunk() 函
             <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
           </li>
         
-          <li>
-            <a href="/1160/">MySQL 学习笔记 优化篇</a>(<span class="ds-thread-count" data-thread-key="1160" data-count-type="comments"></span>)
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -798,7 +810,7 @@ $_POST就能接收到一个手机号码的数组，然后调用array_chunk() 函
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/">Algorithm</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Sort/">Sort</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/">C/C++</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/MFC/">MFC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Qt/">Qt</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/STL/">STL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Syntax/">Syntax</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/">Web</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/Site/">Site</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/">Debug</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/">Softwares</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/">System</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/">Coding</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/MySQL/">MySQL</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/">Reading</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Kindle/">Kindle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Note/">Note</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/">Share</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Article/">Article</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Experience/">Experience</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Movie/">Movie</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Music/">Music</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/">Tools</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/Chrome/">Chrome</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/GFW/">GFW</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/">Thinking</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Dream/">Dream</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Life/">Life</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Society/">Society</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Work/">Work</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/">Algorithm</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Sort/">Sort</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/">C/C++</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/MFC/">MFC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Qt/">Qt</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/STL/">STL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Syntax/">Syntax</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/">Web</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/Site/">Site</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/">Debug</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/">Softwares</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/">System</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ITOM/">ITOM</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ITOM/Revision-control/">Revision control</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ITOM/Revision-control/svn/">svn</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/">Coding</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/MySQL/">MySQL</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/">Reading</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Kindle/">Kindle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Note/">Note</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/">Share</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Article/">Article</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Experience/">Experience</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Movie/">Movie</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Music/">Music</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/">Tools</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/Chrome/">Chrome</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/GFW/">GFW</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/">Thinking</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Dream/">Dream</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Life/">Life</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Society/">Society</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Work/">Work</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 

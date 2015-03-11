@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>通过 post-commit hook 实现 SVN Commit 邮件通知 | YesBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="svn 可以通过 post-commit hook 实现 commit 时发送邮件通知。其实现原理为：用户在提交代码至 svn 完成后触发 post-commit 钩子脚本在 post-commit 中调用 diff 工具和 sendmail 工具发送邮件
+常用的解决方案是使用 subversion-tools 里的 commit-email.pl
+需要安装 perl 和其它相关工具就不说了，却啥">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过 post-commit hook 实现 SVN Commit 邮件通知">
+<meta property="og:url" content="http://www.yekezhong.com/svn-post-commit-hook-email-notice/">
+<meta property="og:site_name" content="YesBlog">
+<meta property="og:description" content="svn 可以通过 post-commit hook 实现 commit 时发送邮件通知。其实现原理为：用户在提交代码至 svn 完成后触发 post-commit 钩子脚本在 post-commit 中调用 diff 工具和 sendmail 工具发送邮件
+常用的解决方案是使用 subversion-tools 里的 commit-email.pl
+需要安装 perl 和其它相关工具就不说了，却啥">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过 post-commit hook 实现 SVN Commit 邮件通知">
+<meta name="twitter:description" content="svn 可以通过 post-commit hook 实现 commit 时发送邮件通知。其实现原理为：用户在提交代码至 svn 完成后触发 post-commit 钩子脚本在 post-commit 中调用 diff 工具和 sendmail 工具发送邮件
+常用的解决方案是使用 subversion-tools 里的 commit-email.pl
+需要安装 perl 和其它相关工具就不说了，却啥">
+
+  
+    <link rel="alternative" href="/atom.xml" title="YesBlog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<style type="text/css">
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'), url(/font/SourceCodePro-Regular.ttf) format('ttf');
+}
+</style>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YesBlog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Learn &amp; Create &amp; Think &amp; Enjoy</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/guestbook">Guestbook</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/tags/自问自答/">自问自答</a>
+        
+          <a class="main-nav-link" href="/tags/自言自语/">自言自语</a>
+        
+          <a class="main-nav-link" href="/tags/自作自受/">自做自受</a>
+        
+          <a class="main-nav-link" href="/tags/自娱自乐/">自娱自乐</a>
+        
+          <a class="main-nav-link" href="https://github.com/yekz">↳Github</a>
+        
+          <a class="main-nav-link" href="http://weibo.com/yekezhong/">↳叶科忠</a>
+        
+          <a class="main-nav-link" href="http://www.lingxi360.com">↳灵析</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.yekezhong.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-svn-post-commit-hook-email-notice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/svn-post-commit-hook-email-notice/" class="article-date">
+  <time datetime="2015-03-11T12:09:03.000Z" itemprop="datePublished">3月 11 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ITOM/">ITOM</a>►<a class="article-category-link" href="/categories/ITOM/Revision-control/">Revision control</a>►<a class="article-category-link" href="/categories/ITOM/Revision-control/svn/">svn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      通过 post-commit hook 实现 SVN Commit 邮件通知 <span style='color:#999;font:12px "Helvetica Neue",Helvetica,Arial,sans-serif;'><span class="ds-thread-count" data-thread-key="svn-post-commit-hook-email-notice" data-count-type="comments"></span>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+
+<!-- toc -->
+
+<p>svn 可以通过 post-commit hook 实现 commit 时发送邮件通知。<br>其实现原理为：<br>用户在提交代码至 svn 完成后触发 post-commit 钩子脚本<br>在 post-commit 中调用 diff 工具和 sendmail 工具发送邮件</p>
+<p>常用的解决方案是使用 subversion-tools 里的 commit-email.pl</p>
+<p>需要安装 perl 和其它相关工具就不说了，却啥装啥，不过最新版的 subversion-tools 安装后找不到 hook-scripts，最终找到源码，有些兼容性问题做了修改，附在下面</p>
+<blockquote>
+<p>乱码问题，svn log 的乱码已经解决，但是 diff 的乱码暂时没找到解决方案，如有解求告知</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>修改 svn/your_repos/hooks/post-commit</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">REPOS=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line">REV=<span class="string">"<span class="variable">$2</span>"</span></div><div class="line"> </div><div class="line"><span class="comment"># 可以把 log 编码搞定，但是 diff 中文乱码还没辙</span></div><div class="line"><span class="keyword">export</span> LANG=zh_CN.GB2312</div><div class="line">/home/svn/hook-scripts/commit-email.pl <span class="string">"<span class="variable">$REPOS</span>"</span> <span class="string">"<span class="variable">$REV</span>"</span> <span class="operator">-s</span> <span class="string">"[SVN Commit]"</span> -h yekezhong.com yekezhong@gmail.com</div></pre></td></tr></table></figure>
+
+<p>附送修改后的 commit-email.pl，其中 CONFIGURATION SECTION 需要配置 sendmail 和 svnlook 的路径</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/perl -w</span></div><div class="line"></div><div class="line"><span class="comment"># Justering Customization Version</span></div><div class="line"><span class="comment"># 2015/3/10</span></div><div class="line"><span class="comment"># v1 将变量/格式 调整为svn服务器上的值</span></div><div class="line"><span class="comment"># ====================================================================</span></div><div class="line"><span class="comment"># commit-email.pl: send a commit email for commit REVISION in</span></div><div class="line"><span class="comment"># repository REPOS to some email addresses.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Usage: commit-email.pl REPOS REVISION [OPTIONS] [EMAIL-ADDR ...]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Options:</span></div><div class="line"><span class="comment">#    -h hostname       :  Hostname to append to author for 'From:'</span></div><div class="line"><span class="comment">#    -l logfile        :  File to which mail contents should be appended</span></div><div class="line"><span class="comment">#    -r email_address  :  Set email Reply-To header to this email address</span></div><div class="line"><span class="comment">#    -s subject_prefix :  Subject line prefix</span></div><div class="line"><span class="comment">#    </span></div><div class="line"><span class="comment"># ====================================================================</span></div><div class="line"><span class="comment"># Copyright (c) 2000-2002 CollabNet.  All rights reserved.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># This software is licensed as described in the file COPYING, which</span></div><div class="line"><span class="comment"># you should have received as part of this distribution.  The terms</span></div><div class="line"><span class="comment"># are also available at http://subversion.tigris.org/license-1.html.</span></div><div class="line"><span class="comment"># If newer versions of this license are posted there, you may use a</span></div><div class="line"><span class="comment"># newer version instead, at your option.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># This software consists of voluntary contributions made by many</span></div><div class="line"><span class="comment"># individuals.  For exact contribution history, see the revision</span></div><div class="line"><span class="comment"># history and logs, available at http://subversion.tigris.org/.</span></div><div class="line"><span class="comment"># ====================================================================</span></div><div class="line"></div><div class="line"><span class="keyword">use</span> strict;</div><div class="line"><span class="keyword">use</span> Carp;</div><div class="line"><span class="keyword">use</span> Getopt::Long;</div><div class="line"></div><div class="line"><span class="comment">######################################################################</span></div><div class="line"><span class="comment">#  CONFIGURATION SECTION</span></div><div class="line"><span class="comment">######################################################################</span></div><div class="line"></div><div class="line"><span class="comment"># sendmail path</span></div><div class="line"><span class="keyword">my</span> <span class="variable">$sendmail</span> = <span class="string">"/usr/sbin/sendmail"</span>;</div><div class="line"></div><div class="line"><span class="comment"># svnlook path</span></div><div class="line"><span class="keyword">my</span> <span class="variable">$svnlook</span> = <span class="string">"/usr/bin/svnlook"</span>;</div><div class="line"></div><div class="line"><span class="comment">######################################################################</span></div><div class="line"><span class="comment"># Initial setup/command-line handling</span></div><div class="line"></div><div class="line"><span class="comment"># now, we see if there are any options included in the argument list</span></div><div class="line"><span class="keyword">my</span> <span class="variable">$logfile</span> = <span class="string">''</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">$hostname</span> = <span class="string">''</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">$reply_to</span> = <span class="string">''</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">$subject_prefix</span> = <span class="string">''</span>;</div><div class="line"></div><div class="line">GetOptions(<span class="string">'hostname=s'</span> =&gt; \<span class="variable">$hostname</span>,</div><div class="line">           <span class="string">'logfile=s'</span>  =&gt; \<span class="variable">$logfile</span>,</div><div class="line">           <span class="string">'reply_to=s'</span> =&gt; \<span class="variable">$reply_to</span>,</div><div class="line">           <span class="string">'subject=s'</span>  =&gt; \<span class="variable">$subject_prefix</span>)</div><div class="line">    <span class="keyword">or</span> &usage;</div><div class="line"></div><div class="line"><span class="comment"># check that there are enough remaining command line options</span></div><div class="line">&usage(<span class="string">"<span class="variable">$0</span>: too few arguments"</span>) <span class="keyword">unless</span> <span class="variable">@ARGV</span> &gt; <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="comment"># get the REPOS from the arguments</span></div><div class="line"><span class="keyword">my</span> <span class="variable">$repos</span> = <span class="keyword">shift</span> <span class="variable">@ARGV</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">@temp</span> = <span class="keyword">split</span> <span class="string">"/"</span>, <span class="variable">$repos</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">$repos_name</span> = <span class="variable">$temp</span>[<span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="comment"># get the REVISION from the arguments</span></div><div class="line"><span class="keyword">my</span> <span class="variable">$rev</span> = <span class="keyword">shift</span> <span class="variable">@ARGV</span>;</div><div class="line"></div><div class="line"><span class="comment"># initialize the EMAIL_ADDRS to the remaining arguments</span></div><div class="line"><span class="keyword">my</span> <span class="variable">@email_addrs</span> = <span class="variable">@ARGV</span>;</div><div class="line"></div><div class="line"><span class="comment">######################################################################</span></div><div class="line"><span class="comment"># Harvest data using svnlook</span></div><div class="line"></div><div class="line"><span class="comment"># change into /tmp so that svnlook diff can create its .svnlook directory</span></div><div class="line"><span class="keyword">my</span> <span class="variable">$tmp_dir</span> = <span class="string">'/tmp'</span>;</div><div class="line"><span class="keyword">chdir</span>(<span class="variable">$tmp_dir</span>)</div><div class="line">    <span class="keyword">or</span> <span class="keyword">die</span> <span class="string">"<span class="variable">$0</span>: cannot chdir `<span class="variable">$tmp_dir</span>': <span class="variable">$!</span>\n"</span>;</div><div class="line"></div><div class="line"><span class="comment"># get the auther, date, and log from svnlook</span></div><div class="line"><span class="keyword">my</span> <span class="variable">@svnlooklines</span> = &read_from_process(<span class="variable">$svnlook</span>, <span class="string">'info'</span>, <span class="string">'-r'</span>, <span class="variable">$rev</span>, <span class="variable">$repos</span>);</div><div class="line"><span class="keyword">my</span> <span class="variable">$author</span> = <span class="keyword">shift</span> <span class="variable">@svnlooklines</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">$date</span> = <span class="keyword">shift</span> <span class="variable">@svnlooklines</span>;</div><div class="line"><span class="keyword">shift</span> <span class="variable">@svnlooklines</span>;</div><div class="line"><span class="keyword">my</span> <span class="variable">@log</span> = <span class="keyword">map</span> { <span class="string">"<span class="variable">$_</span>\n"</span> } <span class="variable">@svnlooklines</span>;</div><div class="line"></div><div class="line"><span class="comment"># figure out what directories have changed (using svnlook)</span></div><div class="line"><span class="keyword">my</span> <span class="variable">@dirschanged</span> = &read_from_process(<span class="variable">$svnlook</span>, <span class="string">'dirs-changed'</span>, <span class="string">'-r'</span>, <span class="variable">$rev</span>, <span class="variable">$repos</span>);</div><div class="line"><span class="keyword">my</span> <span class="variable">$rootchanged</span> = <span class="number">0</span>;</div><div class="line"><span class="keyword">grep</span> </div><div class="line">{</div><div class="line">    <span class="comment"># lose the trailing slash if one exists (except in the case of '/')</span></div><div class="line">    <span class="variable">$rootchanged</span> = <span class="number">1</span> <span class="keyword">if</span> (<span class="variable">$_</span> eq <span class="string">'/'</span>);</div><div class="line">    <span class="variable">$_</span> =~ <span class="regexp">s/(.+)[\/\\]$/$1/</span>;</div><div class="line">} </div><div class="line"><span class="variable">@dirschanged</span>; </div><div class="line"></div><div class="line"><span class="comment"># figure out what's changed (using svnlook)</span></div><div class="line"><span class="variable">@svnlooklines</span> = &read_from_process(<span class="variable">$svnlook</span>, <span class="string">'changed'</span>, <span class="string">'-r'</span>, <span class="variable">$rev</span>, <span class="variable">$repos</span>);</div><div class="line"></div><div class="line"><span class="comment"># parse the changed nodes</span></div><div class="line"><span class="keyword">my</span> <span class="variable">@adds</span> = ();</div><div class="line"><span class="keyword">my</span> <span class="variable">@dels</span> = ();</div><div class="line"><span class="keyword">my</span> <span class="variable">@mods</span> = ();</div><div class="line"><span class="keyword">foreach</span> <span class="keyword">my</span> <span class="variable">$line</span> (<span class="variable">@svnlooklines</span>)</div><div class="line">{</div><div class="line">    <span class="keyword">my</span> <span class="variable">$path</span> = <span class="string">''</span>;</div><div class="line">    <span class="keyword">my</span> <span class="variable">$code</span> = <span class="string">''</span>;</div><div class="line"></div><div class="line">    <span class="comment"># split the line up into the modification code (ignore propmods) and path</span></div><div class="line">    <span class="keyword">if</span> (<span class="variable">$line</span> =~ <span class="regexp">/^(.).  (.*)$/</span>)</div><div class="line">    {</div><div class="line">        <span class="variable">$code</span> = <span class="variable">$1</span>;</div><div class="line">        <span class="variable">$path</span> = <span class="variable">$2</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="variable">$code</span> eq <span class="string">'A'</span>) {</div><div class="line">        <span class="keyword">push</span> (<span class="variable">@adds</span>, <span class="string">"   <span class="variable">$path</span>\n"</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">elsif</span> (<span class="variable">$code</span> eq <span class="string">'D'</span>) {</div><div class="line">        <span class="keyword">push</span> (<span class="variable">@dels</span>, <span class="string">"   <span class="variable">$path</span>\n"</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">push</span> (<span class="variable">@mods</span>, <span class="string">"   <span class="variable">$path</span>\n"</span>);</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment"># get the diff from svnlook</span></div><div class="line"><span class="keyword">my</span> <span class="variable">@difflines</span> = &read_from_process(<span class="variable">$svnlook</span>, <span class="string">'diff'</span>, <span class="string">'-r'</span>, <span class="variable">$rev</span>, <span class="variable">$repos</span>);</div><div class="line"></div><div class="line"><span class="comment">######################################################################</span></div><div class="line"><span class="comment"># Mail headers</span></div><div class="line"></div><div class="line"><span class="comment"># collapse the list of changed directories</span></div><div class="line"><span class="keyword">my</span> <span class="variable">@commonpieces</span> = ();</div><div class="line"><span class="keyword">my</span> <span class="variable">$commondir</span> = <span class="string">''</span>;</div><div class="line"><span class="keyword">if</span> ((<span class="variable">$rootchanged</span> == <span class="number">0</span>) <span class="keyword">and</span> (<span class="keyword">scalar</span> <span class="variable">@commonpieces</span> &gt; <span class="number">1</span>))</div><div class="line">{</div><div class="line">    <span class="keyword">my</span> <span class="variable">$firstline</span> = <span class="keyword">shift</span> (<span class="variable">@dirschanged</span>);</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@commonpieces</span>, <span class="keyword">split</span> (<span class="string">'/'</span>, <span class="variable">$firstline</span>));</div><div class="line">    <span class="keyword">foreach</span> <span class="keyword">my</span> <span class="variable">$line</span> (<span class="variable">@dirschanged</span>)</div><div class="line">    {</div><div class="line">        <span class="keyword">my</span> <span class="variable">@pieces</span> = ();</div><div class="line">        <span class="keyword">my</span> <span class="variable">$i</span> = <span class="number">0</span>;</div><div class="line">        <span class="keyword">push</span> (<span class="variable">@pieces</span>, <span class="keyword">split</span> (<span class="string">'/'</span>, <span class="variable">$line</span>));</div><div class="line">        <span class="keyword">while</span> ((<span class="variable">$i</span> &lt; <span class="keyword">scalar</span> <span class="variable">@pieces</span>) <span class="keyword">and</span> (<span class="variable">$i</span> &lt; <span class="keyword">scalar</span> <span class="variable">@commonpieces</span>))</div><div class="line">        {</div><div class="line">            <span class="keyword">if</span> (<span class="variable">$pieces</span>[<span class="variable">$i</span>] <span class="keyword">ne</span> <span class="variable">$commonpieces</span>[<span class="variable">$i</span>])</div><div class="line">            {</div><div class="line">                <span class="keyword">splice</span> (<span class="variable">@commonpieces</span>, <span class="variable">$i</span>, (<span class="keyword">scalar</span> <span class="variable">@commonpieces</span> - <span class="variable">$i</span>));</div><div class="line">                <span class="keyword">last</span>;</div><div class="line">            }</div><div class="line">            <span class="variable">$i</span>++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">unshift</span> (<span class="variable">@dirschanged</span>, <span class="variable">$firstline</span>);</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">scalar</span> <span class="variable">@commonpieces</span>)</div><div class="line">    {</div><div class="line">        <span class="variable">$commondir</span> = <span class="keyword">join</span> (<span class="string">'/'</span>, <span class="variable">@commonpieces</span>);</div><div class="line">        <span class="keyword">grep</span></div><div class="line">        {</div><div class="line">            <span class="regexp">s/^$commondir\/(.*)/$1/eg</span>;</div><div class="line">        }</div><div class="line">        <span class="variable">@dirschanged</span>;</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="keyword">my</span> <span class="variable">$dirlist</span> = <span class="keyword">join</span> (<span class="string">' '</span>, <span class="variable">@dirschanged</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">my</span> <span class="variable">$userlist</span> = <span class="keyword">join</span> (<span class="string">' '</span>, <span class="variable">@email_addrs</span>); </div><div class="line"><span class="keyword">my</span> <span class="variable">$subject</span> = <span class="string">''</span>;</div><div class="line"><span class="keyword">if</span> (<span class="variable">$commondir</span> <span class="keyword">ne</span> <span class="string">''</span>)</div><div class="line">{</div><div class="line">    <span class="variable">$subject</span> = <span class="string">"rev <span class="variable">$rev</span> - in <span class="variable">$commondir</span>: <span class="variable">$dirlist</span>"</span>;</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line">    <span class="variable">$subject</span> = <span class="string">"<span class="variable">$author</span> r<span class="variable">$rev</span>\@<span class="variable">$repos_name</span> - <span class="variable">$dirlist</span>"</span>;</div><div class="line">}</div><div class="line"><span class="keyword">if</span> (<span class="variable">$subject_prefix</span> =~ <span class="regexp">/\w/</span>)</div><div class="line">{</div><div class="line">    <span class="variable">$subject</span> = <span class="string">"<span class="variable">$subject_prefix</span> <span class="variable">$subject</span>"</span>;</div><div class="line">}</div><div class="line"><span class="keyword">my</span> <span class="variable">$mail_from</span> = <span class="variable">$author</span>;</div><div class="line"><span class="keyword">if</span> (<span class="variable">$hostname</span> =~ <span class="regexp">/\w/</span>)</div><div class="line">{</div><div class="line">    <span class="variable">$mail_from</span> = <span class="string">"<span class="variable">$mail_from</span>\@<span class="variable">$hostname</span>"</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">my</span> <span class="variable">@output</span>;</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"To: <span class="variable">$userlist</span>\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"From: <span class="variable">$mail_from</span>\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Subject: <span class="variable">$subject</span>\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Reply-to: <span class="variable">$reply_to</span>\n"</span>) <span class="keyword">if</span> <span class="variable">$reply_to</span>;</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"\n"</span>);</div><div class="line"></div><div class="line"><span class="comment"># mail body</span></div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Author: &lt;b&gt;<span class="variable">$author</span>&lt;/b&gt;\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Date: &lt;b&gt;<span class="variable">$date</span>&lt;/b&gt;\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Repos: &lt;b&gt;<span class="variable">$repos</span>&lt;/b&gt;\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"New Revision: &lt;b&gt;<span class="variable">$rev</span>&lt;/b&gt;\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"\n"</span>);</div><div class="line"></div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"###################################\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Log:\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="variable">@log</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"\n"</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"\n###################################\n"</span>);</div><div class="line"><span class="keyword">if</span> (<span class="keyword">scalar</span> <span class="variable">@adds</span>)</div><div class="line">{</div><div class="line">    <span class="variable">@adds</span> = <span class="keyword">sort</span> <span class="variable">@adds</span>;</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Added:\n"</span>);</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@output</span>, <span class="variable">@adds</span>);</div><div class="line">}</div><div class="line"><span class="keyword">if</span> (<span class="keyword">scalar</span> <span class="variable">@dels</span>)</div><div class="line">{</div><div class="line">    <span class="variable">@dels</span> = <span class="keyword">sort</span> <span class="variable">@dels</span>;</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Removed:\n"</span>);</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@output</span>, <span class="variable">@dels</span>);</div><div class="line">}</div><div class="line"><span class="keyword">if</span> (<span class="keyword">scalar</span> <span class="variable">@mods</span>)</div><div class="line">{</div><div class="line">    <span class="variable">@mods</span> = <span class="keyword">sort</span> <span class="variable">@mods</span>;</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"Modified:\n"</span>);</div><div class="line">    <span class="keyword">push</span> (<span class="variable">@output</span>, <span class="variable">@mods</span>);</div><div class="line">}</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="string">"\n###################################\n"</span>);</div><div class="line"><span class="keyword">push</span> (<span class="variable">@output</span>, <span class="keyword">map</span> { <span class="string">"<span class="variable">$_</span>\n"</span> } <span class="variable">@difflines</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># dump output to logfile (if its name is not empty)</span></div><div class="line"><span class="keyword">if</span> (<span class="variable">$logfile</span> =~ <span class="regexp">/\w/</span>)</div><div class="line">{</div><div class="line">    <span class="keyword">open</span> (LOGFILE, <span class="string">"&gt;&gt; <span class="variable">$logfile</span>"</span>) </div><div class="line">        <span class="keyword">or</span> <span class="keyword">die</span> (<span class="string">"Error opening '<span class="variable">$logfile</span>' for append"</span>);</div><div class="line">    <span class="keyword">print</span> LOGFILE <span class="variable">@output</span>;</div><div class="line">    <span class="keyword">close</span> LOGFILE;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment"># open a pipe to 'sendmail'</span></div><div class="line"><span class="keyword">if</span> ((<span class="variable">$sendmail</span> =~ <span class="regexp">/\w/</span>) <span class="keyword">and</span> (<span class="variable">$userlist</span> =~ <span class="regexp">/\w/</span>))</div><div class="line">{</div><div class="line">    <span class="keyword">open</span> (SENDMAIL, <span class="string">"| <span class="variable">$sendmail</span> <span class="variable">$userlist</span>"</span>) </div><div class="line">        <span class="keyword">or</span> <span class="keyword">die</span> (<span class="string">"Error opening a pipe to sendmail"</span>);</div><div class="line">    <span class="keyword">print</span> SENDMAIL <span class="variable">@output</span>;</div><div class="line">    <span class="keyword">close</span> SENDMAIL;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">exit</span> <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="sub"><span class="keyword">sub</span> usage {</span></div><div class="line">  <span class="keyword">warn</span> <span class="string">"<span class="variable">@_</span>\n"</span> <span class="keyword">if</span> <span class="variable">@_</span>;</div><div class="line">  <span class="keyword">die</span> <span class="string">"usage: <span class="variable">$0</span> [options] REPOS REVNUM email_address1 [email_address2 ... ]]\n"</span>,</div><div class="line">      <span class="string">"options are\n"</span>,</div><div class="line">      <span class="string">"  -h hostname        Hostname to append to author for 'From:'\n"</span>,</div><div class="line">      <span class="string">"  -l logfile         File to which mail contents should be appended\n"</span>,</div><div class="line">      <span class="string">"  -r email_address   Set email Reply-To header to this email address\n"</span>,</div><div class="line">      <span class="string">"  -s subject_prefix  Subject line prefix\n"</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="sub"><span class="keyword">sub</span> safe_read_from_pipe {</span></div><div class="line">  <span class="keyword">unless</span> (<span class="variable">@_</span>) {</div><div class="line">    croak <span class="string">"<span class="variable">$0</span>: safe_read_from_pipe passed no arguments.\n"</span>;</div><div class="line">  }</div><div class="line">  <span class="keyword">print</span> <span class="string">"Running <span class="variable">@_</span>\n"</span>;</div><div class="line">  <span class="keyword">my</span> <span class="variable">$pid</span> = <span class="keyword">open</span>(SAFE_READ, <span class="string">'-|'</span>);</div><div class="line">  <span class="keyword">unless</span> (<span class="keyword">defined</span> <span class="variable">$pid</span>) {</div><div class="line">    <span class="keyword">die</span> <span class="string">"<span class="variable">$0</span>: cannot fork: <span class="variable">$!</span>\n"</span>;</div><div class="line">  }</div><div class="line">  <span class="keyword">unless</span> (<span class="variable">$pid</span>) {</div><div class="line">    <span class="keyword">open</span>(STDERR, <span class="string">"&gt;&STDOUT"</span>) <span class="keyword">or</span></div><div class="line">      <span class="keyword">die</span> <span class="string">"<span class="variable">$0</span>: cannot dup STDOUT: <span class="variable">$!</span>\n"</span>;</div><div class="line">    <span class="keyword">exec</span>(<span class="variable">@_</span>) <span class="keyword">or</span></div><div class="line">      <span class="keyword">die</span> <span class="string">"<span class="variable">$0</span>: cannot exec `<span class="variable">@_</span>': <span class="variable">$!</span>\n"</span>;</div><div class="line">  }</div><div class="line">  <span class="keyword">my</span> <span class="variable">@output</span>;</div><div class="line">  <span class="keyword">while</span> (&lt;SAFE_READ&gt;) {</div><div class="line">    <span class="keyword">chomp</span>;</div><div class="line">    <span class="keyword">push</span>(<span class="variable">@output</span>, <span class="variable">$_</span>);</div><div class="line">  }</div><div class="line">  <span class="keyword">close</span>(SAFE_READ);</div><div class="line">  <span class="keyword">my</span> <span class="variable">$result</span> = <span class="variable">$?</span>;</div><div class="line">  <span class="keyword">my</span> <span class="variable">$exit</span>   = <span class="variable">$result</span> &gt;&gt; <span class="number">8</span>;</div><div class="line">  <span class="keyword">my</span> <span class="variable">$signal</span> = <span class="variable">$result</span> & <span class="number">127</span>;</div><div class="line">  <span class="keyword">my</span> <span class="variable">$cd</span>     = <span class="variable">$result</span> & <span class="number">128</span> ? <span class="string">"with core dump"</span> : <span class="string">""</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="variable">$signal</span> <span class="keyword">or</span> <span class="variable">$cd</span>) {</div><div class="line">    <span class="keyword">warn</span> <span class="string">"<span class="variable">$0</span>: pipe from `<span class="variable">@_</span>' failed <span class="variable">$cd</span>: exit=<span class="variable">$exit</span> signal=<span class="variable">$signal</span>\n"</span>;</div><div class="line">  }</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">wantarray</span>) {</div><div class="line">    <span class="keyword">return</span> (<span class="variable">$result</span>, <span class="variable">@output</span>);</div><div class="line">  } <span class="keyword">else</span> {</div><div class="line">    <span class="keyword">return</span> <span class="variable">$result</span>;</div><div class="line">  }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="sub"><span class="keyword">sub</span> read_from_process {</span></div><div class="line">  <span class="keyword">unless</span> (<span class="variable">@_</span>) {</div><div class="line">    croak <span class="string">"<span class="variable">$0</span>: read_from_process passed no arguments.\n"</span>;</div><div class="line">  }</div><div class="line">  <span class="keyword">my</span> (<span class="variable">$status</span>, <span class="variable">@output</span>) = &safe_read_from_pipe(<span class="variable">@_</span>);</div><div class="line">  <span class="keyword">if</span> (<span class="variable">$status</span>) {</div><div class="line">    <span class="keyword">return</span> (<span class="string">"<span class="variable">$0</span>: <span class="variable">@_</span> failed with this output:"</span>, <span class="variable">@output</span>);</div><div class="line">  } <span class="keyword">else</span> {</div><div class="line">    <span class="keyword">return</span> <span class="variable">@output</span>;</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>```</p>
+
+
+</div>
+    <footer class="article-footer">
+      <a data-url="http://www.yekezhong.com/svn-post-commit-hook-email-notice/" data-id="0ubglcu1blsvbaql" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+    </footer>
+
+<!-- baidu start -->
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<div id="gbook" style="padding-left:20px;padding-right:20px;">
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="svn-post-commit-hook-email-notice" data-title="通过 post-commit hook 实现 SVN Commit 邮件通知" data-url="http://www.yekezhong.com/svn-post-commit-hook-email-notice/"></div>
+<!-- 多说评论框 end -->
+</div>
+
+
+
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/Interstellar/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">星空与道德 --《星际穿越》的维度扩展</div>
+    </a>
+  
+</nav>
+
+
+
+      
+  </div>
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/svn-post-commit-hook-email-notice/">通过 post-commit hook 实现 SVN Commit 邮件通知</a>(<span class="ds-thread-count" data-thread-key="svn-post-commit-hook-email-notice" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/Interstellar/">星空与道德 --《星际穿越》的维度扩展</a>(<span class="ds-thread-count" data-thread-key="Interstellar" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/吃馒头拉花卷/">吃馒头拉花卷</a>(<span class="ds-thread-count" data-thread-key="吃馒头拉花卷" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/可耻的人是孤独的人是可耻的/">可耻的人是孤独的人是可耻的</a>(<span class="ds-thread-count" data-thread-key="可耻的人是孤独的人是可耻的" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/people-are-strange when-you-are-a-stranger/">熟悉的陌生人</a>(<span class="ds-thread-count" data-thread-key="people-are-strange when-you-are-a-stranger" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/别人家的孩子/">别人家的孩子</a>(<span class="ds-thread-count" data-thread-key="别人家的孩子" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/清理/">清理</a>(<span class="ds-thread-count" data-thread-key="清理" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/should-we-bring-work-to-home/">我们应该把工作带回家吗？</a>(<span class="ds-thread-count" data-thread-key="should-we-bring-work-to-home" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/in-this-world/">尘世之间</a>(<span class="ds-thread-count" data-thread-key="in-this-world" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/想梦2：从庄周梦蝶到梦的解析/">想梦2：从庄周梦蝶到梦的解析</a>(<span class="ds-thread-count" data-thread-key="想梦2：从庄周梦蝶到梦的解析" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/参差多态/">参差多态</a>(<span class="ds-thread-count" data-thread-key="参差多态" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/冷暖自知，无需抱怨：说说环境与适应/">冷暖自知，无需抱怨：说说环境与适应</a>(<span class="ds-thread-count" data-thread-key="冷暖自知，无需抱怨：说说环境与适应" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1233/">Linux 盘符修改 &amp; 开机自动挂载分区</a>(<span class="ds-thread-count" data-thread-key="1233" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1217/">void reverse(char* str) 引发的问题</a>(<span class="ds-thread-count" data-thread-key="1217" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1208/">想梦</a>(<span class="ds-thread-count" data-thread-key="1208" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1201/">Ubuntu 配置 goagent ，解决证书问题</a>(<span class="ds-thread-count" data-thread-key="1201" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1196/">长安 长安</a>(<span class="ds-thread-count" data-thread-key="1196" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1172/">坑爹的 varnish-4 之 Ubuntu 安装手记</a>(<span class="ds-thread-count" data-thread-key="1172" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1168/">MySQL 学习笔记 InnoDB存储引擎篇</a>(<span class="ds-thread-count" data-thread-key="1168" data-count-type="comments"></span>)
+          </li>
+        
+          <li>
+            <a href="/1163/">MySQL 学习笔记 存储引擎对比篇</a>(<span class="ds-thread-count" data-thread-key="1163" data-count-type="comments"></span>)
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">My douban</h3>
+    <div class="widget">
+      <script type="text/javascript" src="http://www.douban.com/service/badge/43685904/?selection=random&amp;picsize=small&amp;show=collection&amp;n=9&amp;cat=drama%7Cmovie%7Cbook%7Cmusic&amp;columns=3"></script>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/">Algorithm</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Gragh/">Gragh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Algorithm/Sort/">Sort</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/">C/C++</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/MFC/">MFC</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/OpenCV/">OpenCV</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Qt/">Qt</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/STL/">STL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/C-C/Syntax/">Syntax</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/">Web</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/Web/Site/">Site</a><span class="category-list-count">3</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/">Debug</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/">Softwares</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/Softwares/Chrome/">Chrome</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/">System</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Debug/System/Ubuntu/">Ubuntu</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ITOM/">ITOM</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ITOM/Revision-control/">Revision control</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ITOM/Revision-control/svn/">svn</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/">Coding</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Coding/MySQL/">MySQL</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/">Reading</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Book-Review/">Book Review</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Effective-C/">Effective C++</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Kindle/">Kindle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/Reading/Note/">Note</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/">Share</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Article/">Article</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Experience/">Experience</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Movie/">Movie</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Music/">Music</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/">Tools</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/Chrome/">Chrome</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Share/Tools/GFW/">GFW</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/">Thinking</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Dream/">Dream</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Life/">Life</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Society/">Society</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Thinking/Work/">Work</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2012新生咨询/" style="font-size: 10.00px;">2012新生咨询</a><a href="/tags/21/" style="font-size: 10.00px;">21</a><a href="/tags/ADL/" style="font-size: 10.00px;">ADL</a><a href="/tags/AKG-k420/" style="font-size: 10.00px;">AKG k420</a><a href="/tags/AdBlock/" style="font-size: 10.00px;">AdBlock</a><a href="/tags/BAE/" style="font-size: 10.00px;">BAE</a><a href="/tags/C/" style="font-size: 10.00px;">C++</a><a href="/tags/C-Primer/" style="font-size: 10.00px;">C++ Primer</a><a href="/tags/C-11/" style="font-size: 10.00px;">C++11</a><a href="/tags/CRTP/" style="font-size: 10.00px;">CRTP</a><a href="/tags/Cache/" style="font-size: 10.00px;">Cache</a><a href="/tags/Copy-On-Write/" style="font-size: 10.00px;">Copy-On-Write</a><a href="/tags/DirectShow/" style="font-size: 10.00px;">DirectShow</a><a href="/tags/Effective-C/" style="font-size: 20.00px;">Effective C++</a><a href="/tags/Failure-transparency/" style="font-size: 10.00px;">Failure transparency</a><a href="/tags/InnoDB/" style="font-size: 10.00px;">InnoDB</a><a href="/tags/JSFuck/" style="font-size: 10.00px;">JSFuck</a><a href="/tags/JavaScript/" style="font-size: 17.50px;">JavaScript</a><a href="/tags/Kindle/" style="font-size: 10.00px;">Kindle</a><a href="/tags/Kindle-Paperwhite-2/" style="font-size: 10.00px;">Kindle Paperwhite 2</a><a href="/tags/Linux/" style="font-size: 15.00px;">Linux</a><a href="/tags/Lisp/" style="font-size: 10.00px;">Lisp</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/MX360/" style="font-size: 10.00px;">MX360</a><a href="/tags/MX370/" style="font-size: 10.00px;">MX370</a><a href="/tags/MySQL/" style="font-size: 17.50px;">MySQL</a><a href="/tags/OPPO-X1/" style="font-size: 10.00px;">OPPO X1</a><a href="/tags/OpenCV/" style="font-size: 10.00px;">OpenCV</a><a href="/tags/PR200MKII/" style="font-size: 10.00px;">PR200MKII</a><a href="/tags/QT5/" style="font-size: 12.50px;">QT5</a><a href="/tags/Qt-Plugins/" style="font-size: 10.00px;">Qt Plugins</a><a href="/tags/Read/" style="font-size: 10.00px;">Read</a><a href="/tags/STL/" style="font-size: 10.00px;">STL</a><a href="/tags/Slicing-Problem/" style="font-size: 10.00px;">Slicing Problem</a><a href="/tags/THINKPHP/" style="font-size: 10.00px;">THINKPHP</a><a href="/tags/TextQuery/" style="font-size: 10.00px;">TextQuery</a><a href="/tags/Ubuntu/" style="font-size: 12.50px;">Ubuntu</a><a href="/tags/VS2010/" style="font-size: 10.00px;">VS2010</a><a href="/tags/VS2012/" style="font-size: 10.00px;">VS2012</a><a href="/tags/Varnish/" style="font-size: 10.00px;">Varnish</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        <ul>
+<li><a href="http://www.ray-world.com/" target="_blank" title="从今天起，做一只幸福的程序猿">Ray's World</a></li>
+<li><a href="http://www.wdk.pw/" target="_blank" title="从今天起，做一只幸福的程序猿">WDK’s Personal Web</a></li>
+<li><a href="http://www.hekunn.com/" target="_blank" title="hekunn">何坤的小世界</a></li>
+<li><a href="http://www.zhangyao.name/" target="_blank" title="Hall of independent thinking">独立思维殿堂</a></li>
+<li><a href="http://www.lingxi360.com/" target="_blank" title="灵析 发掘联系人的真正价值">灵析</a></li>
+<li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+
+  <div class="outer">
+
+
+  <div class="outer">
+
+
+    <div id="footer-info" class="inner">
+<style type="text/css">
+   #ds-recent-visitors .ds-avatar {
+    float: left;
+</style>
+<ul class="ds-recent-visitors" data-num-items="29"></ul>
+</div>
+
+<div id="footer-info" class="inner">
+      30年众生马牛，60年诸佛龙象。
+<br>
+      &copy; 2015 <a href="http://www.yekezhong.com" title="YesBlog | 叶科忠的博客">Ye, Kezhong</a> | <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe35b9eb7139bfb03f4f465848a3269c3' type='text/javascript'%3E%3C/script%3E"));
+</script> |  <a href="/sitemap.xml" target="_blank">Sitemap</a>
+<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> | Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> | Theme <a href="https://github.com/yekz/YesLandscape" target="_blank">YesLandscape</a>, by Ye, KeZhong, based on Landscape.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/guestbook" class="mobile-nav-link">Guestbook</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/tags/自问自答/" class="mobile-nav-link">自问自答</a>
+  
+    <a href="/tags/自言自语/" class="mobile-nav-link">自言自语</a>
+  
+    <a href="/tags/自作自受/" class="mobile-nav-link">自做自受</a>
+  
+    <a href="/tags/自娱自乐/" class="mobile-nav-link">自娱自乐</a>
+  
+    <a href="https://github.com/yekz" class="mobile-nav-link">↳Github</a>
+  
+    <a href="http://weibo.com/yekezhong/" class="mobile-nav-link">↳叶科忠</a>
+  
+    <a href="http://www.lingxi360.com" class="mobile-nav-link">↳灵析</a>
+  
+</nav>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yekz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+<script type="text/javascript">
+var div = document.getElementById("gbook-gbook");
+if (div) {
+	var div = document.getElementById("gbook");
+	div.parentNode.removeChild(div);
+}
+</script>
+
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
+<a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
+</div>
+<script src="/scroll2top/scroll2top.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript">(function() {var s = document.getElementsByTagName("script")[0],rdb = document.createElement("script"); rdb.type = "text/javascript"; rdb.async = true; rdb.src = document.location.protocol + "//www.readability.com/embed.js"; s.parentNode.insertBefore(rdb, s); })();</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31426108-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
