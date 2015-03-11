@@ -155,12 +155,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本作品"><span class="toc-number">1.</span> <span class="toc-text">关于本作品</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#投票规则："><span class="toc-number">2.</span> <span class="toc-text">投票规则：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防刷机制："><span class="toc-number">3.</span> <span class="toc-text">防刷机制：</span></a></li></ol>
+	</div>
+
+<h2 id="关于本作品">关于本作品</h2>
+<blockquote>
+<p>“<a href="http://61.139.106.3:8087/tp/" target="_blank" rel="external"><span style="color: #ff0000;">理工好网站 | 网页设计大赛投票展示平台</span></a>”由大学生网络技术协会参赛团队“<span style="color: #ff0000;">番茄炒蛋</span>”独家冠名制作。</p>
+<p>番茄炒蛋团队由叶科忠（软件113），胥昭，蒋佩忱三位成员组成。</p>
+<p>本网站为四川理工学院2012“动感地带杯”网页设计大赛1号参赛作品，同时作为本次网页设计大赛投票展示平台使用。</p>
+<p><span style="color: #ff0000;">感谢大家支持本作品：)</span></p>
+</blockquote>
+<h2 id="投票规则：">投票规则：</h2>
+<blockquote>
+<ol>
+<li>投票前需先<a href="http://61.139.106.3:8087/tp/index.php/register" target="_blank" rel="external">注册</a>。</li>
+<li>每个帐号每日有一定可投票数，使用后第二天票数会自动刷新。</li>
+</ol>
+</blockquote>
+<h2 id="防刷机制：">防刷机制：</h2>
+<blockquote>
+<p>所有参赛作品应自觉遵守公平竞赛原则，正常投票，维护比赛秩序。</p>
+<p>一旦发现非正常刷票、不文明留言、恶意攻击网站等行为，管理员有权对作品、用户进行封禁处理，后果自负。</p>
+<p>大学生网络技术对以上操作保留解释权。</p>
+</blockquote>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/692/" data-id="b44jtq39h7lr9brz" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/亦疯实验室/">亦疯实验室</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/叶科忠/">叶科忠</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/四川理工学院/">四川理工学院</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网页设计大赛/">网页设计大赛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计/">设计</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -169,20 +198,34 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="692" data-title="理工好网站 | 网页设计大赛投票展示平台" data-url="http://www.yekezhong.com/692/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/698/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          QT5及qt-vs-addin-1.2.0之VS2012配置小结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/678/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不在路上</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -409,10 +452,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

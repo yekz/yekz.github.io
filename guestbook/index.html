@@ -121,12 +121,17 @@ window._bd_share_config={“common”:{“bdSnsKey”:{},”bdText”:””,”
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<p>Leave your message here :)</p>
+<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div><br><script>window._bd_share_config={“common”:{“bdSnsKey”:{},”bdText”:””,”bdMini”:”2”,”bdMiniList”:false,”bdPic”:””,”bdStyle”:”1”,”bdSize”:”24”},”share”:{}};with(document)0[(getElementsByTagName(‘head’)[0]||body).appendChild(createElement(‘script’)).src=’<a href="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=&#39;+~(-new">http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=&#39;+~(-new</a> Date()/36e5)];</script><br><div id="gbook-gbook"><br><!-- 多说评论框 start --><br><div class="ds-thread" data-thread-key="8" data-author-key="1" data-title="留言" data-url="http://www.yekezhong.com/guestbook" id="ds-thread"></div><br><!-- 多说评论框 end --><br></div>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/guestbook/index.html" data-id="6an7w9rwwveuf6xu" class="article-share-link">Share</a>
+      
     </footer>
 
 <!-- baidu start -->
@@ -135,20 +140,15 @@ window._bd_share_config={“common”:{“bdSnsKey”:{},”bdText”:””,”
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="undefined" data-title="guestbook" data-url="http://www.yekezhong.com/guestbook/index.html"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+
 
       
   </div>
@@ -375,10 +375,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

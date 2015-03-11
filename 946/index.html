@@ -125,12 +125,22 @@ CCTV是个恶心的玩意儿，我也好多年没正眼看过电视了，但就�
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<p>柴静的《看见》是本好书，我为最初凭感觉将其归为开复哥心灵鸡汤式的自传“小说”而抱歉，看来事情还是要亲眼看见了才能下结论。</p>
+<p>CCTV是个恶心的玩意儿，我也好多年没正眼看过电视了，但就作为洗脑工具和控制社会舆论而言，可谓比媳妇儿还忠贞，结果是，《看见》一书讲述的案例，除了卢安克，我居然都很清楚，尽管柴静的节目对于整个CCTV体系而言是很边缘化的，但是这本书一看 ，很容易给大家造成柴静就是整个CCTV的错觉。</p>
+<p>在体制内生存，不能触碰的底线比一般行业高得离谱，柴静能在“制度与人文的十字路口”飚车不出车祸，实属不易。对此，柴静自己在书里也很隐晦地表达了这只能意会不可言传的苦闷：“每一条细微的新闻背后，都隐藏一条冗长的逻辑链，在我们这，这些逻辑链绝大多数是同一朝向，正式因为这不能言说又不言而喻的秘密，我们需要提醒自己，绝不能走到这条逻辑链的半山腰就嚎啕大哭。”这朝向是什么，相信读到书上这段话时，脑袋清醒点的读者都能对这份大家共同的苦闷充分理解了，真是聪明。</p>
+<p>尽管说是从业十年的自传，但实在是比一般传记精彩高明太多了。通常的自传，自我中心意识浓烈，柴静则在叙事和自我的微妙变化间掌握得很好，在新闻事例的庞大和震撼之前，自我已经显得很渺小了，柴静还一直在书中再三试图弱化自我，其实你看，十年过去了，柴静几乎还是那个柴静，无非经历的事情多了些，变化不大嘛，但回味开来，又觉得十年的自我论证真是酣畅淋漓，高明。</p>
+<p>上个月看了十来本书，《看见》肯定不是最好的，却应该是唯一适合推荐的。矛盾的是，你得看过那些“最好的书”，才能充分理解《看见》在体制的厚重挤压下发芽生根的不容易，大部分的人看着这本书，估计也就是感动感动还是感动，然后呢？没有了。</p>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/946/" data-id="bputgx11e6ljv9jf" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/柴静/">柴静</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/看见/">看见</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自言自语/">自言自语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书/">读书</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -139,20 +149,34 @@ CCTV是个恶心的玩意儿，我也好多年没正眼看过电视了，但就�
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="946" data-title="看见" data-url="http://www.yekezhong.com/946/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/949/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《黑客与画家》阅读笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/936/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">油猴脚本第二炮：googleSearchCountRobot，看看苦逼的程序猿，每天要Google多少次</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -379,10 +403,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

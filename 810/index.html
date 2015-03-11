@@ -140,12 +140,44 @@ Declare data members private. It gives clients">
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_To_Remember"><span class="toc-number">2.</span> <span class="toc-text">Things To Remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Words"><span class="toc-number">3.</span> <span class="toc-text">Key Words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Points"><span class="toc-number">4.</span> <span class="toc-text">Key Points</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">5.</span> <span class="toc-text">Code</span></a></li></ol>
+	</div>
+
+<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
+<h2 id="Part_4:_Designs_and_Declarations">Part 4: Designs and Declarations</h2>
+<p><a href="http://www.yekezhong.com/810" title="Item 22: Declare data members private." target="_blank" rel="external">Item 22: Declare data members private</a>.</p>
+<hr>
+<h2 id="Things_To_Remember">Things To Remember</h2>
+<ul>
+<li>Declare data members private. It gives clients <strong>syntactically uniform</strong> access to data, affords <strong>fine-grained access control</strong>, allows <strong>invariants</strong> to be enforced, and offers class authors implementation <strong>flexibility</strong>.</li>
+<li><strong>protected</strong> is no more encapsulated than <strong>public</strong>.</li>
+</ul>
+<h2 id="Key_Words">Key Words</h2>
+<p><strong>syntactic consistency (语法一致性):</strong></p>
+<p>Ways to facilitate the correct use include consistency in interfaces and behavioral compatibility with build-in types. [Item 18]</p>
+<p><strong>fine-grained access control</strong>:</p>
+<p><a href="http://www.webfarmr.eu/2011/05/coarse-grained-vs-fine-grained-access-control-part-i/" title="Coarse-grained vs. fine-grained access control – part I" target="_blank" rel="external">Coarse-grained vs. fine-grained access control.</a></p>
+<p><strong><a href="http://en.wikipedia.org/wiki/Class_invariant" title="Class invariant | wikipedia" target="_blank" rel="external">class invariants</a>:</strong></p>
+<p>A class invariant is an invariant used to constrain objects of a class. Methods of the class should preserve the invariant. The class invariant constrains the state stored in the object.</p>
+<h2 id="Key_Points">Key Points</h2>
+<p>Suppose we have a protected data member, and we eliminate it, then all the derived classes that use it might be broken now.</p>
+<p>Unencapsulated means unchangeable, especially for classes that are widely used. So from an encapsulation point of view, <strong>there are really only two access levels: private (which offers encapsulation) and everything else (which doesn’t). </strong>[see alse <a href="http://book.douban.com/subject/1456860/" title="The Design and Evolution of C++ | douban" target="_blank" rel="external">&lt;The Design and Evolution of C++&gt;</a>]</p>
+<p>比 private 更彻底的方案是把私有部分全部放在一个私有的内部类中，并把私有类的定义从公开的头文件里删掉，只被实现所见。[Item 31]</p>
+<h2 id="Code">Code</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Fine-grained access control </span></div><div class="line"><span class="keyword">class</span> AccessLevels { </div><div class="line"><span class="keyword">public</span>: </div><div class="line">trueint getReadOnly() <span class="keyword">const</span> { <span class="keyword">return</span> readOnly; }</div><div class="line"> 	<span class="keyword">void</span> setWriteOnly(<span class="keyword">int</span> value) { writeOnly = value; }</div><div class="line"> 	<span class="keyword">void</span> setReadWrite(<span class="keyword">int</span> value) { readWrite = value; }</div><div class="line"> 	<span class="keyword">int</span> getReadWrite() <span class="keyword">const</span> { <span class="keyword">return</span> readWrite; } </div><div class="line"><span class="keyword">private</span>: </div><div class="line">trueint noAccess; <span class="comment">// no access to this int 	int readOnly; </span></div><div class="line"><span class="keyword">true</span><span class="comment">// read-only access to this int </span></div><div class="line">trueint writeOnly; <span class="comment">// write-only access to this int </span></div><div class="line">trueint readWrite; <span class="comment">// read-write access to this int </span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/810/" data-id="2taz7byy077nh2tr" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/class-invariants/">class invariants</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fine-grained-access-control/">fine-grained access control</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/syntactic-consistency/">syntactic consistency</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -154,20 +186,34 @@ Declare data members private. It gives clients">
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="810" data-title="Item 22: Declare data members private." data-url="http://www.yekezhong.com/810/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/821/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Item 23: Prefer non-member non-friend functions to member...
+        
+      </div>
+    </a>
+  
+  
+    <a href="/782/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Item 21: Don’t try to return a reference when you must return...</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -394,10 +440,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

@@ -150,12 +150,60 @@ ISO/IEC 14882:1">
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_4:_Designs_and_Declarations"><span class="toc-number">1.</span> <span class="toc-text">Part 4: Designs and Declarations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_8:_Customizing_new_and_delete"><span class="toc-number">2.</span> <span class="toc-text">Part 8: Customizing new and delete</span></a></li></ol>
+	</div>
+
+<p>去年读完 <a href="http://www.yekezhong.com/tag/c-primer" title="Tag Archives: c++ primer" target="_blank" rel="external">《C++ Primer》 </a>一书，本以为对 C++ 基础部分已经窥探得差不多， 哪知 2011 年 9 月 C++ 标准委员会已经发布了 <a href="http://en.wikipedia.org/wiki/C%2B%2B11" title="C++11" target="_blank" rel="external">C++0x</a> ，这样推算起来，我还是晚了一步。犹记得在谭浩强的书上，经常能看到关于  <a href="http://en.wikipedia.org/wiki/ISO/IEC_14882" title="ISO/IEC 14882" target="_blank" rel="external">C++98</a> 的注脚，谓为标准，结果 C++ 早已经经历了</p>
+<p><table border="1" cellpadding="1"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><th>Year</th></p>
+<p><th>C++ Standard</th></p>
+<p><th>Informal name</th><br></p>
+<p><tr></tr></p>
+<p><th>1998</th></p>
+<p><td>ISO/IEC 14882:1998<sup id="cite_ref-18"><a href="http://en.wikipedia.org/wiki/ISO/IEC_14882#cite_note-18" target="_blank" rel="external">[18]</a></sup></td></p>
+<p><td><a href="http://en.wikipedia.org/wiki/C%2B%2B98" title="C++98" target="_blank" rel="external">C++98</a></td><br></p>
+<p><tr></tr></p>
+<p><th>2003</th></p>
+<p><td>ISO/IEC 14882:2003<sup id="cite_ref-19"><a href="http://en.wikipedia.org/wiki/ISO/IEC_14882#cite_note-19" target="_blank" rel="external">[19]</a></sup></td></p>
+<p><td><a href="http://en.wikipedia.org/wiki/C%2B%2B03" title="C++03" target="_blank" rel="external">C++03</a></td><br></p>
+<p><tr></tr></p>
+<p><th>2007</th></p>
+<p><td>ISO/IEC TR 19768:2007<sup id="cite_ref-20"><a href="http://en.wikipedia.org/wiki/ISO/IEC_14882#cite_note-20" target="_blank" rel="external">[20]</a></sup></td></p>
+<p><td><a href="http://en.wikipedia.org/wiki/C%2B%2B_Technical_Report_1" title="C++ Technical Report 1" target="_blank" rel="external">C++TR1</a></td><br></p>
+<p><tr></tr></p>
+<p><th>2011</th></p>
+<p><td>ISO/IEC 14882:2011<sup id="cite_ref-21"><a href="http://en.wikipedia.org/wiki/ISO/IEC_14882#cite_note-21" target="_blank" rel="external">[21]</a></sup></td></p>
+<p><td><a href="http://en.wikipedia.org/wiki/C%2B%2B11" title="C++11" target="_blank" rel="external">C++11</a></td><br><br><br><br>几轮迭代更新（若想打开上面的链接，需先研究 <a href="http://www.yekezhong.com/127" title="goagent+Chrome/Firefox翻墙教程" target="_blank" rel="external">goagent+Chrome/Firefox翻墙教程</a>），如此看来，吾等算是远远落后于时代了。</p>
+<p>唯有快马加鞭，奋起直追。</p>
+<p>且慢！学习 C++Ox 新特性固然重要，但是读完 <a href="http://www.yekezhong.com/tag/c-primer" title="Tag Archives: c++ primer" target="_blank" rel="external">《C++ Primer》</a> 是否真具备了登高望远的资格？根据这些日子所见所识来看，未必。</p>
+<p>于是，当前第一要务应当是更深入的学习 C++，知己知彼，方能百战不殆。</p>
+<p>这是前话。</p>
+<p>假前购入相关书籍数本，算是正式开始踏上继《C++ Primer》这本挺厚的垫脚石之后再一次往上攀爬。</p>
+<p>第一本启封的，就是眼下这本 <a href="http://book.douban.com/subject/1842426/" title="Effective C++: 55 Specific Ways to Improve Your Programs and Designs (3rd Edition)" target="_blank" rel="external">Effective C++: 55 Specific Ways to Improve Your Programs and Designs (3rd Edition)</a>。</p>
+<p><a href="http://img14.poco.cn/mypoco/myphoto/20130118/15/64924895201301181529353422818225421_000.jpg" title="Effective C++: 55 Specific Ways To Improve Your Programs And Designs" target="_blank" rel="external"><img src="http://img14.poco.cn/mypoco/myphoto/20130118/15/64924895201301181529353422818225421_000.jpg" alt="Effective C++: 55 Specific Ways To Improve Your Programs And Designs" title="Effective C++: 55 Specific Ways To Improve Your Programs And Designs"></a></p>
+<p>一狠心买了英文版，好在读起还算顺利，鉴于此书字字珠玑，句句金玉，江湖上评价极高，为了加深记忆和日后复习方便，遂开始在阅读每个条款后记录下要点，顺便练练英语了。</p>
+<p>读书笔记整理如下：</p>
+<blockquote>
+<h2 id="Part_4:_Designs_and_Declarations"><strong>Part 4: Designs and Declarations</strong></h2>
+<address><strong><a href="http://www.yekezhong.com/753" title="Item 20: Prefer pass-by-reference-to-const to pass-by-value" target="_blank" rel="external">Item 20: Prefer pass-by-reference-to-const to pass-by-value</a>.</strong></address><address><strong><a href="http://www.yekezhong.com/782" title="Item 21: Don’t try to return a reference when you must return an object" target="_blank" rel="external">Item 21: Don’t try to return a reference when you must return an object</a>.</strong></address><address><strong><a href="http://www.yekezhong.com/810" title="Item 22: Declare data members private." target="_blank" rel="external">Item 22: Declare data members private</a>.</strong></address><address><strong><a href="http://www.yekezhong.com/821" title="Item 23: Prefer non-member non-friend functions to member functions" target="_blank" rel="external">Item 23: Prefer non-member non-friend functions to member functions</a>.</strong></address><address><strong><a href="http://www.yekezhong.com/870" title="Item 24: Declare non-member function when type conversions should apply to all parameters" target="_blank" rel="external">Item 24: Declare non-member function when type conversions should apply to all parameters</a>.</strong></address><address><strong><a href="http://www.yekezhong.com/881" title="Item 25: Consider support for a non-throwing swap." target="_blank" rel="external">Item 25: Consider support for a non-throwing swap</a>.</strong></address><address> </address>
+
+<h2 id="Part_8:_Customizing_new_and_delete">Part 8: Customizing new and delete</h2>
+<address><em><strong><a href="http://www.yekezhong.com/958" target="_blank" rel="external">Item 49: Understand the behavior of the new-handler.</a></strong></em></address>
+</blockquote>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/844/" data-id="ib4umgrvv7ujsfhl" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -164,20 +212,34 @@ ISO/IEC 14882:1">
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="844" data-title="《Effective C++》读书笔记 (系列)" data-url="http://www.yekezhong.com/844/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/753/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Item 20: Prefer pass-by-reference-to-const to pass-by-value
+        
+      </div>
+    </a>
+  
+  
+    <a href="/732/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">回《告天下书》 —— 先生卖我几两人道天道？</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -404,10 +466,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

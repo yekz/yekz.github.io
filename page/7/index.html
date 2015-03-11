@@ -124,34 +124,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >问题越来越复杂，《算法导论》一书给出的伪代码越来越坑爹，计算强联通分支几句英语就给俺打发了。
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+于是邻接表的转置和强联通分支的输出都成了待自行解决的问题，期间因为一些逻辑错误导致一直出不了正确结构，翻看了将用作大二教材的《数据结构（c语言版）》一书，话说俺一直觉得上面给出的代码排版和粗体的标识各种难看，而其对该算法实现的底层也用了几个结构体，google来的实现代码一看也均是参照《数据结构（c语言版）》进行的实现，和我自己用C++搞的相去甚远。只得自己纠结纠结再纠结，睡觉也在想，好在终于守得拨云见日。实现过程中对《算法导论》书上描述的伪代码和数据结构做了轻微改动，比如结构体中增加了一个卫星数据child，方便输出强连通分支。强连通分支又叫深度优先森林，说是森林，其实每棵树都是一条线，没有任何分支来着，所以输出时直接用child遍历下去就行。代码整理如下，详见注释，不再赘述。测试一下：
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
-
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205#include "stdafx.h"#include &lt;iostream&gt;#include &lt;queue&gt; // 广度优先搜索中管理灰色顶点的先进先出队列#include &lt;vector&gt; // 邻接表容器#include &lt;string&gt;#include &lt;limits&gt; // INT_MAX#include &lt;algorithm&gt; // 泛型算法sort的谓词版本进行拓扑排序using namespace std;enum COLOR {WHITE, GRAY, BLACK};struct Vertex {trueint no; // 结点序号truestring name; // 结点名称trueCOLOR color;truevector&lt;int&gt;* Adj; // 邻接表，包含所有满足条件(u, v)∈E的顶点vtrue// 用于广度优先搜索trueint distence; // 广度优先树中从s到v的路径长，对应于图G中从从s到v的一条最短路径长trueVertex* parent; // 广度优先树中结点的父母true// 用于深度优先搜索trueVertex* child; // 深度优先树中结点的孩子，方便输出强联通分支，算是数据结构的扩张的一个应用。。。trueint begin; // 顶点v第一次被发现时记下该时间戳trueint finish; // 结束检查v的邻接表时记下该时间戳};// sort的谓词函数，用作拓扑排序inline bool isLarge(const Vertex* v1, const Vertex* v2){truereturn v1-&gt;finish &gt; v2-&gt;finish;}class Graph {public:true// 构造邻接表truevoid creatGraph();trueinline void displayGraph() const;true// 广度优先搜索truevoid BFS(const int);truevoid printPath(const int, const int) const;true// 深度优先搜索truevoid DFS();truevoid DFSVisit(Vertex*);trueinline void topologicalSort(); // 有向无回路图的拓扑排序truevoid transposition(); // 转置true</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/622/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -186,34 +169,46 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >★动态规划
+◇设计步骤
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+描述最优解的结构
+递归定义最优解的值
+按自底向上的方式计算最优解的值
+由计算出的结果构造一个最优解
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+◇最优子结构（设计步骤1、2）
+如果一个问题的最优解中包含了子问题的最优解，则该问题具有最优子结构。
+◇重叠子问题（设计步骤3）
+当一个递归算法不断地调用同一问题时，则该最优问题包含重叠子问题。
+动态规划算法总是充分利用重叠子问题，即通过每个子问题只解一次，把解保存在一个在需要时就可以查看的表中。
+适合用分治法解决的问题旺旺在递归的每一步都产生全新的子问题，且对递归树中重复出现的每个子问题都要重复解一次。
+◇重新构造一个最优解（设计步骤4）
+每一个子问题所做的选择保存在一个表格中，这样在需要时，就不必根据已经储存下来的代价信息来重构这方面的信息了。
+◇一种变形：做备忘录
+与原形不同的是，备忘录方法采用的是自顶向下的策略。通过备忘原问题的自然但低效的递归算法，维护一个记录了子问题解的表，但有关填表动作的控制结构更像递归算法。
+如果所有的子问题都至少要被计算一次，则一个自底向上的动态规划算法通常要比一个自顶向下的做备忘录的算法好出一个参数因子，因为前者无需递归的代价。
+如果子问题空间中的某些子问题根本没有必要求解，做备忘录方法有着只解那些肯定要求解的子问题的优点。
+★贪心算法
+◇贪心选择性质
+一个全局的最优解可以通过局部最优（贪心）选择来达到。
+贪心策略通畅是自顶向下地做的，一个一个地作出贪心选择，不断地将给定的问题实例约为更小的问题。
+★分治法
+适合用分治法解决的问题旺旺在递归的每一步都产生全新的子问题，且对递归树中重复出现的每个子问题都要重复解一次。
+★一个实例：活动选择问题
+给定一组活动的开始时间和结束时间，然后他们都需要使用到一个资源，这个资源每次只有一个活动可以用，要求求出一个最大的相互兼容的活动子集。
+首先定义了一个集合Sij = {ak∈ S :fi ≤ sk &lt; fk ≤ sj} , 其中S就是所有活动的集合，fi是活动ai的完成时间si是活动ai的开始时间。
+找出递归式：
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
-
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+关于该问题动态规划算法，发现习题答案和很多网友给出的伪代码或实现都有问题，算法中居然没有对s[],f[]的使用，怎么可能得出结果！
+以下是动态规划和贪心算法（递归和迭代两个版本）的c++实现代码：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include "stdafx.h"#include &lt;iostream&gt;using namespace std;const int size = 13; // 11个活动，加上虚构活动a0和an+1// 动态规划：构造最优解void recursive_activity_selector(int s[], int f[], int c[], int p[][size], int num){truefor (int i = 0; i &lt; num; ++i)truetruefor (int j = 1; j &lt; num; ++j)truetruetrueif (i &gt;= j)truetruetruetruec[i][j] = 0;truetruetrueelsetruetruetruetruefor (int k = i + 1; k &lt; j; k++)truetruetruetruetrueif (f[i] &lt;= s[k] && f[k] &lt;= s[j]) // 习题答案和很多网友给出的伪代码或实现都没有这句，显然有问题truetruetruetruetruetrueif (c[i][j] &lt; c[i][k] + c[k][j] + 1) {truetruetruetruetruetruetruec[i][j] = c[i][k] + c[k][j] + 1;truetruetruetruetruetruetruep[i][j] = k;truetruetruetruetruetrue}}// 动态规划：输出最优解void print(int i, int j, int p[][size]){trueint k = 0;trueif (p[i][j] == 0)truetruereturn ;truecout &lt;&lt; p[i][j] &lt;&lt; " ";trueprint(i, p[i][j], p);trueprint(p[i][j], j, p);}// 贪心算法：递归版本void recursive</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/608/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -248,34 +243,61 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >《C++ primer》在一书收官之处介绍了allocator，并给出了reallocate()函数管理容器的内存分配，心脏有了，一番折腾，我大Vector成矣。
+★**关于本模版**
+◇实现了《C++ primer》顺序容器一章中列出的所有vector支持的操作：
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+容器定义的类型别名（p272）：size_type、iterator、const_iterator、reverse_iterator、const_reverse_iterator、difference_type、value_type、reference、const_reference
+容器构造函数（p265）：C&lt;T&gt; c、C c(n, t)、C c(b, e)、C c(n)、C c(c2)
+begin和end成员（p273）：返回const和非const迭代器
+在顺序容器中添加元素（p274）：push_back、push_front
+容器大小的操作（p278）：size、max_size、empty、resize
+访问元素（p279）：back、front、operator[]、at
+删除元素（p280）：erase、clear、pop_back、pop_front
+赋值操作（p283）：operator=、swap、assign
+capacity和reserve成员（p285）：capacity、reserve
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+◇Iterator和ReIterator类
+开始时使用指针直接模拟迭代器，但是反向迭代器没法实现，于是分别写了正向和反向迭代器类，供Vector使用。
+类中重载了的操作符：*、-&gt;、==、!=、++（前自增和后自增两个版本）、—（前自减和后自减两个版本）
+◇补充说明
+标准库vector比我的这个版本复杂很多，我只是模拟实现了基础操作。
+大部分功能进过测试，但是代码中还是难免有错，或者实现得不合理或代码啰嗦的地方，有发现的还望指出。
+★reallocate()的改动
+按我实现成员函数的方式，书上的reallocate()需要进行改动。
+原函数是根据容器堆大小（size）来计算新空间，但是在一个Vector上申请空间时，增大的是capcacity，size不会改变，就使得没有办法重复申请更多内存，这样，把一个size很大的Vectoc复制到size很小的Vector中的操作就没办法完成，因为只能申请一次空间。
+将原函数的size改为capacity后，内存可重复申请，直至足够大。
+12`std::ptrdiff_t newcapacity = 2 * std::max(size, 1);  // 原std::ptrdiff_t newcapacity = 2 * std::max(capacity, 1);  // 现`对程序应该也没有影响，毕竟内存分配多少只是决策问题。
+
+★**关于const成员函数的使用**
+◇下标操作符
+定义了const和非const版本：
+12`T&amp; operator[](const size_type) { return elements[index]; };const T&amp; operator[](const size_type) const { return elements[index]; };`
+
+const版本中，返回值的const和常成员的const声明缺一不可。
+假如缺失常成员const声明，如果定义一个const实例并用下标操作法访问：
+const Vector&amp;lt;char&amp;gt; cvec(5, &#39;a&#39;);
+char c = cvec[2];  // 错误！ vs2010提示： error C2678: 二进制“[”: 没有找到接受“const Vector&amp;lt;T&amp;gt;”类型的左操作数的运算符(或没有可接受的转换)
+显然，我们应该提供一个const版本的成员来供const实例使用。但是
+1`T&amp; operator[](const size_type) const { return elements[index]; };`
+
+是否就行了呢？
+12`const Vector&lt;char&gt; cvec(5, 'a');cvec[0] = 'A';`
+
+会发现声明为const的cvec[0]变成了’A’！
+原因在于，cvec[0]返回的是该元素的非const引用，赋值可以进行。
+所以，返回值和函数都必须为const。
+◇const是个好东西
+写这个模版的一个大收获，就是基本高清了const的应用。
+C++中的const关键字的用法非常灵活，而使用const将大大改善程序的健壮性。写这个模版的过程中，我了解</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/574/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -310,34 +332,29 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >有的网页限制了鼠标右键和复制功能，有时很不方便，看得见摸不着。
+俺这里有三种方法，都可以破除限制，各位客官往下看。
+问题、意见和建议，欢迎留言交流！
+方法一：点击下面的链接，将【一键破解限制】添加到收藏夹即可，遇上有限制的网页，只需点击一下即可破解。【注：Google浏览器不支持此方法，请看方法二】
+【加入收藏夹】
+// 
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+方法二：自动不支持，手工即可，俺已把代码上传到了博客，使用步骤如下：
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+鼠标右键单击下面的链接，然后“目标另存为”保存到本地
+打开文件，复制代码，下图1
+将代码手工保存为书签，此时即达成方法一的效果，下图2、3
+或者将代码直接粘贴到浏览器地址栏确认即可破解【注：不支持Chrome浏览器】，下图4右键另存为：JavaScript解除右键复制限制
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+方法三：试用于有一定网页编程基础的人。使用Chrome浏览器，按F12即可看见网页的所有源码，想要的东西都在里面，能不能找到就看自己了。
+// &lt;![CDATA[function addfavorite()     {            if (document.all)               window.external.addFavorite(‘javascript:function go(){document[“\x6f\x6e\x73\x65\x6c\x65\x63\x74\x73\x74\x61\x72\x74”]=document[“\x6f\x6e\x63\x6f\x6e\x74\x65\x78\x74\x6d\x65\x6e\x75”]=document[“\x6f\x6e\x6d\x6f\x75\x73\x65\x64\x6f\x77\x6e”]=document[“\x6f\x6e\x6b\x65\x79\x64\x6f\x77\x6e”]=function(){return true};alert(“\u7834\u89e3\u6210\u529f\x21\n\u66f4\u591a\u7cbe\u5f69\uff0c\u8bf7\u8fdb\u5165\uff1a\u3010\x77\x77\x77\x2e\x79\x65\x6b\x65\x7a\x68\x6f\x6e\x67\x2e\x63\x6f\x6d\u3011”)};go();’,’教务系统登录器’);           else if (window.sidebar)               window.sidebar.addPanel(‘javascript:function go(){document[“\x6f\x6e\x73\x65\x6c\x65\x63\x74\x73\x74\x61\x72\x74”]=document[“\x6f\x6e\x63\x6f\x6e\x74\x65\x78\x74\x6d\x65\x6e\x75”]=document[“\x6f\x6e\x6d\x6f\x75\x73\x65\x64\x6f\x77\x6e”]=document[“\x6f\x6e\x6b\x65\x79\x64\x6f\x77\x6e”]=function(){return true};alert(“\u7834\u89e3\u6210\u529f\x21\n\u66f4\u591a\u7cbe\u5f69\uff0c\u8bf7\u8fdb\u5165\uff1a\u3010\x77\x77\x77\x2e\x79\x65\x6b\x65\x7a\x68\x6f\x6e\x67\x2e\x63\x6f\x6d\u3011”)};go();’, “”);     }// ]]&gt;</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/504/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -372,34 +389,26 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >高考已经过去一年，还记得那时的准考证背面有三种查分方式。后来我吐了这么一个嘈：
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+高考查分一共七个入口，准考证后提供了三种，无巧不成书，刚好是需要收费的三种。例如，在四川，免费的查分方式就有：
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+四川招生考试信息网(www.zk789.net)
+四川教育考试院(www.四川省教育考试院.cn)
+四川教育网(www.scedu.net)
+四川移动查询专线（免费）：10086,或12580可见，查分渠道其实很多，网上查分服务器一时虽然会崩溃，但是还有10086，12580等免费查分入口。
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+尽管如此，当时来看，我的同学还是有不少碍于消息不灵通，上了准考证的当，花了很多冤枉钱。
+这篇文章旨在为今年可能再次上当的童鞋提个醒，多查询一下你那里有哪些免费的查分方式吧。
+本来有一个像做四川理工学院教务系统无弹窗登录器一样做一个高考查分接口的想法，来缓解教育网的压力，给部分童鞋提供方便，但是考虑到很多不确定因素，万一触电就不好了。
+查分之后，欢迎来蚁群工作室&amp;计算机学院2012届新生咨询网站围观哦！</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/491/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -434,34 +443,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >【四川理工、计算机学院❤欢迎❤2012届的新童鞋】
+又是一年迎新季，为了让新来的计算机专业的同学能够更好的了解本专业，在此，我们建立了一个计算机学院新生的交流群：62466094，高级群，可以容纳500人，应该大部分计算机学院的童鞋都能进来，我们尽量给所有同学都new一个位置，~当然其他学院的也欢迎来凑热闹哦！
+我们也建立了一个临时网站是 http://www.suse2012.tk/，在里面你可以参看计算机学院今年的招生情况和各个专业介绍，还可以在里面找到一些新生刚来会出现的问题，我们网站的内容目前还处于更新阶段，由于最近考试较多，可能会在6月底将所有的主要内容都更新完毕，并且在随后逐步更新其他大家觉得问题比较多的内容。
+我们会尽快尽量的debug所有你们提交的FAQ，及时向你们发送需要的message，找寻出你们的漏洞，update上最新的补丁。
+亲，速度加哦！~
+没有妹子的争取进来new 一个妹纸，没有汗纸的，没关系，里面汗纸多。
+  注意：
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+进群的同学请马上定义自己的马甲！
+大二大三的同学也可以加，但是请按照群内格式修改自己的马甲变量！
+群内任何广告我们会当作异常直接飞出去，任何广告都是不允许的！
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+   提示：
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
+群内管理主要活动于新浪微博，新浪微博群：http://q.weibo.com/1850839
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+
+看着http://www.suse2012.tk/上线，想着构建出一个蚁群的综合信息环境，于是从昨天开始把大概一两个月前写的蚁群工作室的网站拿了出来，修复了一些漏洞和BUG，也在今天上传，域名是www.anter.tk。
+由于俺的艺术细胞实在不咋的，纯PS技术也只限于基础使用水平，而咱大蚁群未来的美工人员还在修炼神功之中，所以这个网站对美工的使用几乎为零，没办法做色彩的过渡处理啥的，都是纯色块拼凑，取色也不太协调，给咱大蚁群丢人现眼了~~~</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/486/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -496,34 +502,20 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
-
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
-
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
-
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+<p itemprop="description" >又到一期选课时，每到此时教务系统的服务器总是各种奔溃，于是出现了这种“变相强行登录”的东西。之前尝了甜头的童鞋又来寻求登录器，本来改得只有输入框和登录按钮，无聊就做了下美化，顺便加入了对Enter键的响应，使得爆破速度大大加快。哎哟不错哦。
+只需重复按键盘“Enter”、“BackSpace”两个键即可快速向服务器发送登录请求。
+预祝大家选课顺利!
+进入系统：四川理工学院教务系统无弹窗登录器
+为获得更好的爆破体验，建议使用Google Chrome浏览器，进过测试，其它浏览器可能会在自动填写密码时有延迟，造成“密码不能为空”或登录失败的错误。
+———————————————————————————————————————————
+使用方法：1.输入帐号和密码2.反复敲击键盘【Enter】和【BackSpace】直至登录成功！———————————————————————————————————————————
+【第一次浏览器上方将出现记住密码的提示，点击确定。若未记住，请换Google浏览器重试】【成功进入教务系统后，下一步操作都尽量使用鼠标右键“在新标签页打开”，这样登录成功的页面一直都在】【可选课程可能有很多页，将每页显示改为100或更高即可一页显示，避免点击下一页时页面挂掉】【建议使用Google浏览器使用本系统，进过测试，其它浏览器可能会在自动填写密码时有延迟，造成“密码不能为空”或登录失败的错误】【为了避免爆破系统时的无聊，建议敲出节奏感，动次打次，动次打次，苍茫的天涯。。。】———————————————————————————————————————————→ &gt; 选课的时间又到了!→ &gt; 学校服务器不给力→ &gt; 加上弹窗的麻烦大家挤得很辛苦→ &gt; 为了方便同学们选课和选到自己喜欢的课程→ &gt; 所以大学生网络技术协会为大家制作了这个【无弹窗教务系统登录器】→ &gt; 该系统仅是精简了登录流程和操作→ &gt; 大大提高了“强行登陆”的速度和便捷性→ &gt; 登录成功与否还是完全看学校服务器→ &gt; 所以大家还是需要有很强的耐心来不停Enter+BackSpace→ &gt; 希望大家喜欢！→ &gt; 如果您有其它关于电脑技术的问题，欢迎与网协联系：）———————————————————————————————————————————【以人为本 | 以技术为魂 | 以社会为舞台 | 以竞争为动力】Powered By &amp; Copy Right 大学生网络技术协会AT 2012.6.</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/457/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -597,34 +589,24 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >对于《算法导论》第一部分 C++综合实现、《算法导论》第六章 堆排序 C++实现的补充：最近复习《C++ Primer》，注意到一个重要的东西，位于第三章“标准库类型”：关键概念：安全的泛型编程
+12for (vector&lt;int&gt;::size_type ix = 0; ix != ivec.size(); ++ix)    ivec[ix] = 0;
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+1. c++程序猿习惯于优先选用!=而不是&lt;来编写判断条件。2. 有些数据结构（如vector）可以动态增长，所以在for中调用size成员函数，而不是在进入循环前，存储size值的副本。于是，之前两篇里的代码大部分循环就都不太符合规范了。如：
+1for (elemIndex = 0; elemIndex &lt;= heapSize; ++elemIndex)
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+最好写成
+1for (elemIndex = 0; elemIndex != heapSize - 1; ++elemIndex)
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
-
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+（在堆排序中，heapSize 是堆的元素数，而不是容器中总的元素数，所以不能写成 elemIndex  != elemQueue.size()）
+由于只是复习，这程序的代码大部分书上都有，边复习同时就整理了出来，包括习题的实现，所以没有啥新的感悟。连带复习了不少乱七八糟的知识，Primer这书每一页都藏着天机啊！最重要的是，这次下来，终于是感觉对于“类”的基本知识脑中有了一套比较清晰的知识体系，再也不用像以前提到C++总会说：类和对象这东西蛋疼啊，俺学了那么久都没理明白里面的东西。关键点都在注释里。
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164#include "stdafx.h"#include &lt;iostream&gt;#include &lt;string&gt;#include &lt;set&gt;using namespace std;class Item_base {public:trueItem_base(const string &book = " ", double sales_price = 0.0, bool dbg = false)truetrue: isbn(book), price(sales_price), is_debug(dbg) { }truestring book() const { return isbn; }truevirtual double net_price(size_t n) const { return n * price; }true// 该虚函数的基类实例返回类类型的引用或指针，则其派生类实例可以返回基类实例返回的类型的派生类truevirtual Item_base* clone() const { return new Item_base(*this); }truevirtual void debug(ostream&) const; // 通过is_debug数据成员控制打开或关闭调试信息truevirtual ~Item_base() { } // 即使不做任何工作，继承层次的根类也应该定义一个虚析构函数（三法则的重要例外）private:truestring isbn;protected:truedouble price;truebool is_debug;};void Item_base::debug(ostream &os = cout) const {trueif (!is_debug)truetruereturn;truecout &lt;&lt; isbn &lt;&lt; "\t" &lt;&lt; price;}// 关键概念：重构// 抽象基类：含有一个或多个纯虚函数class Disc_item : public Item_base {public:trueDis</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/417/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -659,34 +641,43 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+<p itemprop="description" >6-14补充修正：
+一周又已过去，之前说到“听歌和煲机的时间也有几十个小时”，原以为不会再有大变化，完全错了！
+文中说的“还原出来的细节容易影响整体听感”，比如齿音，尖锐感，经过又一周的半煲半听，几乎完全不存在了，透彻而无刺耳的锋芒。
+而且这种改变还在继续。
+在入PR200MKII之前，一直习惯K420接笔记本听歌（一方面隔去寝室的嘈杂和枪声），感觉很好。这几天习惯200后，发现K420的声音已无法入耳，相比之下，显得太过沉闷。
+拨云见日！
+———————-END.
+这是第一篇专门写我的初烧路的文章，有必要先回忆下当年怎么走向不归路的。
+2009年，高一
+当时正是用NOKIA3110C听VAE的时代，某晚睡前，拿到迅的oppo x9，然后第一段改变我听歌思维的音乐通过耳朵进入了大脑。
+啥改变？
+以前是：手机都有MP3功能，那些家伙还买MP3干啥呢
+改变后：用手机而不是专业MP3听歌的人，这不是玷污音乐是啥
+注：此MP3非百十元只为发出声音的机器。
+为啥改变？
 
-</div>
-    <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
-    </footer>
+细节：当时的那首歌曲是《清明雨上》，人声开始一段后，开始出现散乱的清脆小音符，这在以前手机上从未注意到，或者，手机播放出来的音乐毫无空间感，所有乐器都堆积在中央，由此更本无法单独去感受某种乐器的声音。（要说的是，这点细节，只是和以前手机的听感对比，和以后听到的一些制作精良的歌曲带来的细微惊喜来说，简直就是响若惊雷了）
+空间感：更早时，那是初中，曾有过一个破烂MP4，听林俊杰的一首歌曲时，一个声音从左耳移动到右耳，然后再返回来，这让当时的我惊异不已。大家应该都听过一段“立体声测试音乐”，人走近，车开远，听到这些东西，大家一定就觉得自己的设备还真不错，当年我也这么认为。后来发现，只要能发出声音的东西，听这段声音都能有极好的立体感，但是听歌曲，却很少能有相同感受。只有换上专业的耳机和机器，才能感受到，敲鼓的在左后方，吉它在右前方，左前有钢琴。。。
+三频:一般手机里，没有啥三频的说法，整体声音软弱无力，毫无质感。但是在专业的耳机和机器，你会发现，低音或厚重，或清脆，声声都敲在心坎上，中频人声清晰有磁性，与乐器的分离感良好，不会是一团乱糟糟的混响，高音透彻但不刺耳，深远透彻。于是乎
 
-<!-- baidu start -->
-<div style="padding-left:30px;"><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+年后，入手第一台MP3：OPPO X1，迅的X9算是它的老前辈。正是这台MP3下，我形成了自己的音乐爱好，听音风格，感知水平。
 
-<div id="gbook" style="padding-left:20px;padding-right:20px;">
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-<!-- 多说评论框 end -->
-</div>
+音乐爱好：说到这，就不得不再提到许巍，在这台MP3下，给我最大感动的就是他的音乐。除此之外，一系列下面会用来做测评的高质量英语，和其它一些不太出名的乐手及更广泛的音乐界的聆听认识和发现，乃至几首铭刻了咱某时刻心情的歌曲，都在这里进入了我的生活。
+听音风格：尽管是X9给我启蒙，但是老实说，X9的风格我很不喜欢，低音太重，整体音效太闷，离真实的声音太远，只适合低音控。而在x1里，有“正常”，“动态低音”，“丽音”，三种音效模式，动态低音和X9的整体风格差不多，给迅后再给我也一般被调成这个模式，可见不同人的风格喜好差异度还是极高。丽音这是我的大爱，也成了我之后选择耳机的风格标准：低音清脆有弹性，却也不失量的充足，人声必须在乐器之上，清晰有磁性，整体清淡但是由于人声的突出，量感并不低，显得明晰，乐器在周围很好营造出众星捧月的效果。可参考：《绿茶》。
+感知水平:曾经有同学拿来两幅普通耳塞，让我听听有啥不同，我一听，哎哟不得了，这完全是两种声音嘛，一个完全没有低音，一个轰隆隆敲得热闹，但是他说自己听不出差别。对，就是这种对歌曲声音特征鉴赏认知水平的提高，现在再让我用普通的设备听歌，我是真的接受不了那声音。2010年，高二
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
+几个月后，OPPO X1在网吧丢失。那时年也过了，经济拮据，没啥钱，但是走上了这条不归路，哪能停下和中断，最终在经济和音质中进行了痛苦的权衡，入手挺便宜的机器：台电X19+。风格很接近X1，音质也相当不错，可谓对便宜没好货的最好反驳，可能也是从它给我的良好印象开始，我购买电子产品也越来越倾向于国产。记得那时候，班上因为它“便宜有好货”，先后让我给买了十台左右X19+，美谈啊美谈。
+毕竟是便宜货啊，总觉不够爽。那时，已经开始接触到发烧耳机比MP3更重要的信息，一番研究后，加上购买X19后一段时间又有了些钱，便入了咱第一条耳塞：森海塞尔MX370，不久后，迅入手森海塞尔MX360，有趣的是，这两条塞子的调音风格，也正是和我俩的喜好相配，360低音厚重，370清脆清晰。
+由前言及其它原因，OPPO X1对咱来说意义挺重要的，年后，领了压岁钱，一个念头出来就重新入了一台X1，然后一直用到现在。
+2011年，高三
+人活着就得进步，慢慢地MX370+X1已经满足不了我膨胀的欲望，一番纠结终于入得现在正扣在耳朵上的AKG K420（说明：就像许嵩写道：“我常常如现在这般，在飞机</p>
 <p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+	<a href="/410/#more">Read More</a>
 </p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
 
       
   </div>
@@ -920,10 +911,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

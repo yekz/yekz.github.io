@@ -140,12 +140,40 @@ set_new_handler allows you to s">
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+	<div id="toc" class="toc-article">
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part_8:_Customizing_new_and_delete"><span class="toc-number">1.</span> <span class="toc-text">Part 8: Customizing new and delete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things_To_Remember"><span class="toc-number">2.</span> <span class="toc-text">Things To Remember</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key_Words"><span class="toc-number">3.</span> <span class="toc-text">Key Words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">4.</span> <span class="toc-text">Code</span></a></li></ol>
+	</div>
+
+<p>This article is one of <a href="http://www.yekezhong.com/844" title="《Effective C++》阅读笔记 (系列)" target="_blank" rel="external">&lt;Effective C++&gt;</a> reading notes.</p>
+<h2 id="Part_8:_Customizing_new_and_delete">Part 8: Customizing new and delete</h2>
+<p><a href="http://www.yekezhong.com/958" target="_blank" rel="external">Item 49: Understand the behavior of the new-handler.</a></p>
+<hr>
+<h2 id="Things_To_Remember">Things To Remember</h2>
+<ul>
+<li>set_new_handler allows you to specify a function to be called when memory allocation requests cannot be satisfied.</li>
+<li>Nothrow new is of limited utility, because it applies only to memory allocation; subsequent constructor calls may still throw exceptions.</li>
+</ul>
+<hr>
+<h2 id="Key_Words">Key Words</h2>
+<p><strong><a href="http://en.wikipedia.org/wiki/Curiously_recurring_template_pattern" target="_blank" rel="external">curiously recurring template pattern (CRTP) 怪异的循环模版模式</a>: </strong></p>
+<p>The curiously recurring template pattern (CRTP) is a C++ idiom in which a class X derives from a class template instantiation using X itself as template argument.</p>
+<p><a href="http://blog.sina.com.cn/s/blog_45497dfa0100gb1j.html" target="_blank" rel="external">c++ Template CRTP</a></p>
+<p><a href="http://q.cnblogs.com/q/43869/" target="_blank" rel="external">关于c++ template多态——CRTP 模式</a></p>
+<hr>
+<h2 id="Code"><strong>Code</strong></h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;new&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdlib.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> NewHandlerHolder</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">trueexplicit NewHandlerHolder(std::new_handler nh) : handler(nh) { };</div><div class="line"><span class="keyword">true</span>~NewHandlerHolder() { std::set_new_handler(handler); } <span class="comment">// release it</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestd::new_handler handler; <span class="comment">// remember it</span></div><div class="line">trueNewHandlerHolder(<span class="keyword">const</span> NewHandlerHolder&); <span class="comment">// prevent copying</span></div><div class="line">trueNewHandlerHolder& <span class="keyword">operator</span>=(<span class="keyword">const</span> NewHandlerHolder&);</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// The NewHandlerSupport template never uses its type parameter T.</span></div><div class="line"><span class="comment">// All we need is a different copy of NewHandlerSupport - in particular,</span></div><div class="line"><span class="comment">// it's static data member currentHandler - for each class that</span></div><div class="line"><span class="comment">// inhreits from NewHandlerSupport.</span></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">class</span> NewHandlerSupport</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">truestatic std::new_handler set_new_handler(std::new_handler p) <span class="keyword">throw</span>();</div><div class="line">truestatic <span class="keyword">void</span>* <span class="keyword">operator</span> <span class="keyword">new</span>(std::size_t size) <span class="keyword">throw</span>(std::bad_alloc);</div><div class="line"><span class="keyword">private</span>:</div><div class="line">truestatic std::new_handler currentHandler;</div><div class="line">};</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line">std:: new_handler NewHandlerSupport&lt;T&gt;::set_new_handler(std::new_handler p) <span class="keyword">throw</span>()</div><div class="line">{</div><div class="line">truestd::new_handler oldHandler = currentHandler;</div><div class="line">truecurrentHandler = p;</div><div class="line">truereturn oldHandler;</div><div class="line">}</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">void</span>* NewHandlerSupport&lt;T&gt;::<span class="keyword">operator</span> <span class="keyword">new</span>(std::size_t size) <span class="keyword">throw</span>(std::bad_alloc)</div><div class="line">{</div><div class="line">trueNewHandlerHolder h(std::set_new_handler(currentHandler));</div><div class="line">truereturn ::<span class="keyword">operator</span> <span class="keyword">new</span>(size);</div><div class="line">}</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line">std::new_handler NewHandlerSupport&lt;T&gt;::currentHandler = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">// </span></div><div class="line"><span class="keyword">class</span> Widget : <span class="keyword">public</span> NewHandlerSupport&lt;Widget&gt;</div><div class="line">{</div><div class="line"><span class="keyword">true</span><span class="comment">// ...</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">void</span> outOfMem()</div><div class="line">{</div><div class="line">truestd::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"Unable to satisfy request for memory\n"</span>;</div><div class="line">trueabort();</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line"><span class="keyword">true</span><span class="comment">// set outOfMem as Widget's new-handling function</span></div><div class="line">trueWidget::set_new_handler(outOfMem);</div><div class="line"><span class="keyword">true</span><span class="comment">// if memory allocation fails, call outOfMem</span></div><div class="line">trueWidget* pw1 = <span class="keyword">new</span> Widget;</div><div class="line"><span class="keyword">true</span><span class="comment">// if memory allocation fails, call the global new-handling function (if there if one)</span></div><div class="line">truestd::<span class="built_in">string</span>* ps = <span class="keyword">new</span> std::<span class="built_in">string</span>;</div><div class="line"><span class="keyword">true</span><span class="comment">// set the Widget-specific new-handling function to nothing (i.e., null)</span></div><div class="line">trueWidget::set_new_handler(<span class="number">0</span>);</div><div class="line"><span class="keyword">true</span><span class="comment">// if mem. alloc. fails, throw an exception immediately</span></div><div class="line">trueWidget* pw2 = <span class="keyword">new</span> Widget;</div><div class="line">truereturn <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/958/" data-id="xb4lsyl1g54lsg7h" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CRTP/">CRTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Effective-C/">Effective C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/set-new-handler/">set_new_handler</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -154,20 +182,34 @@ set_new_handler allows you to s">
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="958" data-title="Item 49: Understand the behavior of the new-handler." data-url="http://www.yekezhong.com/958/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/974/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《数学之美》 阅读笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/949/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">《黑客与画家》阅读笔记</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -394,10 +436,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

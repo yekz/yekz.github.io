@@ -126,12 +126,21 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<div style="color: #000000;"><br><br><em>   <strong>InnoDB</strong>：OLTP在线事务处理，行锁设计，支持外键，非锁定读，通过多版本并发控制（MVCC）来获得高并发性，实现了SQL标准的4种隔离级别，插入缓冲，二次写，自适应哈希索引，预读，使用聚集方式存储表中数据，每张表的数据都按逐渐的顺序存放，如果没有显式地指定主键，会生成一个6字节的ROWID作主键。
+</em>   <strong>MyISAM</strong>：不支持事务/表锁，对一些OLAP在线分析处理操作速度快，可以使用myisampack来进行赫夫曼压缩，压缩后是只读的。<br><em>   <strong>NDB Cluster</strong>：share nothing 的集群架构。数据全部放在内存中，主键查找速度极快，复杂的连接操作很慢。
+</em>   <strong>Memory</strong>：使用哈希索引，所有数据存放在内存里，适用于临时表。只支持表锁，并发性能较差，不支持TEXT和BLOB。<br><em>   <strong>Archive</strong>：只支持INSERT和SELECT，使用zlib算法压缩存储数据，适合存储归档数据，如日志。使用行锁来实现高并发的插入操作。
+</em>   <strong>Federated</strong>：指向一个远处MySQL数据库服务器上的表。<br><em>   <em>*Maria</em></em>：设计目标是取代MyISAM。缓存数据和索引文件，行锁设计，提供MVCC功能，支持事务，以及更好的BLOB处理性能。<br><a href="/img/13.jpg"><img src="/img/13.jpg" alt="MySQL各种存储引擎之间的比较"></a><br><br></div>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/1163/" data-id="g9si3mwigbed3k4w" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -140,20 +149,34 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="1163" data-title="MySQL 学习笔记 存储引擎对比篇" data-url="http://www.yekezhong.com/1163/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1168/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MySQL 学习笔记 InnoDB存储引擎篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1160/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL 学习笔记 优化篇</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -380,10 +403,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

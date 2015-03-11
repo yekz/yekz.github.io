@@ -127,12 +127,20 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<p>关于博主：</p>
+<p>原籍 Windows，母语 C++，后操一口 PHP 口音迁移户口到 Linux，现致力于为<a href="http://www.lingxi360.com/" target="_blank" rel="external">灵析</a>添砖加瓦。<br>对产品为公益事业带来的帮助感到自豪。</p>
+<p>想了解我更多?</p>
+<p>对面的程序员看过来：<a href="https://github.com/yekz" target="_blank" rel="external">https://github.com/yekz</a><br>你也喜欢书或电影？<a href="http://www.douban.com/people/43685904/" target="_blank" rel="external">http://www.douban.com/people/43685904/</a><br>什么玩意儿。<a href="http://weibo.com/yekezhong" target="_blank" rel="external">http://weibo.com/yekezhong</a><br>相比<a href="/guestbook">留言</a>，我更喜欢写长篇的邮件对话：yekezhong315#gmail.com</p>
+<p>————————————————————<br>Build At 2012-5-06.<br>Enjoy IT :)</p>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/about/index.html" data-id="svgrl7zf1mlmxosj" class="article-share-link">Share</a>
+      
     </footer>
 
 <!-- baidu start -->
@@ -141,20 +149,15 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="undefined" data-title="About" data-url="http://www.yekezhong.com/about/index.html"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+
 
       
   </div>
@@ -381,10 +384,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

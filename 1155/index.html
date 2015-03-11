@@ -124,12 +124,60 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<p>mysqld 客户/服务器程序<br>libmysqld 嵌入式服务器库：不需要网络<br>使用IS NULL 或IS NOT NULL来对NULL 进行查找。&lt;=&gt;<br>IF(row<em>name IS NULL, 0, 1) 条件选择语句<br>ORDER BY RAND() LIMIT num 随机取出num条记录<br>SELECT CONCAT(row_name1, ‘ ‘, row_name2) AS name 合并列字符串为name=row_name1 row_name2<br>日期：1970-01-01<br>按日期排序/查找某个日期或范围/提取年月日（WHERE MONTH(birth) = 3）/计算距离/加减时间间隔 YEAR(), MONTH(), DAYOFMONTH(), CURDATE()<br>LIKE/NOT LIKE ：</em>匹配一个字符，%匹配任何一个字符序列<br>变量：SELECT @var := value<br>         SELECT @today := CURDATE();<br>去重复：SELECT DISTINCT row_name FROM table_name<br>COUNT(<em>)统计被选中的数据行的总数，COUNT(row_name)只统计全体非NULL值的个数。<br>COUNT(</em>) FROM table_name GROUP BY row_name<br>SELECT row_name, COUNT（*） AS count FROM table_name GROUP BY state HAVING count &gt; 1 ORDER BY count DESC;<br>函数MIN(), MAX(), SUM(), AVG()能够得出某个数据列你的最小值/最大值/总和和平均值。<br>WITH ROLLUP  超级聚合</p>
+<a id="more"></a>
+
+<hr>
+<p><a href="/img/15.jpg"><img src="/img/15.jpg" alt="MySQL存储引擎"></a></p>
+<hr>
+<p>InnoDB数据表的内容都集中保存在一个共享存储空间里。</p>
+<p><a href="/img/14.jpg"><img src="/img/14.jpg" alt="MySQL存储引擎的索引特性"></a><br>ALTER TABLE tbl_name ADD INDEX/UNIQUE/PRIMARY KEY/FULLTEXT/SPATIAL index_name (index_columns); // index_name 是可选的，若省略，MySql将自动挑选一个。<br>CREATE INDEX index_name ON tbl_name (index_columns);  // 同上，且不支持PRIMERY KEY</p>
+<hr>
+<p>INNER JOIN（CROSS JOIN/JOIN）：内连接，笛卡尔积<br>LEFT/RIGHT JOIN ：外连接，找不到匹配的用NULL代替（这个特征可以让你知道右/左数据表里缺少了那些数据行。如：哪些库存商品一件也没卖出去？）<br>EXISTS/NOT EXISTS 测试某个子查询是否返回了数据行 0/1<br>IN/NOT IN 测试一个给定的比较值有没有出现在一个特定的集合里<br>ALL/ANY/SOME ： &lt;= ALL(SELECT…) 测试比较值是否与子查询所返回的部分或一部分匹配</p>
+<hr>
+<p>UNION ： 同一条 UNION 语句里的各有关数据列会是相同的数据类型，如果不一样，MySql会进行必要的类型转换。UNION将剔除重复的数据行（UNION ALL）。</p>
+<hr>
+<p>视图：CREATE VIEW view_name AS SELECT…</p>
+<hr>
+<p>事物：ACID原则：Atomic/Consistent/Isolated/Durable<br>START TRANSACTION;<br>…<br>SAVEPOINT point_name;<br>…<br>ROLLBACK TO SAVEPOINT point_name;<br>…<br>COMMIT/ROLLBACK;</p>
+<hr>
+<p>SET autocommit = 0; // 禁用自动提交模式<br>…<br>COMMIT/ROLLBACK;<br>用来创建/改变或删除数据库其中的对象的DLL语句以及与锁定有关的语句都不能成为事物的一部分。</p>
+<hr>
+<p>外键：InnoDB存储引擎通过这些规则来保证在外键关系里不会有不匹配的东西，这杯称为引用完整性。</p>
+<hr>
+<p>FULLTEXT 索引：CHAR/VARCHAR/TEXT</p>
+<p>自然语言模式：忽略至少在一半数据行里出现过的单词（50%规则），忽略the/after/other等”休止单词“，结果按相关程度排序<br>布尔模式：无50%规则，结果不按相关度排序，可以在没被包括在FULLTEXT索引里的数据列上进行<br>查询扩展模式：搜索分两阶段进行：第一阶段是自然语言搜索，第二阶段使用原来的搜索字符串加上在第一次搜索中找到的相关度最高的匹配数据再进行一次搜索</p>
+<hr>
+<p>BINAARY(20)容纳20个字节，CHAR(20)容纳20个字符</p>
+<p>BLOB和TEXT数据列的删除和修改操作很容易在数据表里产生大量碎片，如果使用了一个MyISAM数据表来保存BLOB或TEXT值，应该定期运行OPTIMIZE TABLE命令以减少碎片和改善系统性能。</p>
+<hr>
+<p>对于数值数据或TIME数据列，超出合法范围的值将被截短到最近的取值范围边界</p>
+<p>对于字符串数据列，太长的字符串将被截短到数据列的最大长度</p>
+<hr>
+<p>LAST_INSERT_ID()返回AUTO_INCREMENT最近生成的序号值。<br>MyISAM/InnoDB : CREATE/ALTER TABLE AUTO_INCREMENT = n<br>MyISAM存储索引支持使用符合（多数据列）索引在同一数据表里创建镀铬相互独立的序列：微数据表创建一个由多个数据列组成的PRIMARY KEY或UNIQUE索引，并把一个AUTO_INCREMENT数据列包括在这个索引里作为它的最后一个数据列。<br>MyISAM：长度固定的数据行会比长度可变的数据行有更好的性能表现。<br>InnoDB在内存里维护计数器以生成后续的序号值，如果从顶端删除了一些值以后重启服务器，这些序号值将被重复使用。<br>TRUNCATE TABLE 重置计数序列<br>重新编排：先删除该数据列，然后再重新添加它</p>
+<hr>
+<p>MySQL使用索引的方式有：</p>
+<ul>
+<li>在查询中把与WHERE字句所给出的条件相匹配的数据行尽快找出来；</li>
+<li>在关联操作中把与其他数据表里的数据行相匹配的数据行尽快找出来；</li>
+<li>对于使用MIN()或MAX()的查询，索引能迅速找到最小值和最大值；</li>
+<li>可以通过索引来避免微一个查询整体读取数据行。<br>缺点：</li>
+</ul>
+<ul>
+<li>降低了在带索引的数据列里插入/删除/修改数值的速度（需要同时修改索引）；</li>
+<li>索引要占据磁盘空间，这会使你较快地到达数据表的尺寸极限。</li>
+</ul>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/1155/" data-id="68b077sybg52ovsb" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -138,20 +186,34 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="1155" data-title="MySQL 学习笔记 基础篇" data-url="http://www.yekezhong.com/1155/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1160/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MySQL 学习笔记 优化篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1143/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每月荐影【2】：阿飞和他的那个女人</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -378,10 +440,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

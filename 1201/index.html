@@ -128,12 +128,34 @@ GAE 申请，GoAgent 下载，配置，上传，浏览器代理插件等步骤�
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<p>Linux 下配置 GoAgent 和 windows 稍有不同，部分操作需要手工操作。</p>
+<p>GAE 申请，GoAgent 下载，配置，上传，浏览器代理插件等步骤参考：<a href="http://www.yekezhong.com/127" title="goagent+Chrome/Firefox翻墙教程" target="_blank" rel="external">goagent+Chrome/Firefox翻墙教程</a></p>
+<p>本文主要介绍 Linux 下上述步骤完成后还需要的一些操作。</p>
+<a id="more"></a>
+
+
+<ol>
+<li>为 GoAgent 添加开机启动 ：addto-startup.py</li>
+<li>或启动 GoAgent GTK，运行（local 目录下）：goagent-gtk.py</li>
+<li>新版的 GoAgent 已经自带浏览器代理插件 <a href="https://chrome.google.com/webstore/detail/dpplabbmogkhghncfbfdeeokoefdjegm" title="点击安装" target="_blank" rel="external">Proxy SwitchySharp</a> 需要用到的 SwitchyOptions.bak ，在 local 目录下</li>
+<li><strong>此时，访问 http 加密的网站会出现证书问题，需要手工导入证书</strong></li>
+</ol>
+<p><strong>导入方法一</strong>：打开 Chrome 浏览器 &gt;settings &gt; Show advanced settings… &gt; HTTPS/SSL &gt; Manage certificates… &gt; Authorities（授权中心）&gt; Import… &gt; 导入 GoAgent/local 目录下的 CA.crt 证书 &gt; Edit trust settings 全部选中 &gt; 重启浏览器</p>
+<p><strong>导入方法二</strong>：INSTALL_PATH 为你的安装路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install libnss3-tools</div><div class="line">certutil <span class="operator">-d</span> sql:<span class="variable">$HOME</span>/.pki/nssdb -A -t <span class="string">"C,,"</span> -n GoAgent -i INSTALL_PATH/goagent/local/CA.crt</div></pre></td></tr></table></figure>
+
+<p>更多问题，请参考官方FAQ: <a href="https://code.google.com/p/goagent/wiki/GoAgent_Linux" target="_blank" rel="external"><span style="font-weight: bold;">GoAgent<em>Linux</em></span>  _Linux/Mac OSX系统使用教程</a></p>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/1201/" data-id="fx3dxxqmywujobn7" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/goagent/">goagent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssl/">ssl</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -142,20 +164,34 @@ GAE 申请，GoAgent 下载，配置，上传，浏览器代理插件等步骤�
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="1201" data-title="Ubuntu 配置 goagent ，解决证书问题" data-url="http://www.yekezhong.com/1201/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1208/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          想梦
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1196/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">长安 长安</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -382,10 +418,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 

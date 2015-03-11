@@ -128,12 +128,74 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-<%- post.content %>
+
+<!-- toc -->
+
+<p>首先在varnish官网找到最新版：<a href="https://www.varnish-cache.org/releases" target="_blank" rel="external">Varnish Cache releases</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget https://repo.varnish-cache.org/<span class="built_in">source</span>/varnish-<span class="number">4.0</span>.<span class="number">0</span>-beta1.tar.gz</div><div class="line">tar -vzxf varnish-<span class="number">4.0</span>.<span class="number">0</span>-beta1.tar.gz</div><div class="line"><span class="built_in">cd</span> varnish-<span class="number">4.0</span>.<span class="number">0</span></div><div class="line">./configure --prefix=/usr/local/varnish</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+<p><br></p>
+<blockquote>
+<p><span style="color: #ff0000;"><strong>出现错误1：大意是缺失curses/ncurses库</strong></span>，忘了截图。<br><span style="color: #0000ff;"><strong>解决方案：安装 ncurses</strong></span>在这里：<a href="http://www.gnu.org/software/ncurses/" target="_blank" rel="external">http://www.gnu.org/software/ncurses/</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-<span class="number">5.9</span>.tar.gz</div><div class="line">tar -vzxf ncurses-<span class="number">5.9</span>.tar.gz</div><div class="line"><span class="built_in">cd</span> ncurses-<span class="number">5.9</span></div><div class="line">./configure</div><div class="line">make</div><div class="line"><span class="built_in">sudo</span> make install</div></pre></td></tr></table></figure>
+
+<hr>
+<p>回到 varnish：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ../varnish-<span class="number">4.0</span>.<span class="number">0</span></div><div class="line">./configure --prefix=/usr/local/varnish</div></pre></td></tr></table></figure>
+
+<p><a href="/img/9.png"><img src="/img/9.png" alt="varnish-4.0.0报错"></a></p>
+<blockquote>
+<p><strong><span style="color: #ff0000;">出现错误2：这次是 No package ‘libpcre’ found</span></strong><br><strong><span style="color: #0000ff;">解决方案：安装pcre</span></strong><br><strong>在这里：<a href="https://sourceforge.net/projects/pcre/files/pcre/" target="_blank" rel="external">PCRE - Perl Compatible Regular Expressions</a><span style="text-decoration: underline;"> </span>来一发：</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget http://hivelocity.dl.sourceforge.net/project/pcre/pcre/<span class="number">8.35</span>/pcre-<span class="number">8.35</span>.tar.bz2</div><div class="line">tar -xjvf pcre-<span class="number">8.35</span>.tar.bz2</div><div class="line"><span class="built_in">cd</span> pcre-<span class="number">8.35</span></div><div class="line">./configure</div><div class="line">make</div><div class="line"><span class="built_in">sudo</span> make install</div></pre></td></tr></table></figure>
+
+<hr>
+<p>Let’s repeat again :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ../</div><div class="line">./configure --prefix=/usr/local/varnish</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+
+<p><a href="/img/10.png"><img src="/img/10.png" alt="fatal error: editline/readline.h: No such file or directory  #  include "></a></p>
+<blockquote>
+<p><strong><span style="color: #ff0000;">出现问题3：编译错误：fatal error: editline/readline.h: No such file or directory # include &lt;editline/readline.h&gt;</span></strong><br><strong><span style="color: #0000ff;">解决方案：安装 libedit</span></strong>在这里：<a href="http://sourceforge.net/projects/libedit/" target="_blank" rel="external">http://sourceforge.net/projects/libedit/</a>，流程如上不再重复。<br><strong><span style="color: #ff0000;">出现问题4：编译 libedit 报错：</span></strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/usr/bin/ld: chared.o: relocation R_X86_64_32 against `.rodata.str1.<span class="number">1</span><span class="string">' can not be used when making a shared object; recompile with -fPIC</span></div><div class="line">chared.o: could not read symbols: Bad value</div><div class="line">collect2: ld returned 1 exit status</div><div class="line">make: *** [libedit.so] Error 1</div></pre></td></tr></table></figure>
+
+<p><strong><span style="color: #0000ff;">解决方案：实践证明这位哥们的方案有效：<a href="http://sourceforge.net/p/libedit/bugs/7/" target="_blank" rel="external"><span style="color: #0000ff;">http://sourceforge.net/p/libedit/bugs/7/</span></a></span></strong></p>
+<hr>
+<p>安装好 libedit，继续 make varnish</p>
+<p><a href="11.png"><img src="/img/11.png" alt="varnish-4.0.0报错"></a></p>
+<blockquote>
+<p><span style="color: #ff0000;"><strong>出现问题5：编译错误：</strong></span><address class="brush: bash; gutter: true"></address></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">Making all <span class="keyword">in</span> varnishadm</div><div class="line">make[<span class="number">3</span>]: Entering directory `/home/yekz/varnish-<span class="number">4.0</span>.<span class="number">0</span>/bin/varnishadm<span class="string">'</span></div><div class="line">CC varnishadm-varnishadm.o</div><div class="line">varnishadm.c: In function ‘cli_write’:</div><div class="line">varnishadm.c:81:2: error: implicit declaration of function ‘rl_callback_handler_remove’ [-Werror=implicit-function-declaration]</div><div class="line">RL_EXIT(1);</div><div class="line">^</div><div class="line">varnishadm.c: In function ‘varnishadm_completion’:</div><div class="line">varnishadm.c:223:3: error: implicit declaration of function ‘rl_completion_matches’ [-Werror=implicit-function-declaration]</div><div class="line">matches = rl_completion_matches(text, command_generator);</div><div class="line">^</div><div class="line">varnishadm.c:223:11: error: assignment makes pointer from integer without a cast [-Werror]</div><div class="line">matches = rl_completion_matches(text, command_generator);</div><div class="line">^</div><div class="line">varnishadm.c: In function ‘interactive’:</div><div class="line">varnishadm.c:240:2: error: ‘rl_already_prompted’ undeclared (first use in this function)</div><div class="line">rl_already_prompted = 1;</div><div class="line">^</div><div class="line">varnishadm.c:240:2: note: each undeclared identifier is reported only once for each function it appears in</div><div class="line">varnishadm.c:241:2: error: implicit declaration of function ‘rl_callback_handler_install’ [-Werror=implicit-function-declaration]</div><div class="line">rl_callback_handler_install("varnish&gt; ", send_line);</div><div class="line">^</div><div class="line">varnishadm.c:304:4: error: implicit declaration of function ‘rl_forced_update_display’ [-Werror=implicit-function-declaration]</div><div class="line">rl_forced_update_display();</div><div class="line">^</div><div class="line">varnishadm.c:307:4: error: implicit declaration of function ‘rl_callback_read_char’ [-Werror=implicit-function-declaration]</div><div class="line">rl_callback_read_char();</div><div class="line">^</div><div class="line">cc1: all warnings being treated as errors</div><div class="line">make[3]: *** [varnishadm-varnishadm.o] Error 1</div><div class="line">make[3]: Leaving directory `/home/yekz/varnish-4.0.0/bin/varnishadm'</div><div class="line">make[<span class="number">2</span>]: *** [all-recursive] Error <span class="number">1</span></div><div class="line">make[<span class="number">2</span>]: Leaving directory `/home/yekz/varnish-<span class="number">4.0</span>.<span class="number">0</span>/bin<span class="string">'</span></div><div class="line">make[1]: *** [all-recursive] Error 1</div><div class="line">make[1]: Leaving directory `/home/yekz/varnish-4.0.0'</div><div class="line">make: *** [all] Error <span class="number">2</span></div></pre></td></tr></table></figure>
+
+<p><strong><span style="color: #0000ff;">解决方案：安装 libreadline ： <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html" target="_blank" rel="external">http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html</a></span></strong><br><strong>问题详情可以在此处了解：<a href="https://www.varnish-cache.org/trac/ticket/1003" target="_blank" rel="external">https://www.varnish-cache.org/trac/ticket/1003</a></strong></p>
+<hr>
+<p>GOON!!!</p>
+<blockquote>
+<p><strong>出现问题6：编译错误：</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">make[<span class="number">3</span>]: Entering directory `/home/yekz/varnish-<span class="number">4.0</span>.<span class="number">0</span>/doc/sphinx<span class="string">'</span></div><div class="line">../../bin/varnishd/varnishd -x dumprstparam &gt; include/params.rst</div><div class="line">/home/yekz/varnish-4.0.0/bin/varnishd/.libs/lt-varnishd: error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory</div><div class="line">make[3]: *** [include/params.rst] Error 127</div><div class="line">make[3]: Leaving directory `/home/yekz/varnish-4.0.0/doc/sphinx'</div><div class="line">make[<span class="number">2</span>]: *** [all-recursive] Error <span class="number">1</span></div><div class="line">make[<span class="number">2</span>]: Leaving directory `/home/yekz/varnish-<span class="number">4.0</span>.<span class="number">0</span>/doc<span class="string">'</span></div><div class="line">make[1]: *** [all-recursive] Error 1</div><div class="line">make[1]: Leaving directory `/home/yekz/varnish-4.0.0'</div><div class="line">make: *** [all] Error <span class="number">2</span></div></pre></td></tr></table></figure>
+
+<p><span style="color: #0000ff;"><strong>解决方案：使用 sudo make（有误，请参考下文，但不知为何此处使用 sudo 确实编译过了）</strong></span></p>
+<p>通过了！！！！！！！！！！！！！！！！！！！！</p>
+<hr>
+<p>启动 varnish：</p>
+<blockquote>
+<p><span style="color: #ff0000;"><strong>出现错误7：varnishd: error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory</strong></span><span style="color: #0000ff;"><br><strong>解决方案：Ubuntu下，pcre安装在 /usr/local/lib/<em>pcre</em>，而 varnish 似乎是在 /lib/<em>pcre</em> 找它。做个链接就行了：</strong></span>sudo ln -s /usr/local/lib/libpcre.so.1.2.3 /lib/libpcre.so.1</p>
+</blockquote>
+<p>收工！太坑了！！！！</p>
+
 
 </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link">Share</a>
-      <%- partial('tag') %>
+      <a data-url="http://www.yekezhong.com/1172/" data-id="js3jl7uclbnbgllx" class="article-share-link">Share</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cache/">Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Varnish/">Varnish</a></li></ul>
+
     </footer>
 
 <!-- baidu start -->
@@ -142,20 +204,34 @@
 
 <div id="gbook" style="padding-left:20px;padding-right:20px;">
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
+	<div class="ds-thread" data-thread-key="1172" data-title="坑爹的 varnish-4 之 Ubuntu 安装手记" data-url="http://www.yekezhong.com/1172/"></div>
 <!-- 多说评论框 end -->
 </div>
 
-<% } else { %>
-<p itemprop="description" ><%- strip_html(post.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 2000) %></p>
-<p class="article-more-link">
-	<a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
-</p>
-<% } %>
 
-<% if (!index){ %>
-  <%- partial('nav') %>
-<% } %>
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/1196/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          长安 长安
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1168/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL 学习笔记 InnoDB存储引擎篇</div>
+    </a>
+  
+</nav>
+
+
 
       
   </div>
@@ -382,10 +458,10 @@ if (div) {
 }
 </script>
 
-<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<div id="scroll2top" style="position:fixed;bottom:150px;right:50px;cursor: pointer;Z-index:9999">
 <a title="返回顶部" href="#"><img src="/scroll2top/scrollup.png"/></a>
 </div>
-<script src="<%- config.root %>scroll2top/scroll2top.js"></script>
+<script src="/scroll2top/scroll2top.js"></script>
 
 
 
